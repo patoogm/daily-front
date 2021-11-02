@@ -7,7 +7,7 @@ function Footer() {
       <div className="footer-core-container">
         <div className="footer-links-container">
           <div className="link-container">
-            <span className="footer-logo">LOGO HERE TUCUMÁN</span>
+            <span className="footer-logo">ROLLING DAILY <br /> TUCUMÁN</span>
             <span className="link-span">Lunes 01 de Noviembre de 2021</span>
             <span className="link-span">Edición 387 - Año 5 Mes 9</span>
             <span className="link-span">Logo Here S.A.</span>
@@ -23,17 +23,17 @@ function Footer() {
             <span className="link-span">Lopez, Marcos Emmanuel</span>
           </div>
           <div className="link-container">
-            <div className="social-link facebook"></div>
-            <div className="social-link instagram"></div>
-            <div className="social-link youtube"></div>
-            <div className="social-link whatsapp"></div>
+            <a href="https://facebook.com" target="_blank"><div className="social-link facebook"></div></a>          
+            <a href="https://instagram.com" target="_blank"><div className="social-link instagram"></div></a>          
+            <a href="https://youtube.com" target="_blank"><div className="social-link youtube"></div></a>          
+            <a href="https://whatsapp.com" target="_blank"><div className="social-link whatsapp"></div></a>
           </div>
         </div>
         <div className="footer-legal-container">
-          <div className="footer-end-logo">LOGO HERE</div>
+          <div className="footer-end-logo">ROLLING DAILY</div>
           <div className="footer-end-link">Uso de Datos Personales</div>
           <div className="footer-end-link">Términos y Condiciones</div>
-          <div className="footer-end-link">Logo Here S.A. © 2021 - Todos los derechos reservados</div>
+          <div className="footer-end-link">Rolling Daily S.A. © 2021 - Todos los derechos reservados</div>
         </div>         
       </div>
     </>

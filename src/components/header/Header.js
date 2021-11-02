@@ -11,7 +11,7 @@ function Header() {
         </div>
         <div className="header-logo-and-buttons">
           <div className="logo-container">
-            <span className="logo">LOGO HERE</span>
+            <span className="logo">ROLLING DAILY</span>
           </div>
           <div className="buttons-container">
             <div className="login-button">Login</div>
