@@ -1,0 +1,76 @@
+.header-core-container{
+  height: 80px;
+  width: 100%;
+  background-color: #24252A;
+  box-shadow: -1px 3px 21px -1px rgba(95,95,95,0.89);
+  z-index: 2;
+  position: relative;
+}
+.header-social-icons{
+  height: 30px;
+  width: 100%;
+  outline: 1px solid white;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.social-icon{
+  margin-right: 20px;
+  font-size: 18px;
+}
+.bi-facebook:hover{
+  color: #1178F2;
+  cursor: pointer;
+}
+.bi-instagram:hover{
+  color: #FF69B4;
+  cursor: pointer;
+}
+.bi-youtube:hover{
+  color: #FF0000;
+  cursor: pointer;
+}
+.header-logo-and-buttons{
+  height: 50px;
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-container, .buttons-container{
+  display: flex;
+  align-items: center;
+  height: auto;
+  width: 50%;
+}
+.logo-container{
+  justify-content: flex-start;
+}
+.buttons-container{
+  justify-content: flex-end;
+}
+.login-button, .register-button{
+  margin-right: 12px;
+  height: 30px;
+  width: 150px;
+  background-color: white;
+  color: #24252A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  transition-duration: .5s;
+}
+.login-button:hover, .register-button:hover{
+  background-color: #24252A;
+  color: white;
+  outline: 1px solid white;
+  cursor: pointer;
+  transition-duration: .5s;
+}
+.logo{
+  margin-left: 25px;
+  font-size: 30px;
+}
