@@ -1,0 +1,20 @@
+.miniheader-core-container{
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #24252A;
+  position: absolute;
+  top: 0;
+  z-index: 3;
+}
+.title{
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+}
+.miniheader-image{
+  height: 35px;
+  margin-right: 5px;
+}
