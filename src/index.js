@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
 
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 ReactDOM.render(
   <React.StrictMode>
     <Router>
