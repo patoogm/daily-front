@@ -10,7 +10,7 @@ function Footer() {
             <span className="footer-logo">ROLLING DAILY <br /> TUCUMÁN</span>
             <span className="link-span">Lunes 01 de Noviembre de 2021</span>
             <span className="link-span">Edición 387 - Año 5 Mes 9</span>
-            <span className="link-span">Logo Here S.A.</span>
+            <span className="link-span">Rolling Daily S.A.</span>
           </div>
           <div className="link-container">
             <span className="link-span">San Miguel de Tucumán</span>

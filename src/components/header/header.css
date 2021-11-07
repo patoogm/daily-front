@@ -1,3 +1,7 @@
+a, a:visited{
+  text-decoration: none;
+  color: white;
+}
 .header-core-container{
   height: 80px;
   width: 100%;
@@ -48,6 +52,14 @@
 .logo-container{
   justify-content: flex-start;
 }
+.logo{
+  margin-left: 5px;
+  font-size: 30px;
+}
+.header-logo-icon{
+  height: 35px;
+  margin-left: 35px;
+}
 .buttons-container{
   justify-content: flex-end;
 }
@@ -69,8 +81,4 @@
   outline: 1px solid white;
   cursor: pointer;
   transition-duration: .5s;
-}
-.logo{
-  margin-left: 25px;
-  font-size: 30px;
 }
