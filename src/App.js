@@ -16,12 +16,12 @@ function App() {
       <Navbar />
       <Carrousel />
       <h2 className="p-4">Ultimas Noticias </h2>
-      <Card1 />
+      <Card1 section="sports"/>
       <h2 className="p-4">Deportes </h2>
-      <Card1 />
+      <Card1 section="health"/>
       <Advertising />
       <h2 className="p-4">Politica </h2>
-      <Card1 />
+      <Card1 section="science"/>
       <Footer />
     </div>
   );
