@@ -15,12 +15,12 @@ function App() {
       <Header />
       <Navbar />
       <Carrousel />
-      <h2 className="p-4">Ultimas Noticias </h2>
+      <h2 className="container p-4">Ultimas Noticias </h2>
       <Card1 />
-      <h2 className="p-4">Deportes </h2>
+      <h2 className="container p-4">Deportes </h2>
       <Card1 />
       <Advertising />
-      <h2 className="p-4">Politica </h2>
+      <h2 className="container p-4">Politica </h2>
       <Card1 />
       <Footer />
     </div>
