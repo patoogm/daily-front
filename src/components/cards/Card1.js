@@ -1,16 +1,17 @@
 import React from 'react';
-import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBContainer, } from 'mdb-react-ui-kit';
 
 export default function App() {
   return (
-    <MDBRow className='row-cols-1 row-cols-md-3 g-4 p-4'>
+  <MDBContainer>
+    <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
       <MDBCol>
         <MDBCard className='h-100'>
           <MDBCardImage
             src='https://mdbcdn.b-cdn.net/img/new/standard/city/041.jpg'
             alt='...'
             position='top'
-          />
+            />
           <MDBCardBody>
             <MDBCardTitle>Noticia 1</MDBCardTitle>
             <MDBCardText>
@@ -26,7 +27,7 @@ export default function App() {
             src='https://mdbcdn.b-cdn.net/img/new/standard/city/042.jpg'
             alt='...'
             position='top'
-          />
+            />
           <MDBCardBody>
             <MDBCardTitle>Noticia 2</MDBCardTitle>
             <MDBCardText>This is a short card.</MDBCardText>
@@ -39,7 +40,7 @@ export default function App() {
             src='https://mdbcdn.b-cdn.net/img/new/standard/city/043.jpg'
             alt='...'
             position='top'
-          />
+            />
           <MDBCardBody>
             <MDBCardTitle>Noticia 3</MDBCardTitle>
             <MDBCardText>
@@ -51,5 +52,6 @@ export default function App() {
       <MDBCol>
       </MDBCol>
     </MDBRow>
+  </MDBContainer>
   );
 }
