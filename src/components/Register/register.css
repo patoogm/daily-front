@@ -91,6 +91,7 @@ body{
   background-color: #24252A;
   transition-duration: .5s;
   margin-top: 20px;
+  border: none;
 }
 .register-form-button:hover{
   background-color: white;
