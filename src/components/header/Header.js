@@ -5,10 +5,8 @@ import '../header/header.css'
 
 function Header() {
 
-  
-  
-
   let mobileButton = useRef()
+
   useEffect(() => {
     const toggle = document.querySelector('.navToggle')
     const menu = document.querySelector('.mobile-menu')
@@ -20,17 +18,13 @@ function Header() {
     const six = document.querySelector('.six');
 
 
-    let toggleMenu = () => {
-
-     
+    let toggleMenu = () => {     
       let checkItem;
       if(menu.className.indexOf('active') > -1){
         checkItem = true;
-      } else {
-        
+      } else {        
         checkItem = false;
-      }
-   
+      }   
   
       if(checkItem){
         menu.classList.remove('active')
