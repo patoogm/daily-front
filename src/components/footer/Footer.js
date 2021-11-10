@@ -19,14 +19,15 @@ function Footer() {
             <span className="link-span">Editores Responsables:</span>
             <span className="link-span">Antoni, Javier</span>
             <span className="link-span">Frías Silva, Jerónimo</span>
-            <span className="link-span">Antoni, Javier</span>
+            <span className="link-span">García Millan, Patricio</span>
             <span className="link-span">Lopez, Marcos Emmanuel</span>
+            <span className="link-span">Paz, Lucas</span>
           </div>
           <div className="link-container">
-            <a href="https://facebook.com" target="_blank"><div className="social-link facebook"></div></a>          
-            <a href="https://instagram.com" target="_blank"><div className="social-link instagram"></div></a>          
-            <a href="https://youtube.com" target="_blank"><div className="social-link youtube"></div></a>          
-            <a href="https://whatsapp.com" target="_blank"><div className="social-link whatsapp"></div></a>
+            <a href="https://facebook.com" target="_blank" rel="noreferrer"><div className="social-link facebook"></div></a>          
+            <a href="https://instagram.com" target="_blank" rel="noreferrer"><div className="social-link instagram"></div></a>          
+            <a href="https://youtube.com" target="_blank" rel="noreferrer"><div className="social-link youtube"></div></a>          
+            <a href="https://whatsapp.com" target="_blank" rel="noreferrer"><div className="social-link whatsapp"></div></a>
           </div>
         </div>
         <div className="footer-legal-container">

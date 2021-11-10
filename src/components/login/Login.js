@@ -28,6 +28,7 @@ function Login() {
       }
   }
 
+
   return (
     <>
       <div className="form-core-container">
@@ -40,7 +41,7 @@ function Login() {
             <label htmlFor="password" className="login-label">Contraseña</label>
             <input type="password" name="password" id="password" className="login-input" {...register("password")}/>
             
-            <input type="submit" className="login-form-button" value="Register" />
+            <input type="submit" className="login-form-button" value="ENTRAR" />
         </form>
       </div>
     </>

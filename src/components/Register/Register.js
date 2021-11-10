@@ -45,7 +45,7 @@ const Register = () => {
           <label htmlFor="password" className="register-label">Contraseña</label>
           <input type="password" name="password" id="password" className="register-input" required {...register("password")} />
 
-          <input type="submit" className="register-form-button" value="Register" />
+          <input type="submit" className="register-form-button" value="REGISTRARSE" />
         </form>
       </div>
     </>
