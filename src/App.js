@@ -5,6 +5,7 @@ import Footer from "./components/footer/Footer";
 import Carrousel from './components/carrousel/Carrousel';
 import Card1 from './components/cards/Card1';
 import Advertising from './components/advertising/Advertising';
+import MobileMenu from "./components/mobileMenu/MobileMenu";
 
 
 
@@ -12,6 +13,7 @@ import Advertising from './components/advertising/Advertising';
 function App() {
   return (
     <div className="App">
+      <MobileMenu />
       <Header />
       <Navbar />
       <Carrousel />

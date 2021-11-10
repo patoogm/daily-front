@@ -1,0 +1,49 @@
+.mobile-menu{
+  width: 0px;
+  height: 100%;
+  background-color: #24252A;
+  position: fixed;
+  right: 0;
+  z-index: 5;
+  transition-duration: .5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mobile-menu-item{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;  
+  color: white;
+  transition-duration: .5s;
+  border-bottom: 1px dashed white;
+}
+.mobile-menu-item:hover{
+  background-color: white;
+  color: #24252A;
+  transition-duration: .5s;
+}
+.mobile-menu-item:nth-child(3){
+  border-top: 1px dashed white;
+}
+.login, .register{
+  font-size: 25px;
+  font-weight: bolder;
+  border-bottom: 1px solid white;
+  height: 80px;
+}
+.register{
+  margin-bottom: 50px;
+}
+
+/* CLASES PARA ACCIONAR MENU Y BOTONES */
+.active{
+  width: 70%;
+  transition-duration: .5s;
+  border-left: 5px solid white;
+}
+.itemActive{
+  display: flex;
+}
