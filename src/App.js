@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+import UserPage from "./components/UserPage/UserPage";
+import NewsPage from "./components/NewsAdminPage/NewsAdminPage";
+=======
 import React from "react";
 import Header from "./components/header/Header";
 import Navbar from "./components/navbar/Navbar";
@@ -9,10 +13,14 @@ import MobileMenu from "./components/mobileMenu/MobileMenu";
 
 
 
+>>>>>>> b8b36a111043f4d8e3a561aa6414237acd2d15ed
 
 function App() {
   return (
     <div className="App">
+<<<<<<< HEAD
+      <NewsPage />
+=======
       <MobileMenu />
       <Header />
       <Navbar />
@@ -25,6 +33,7 @@ function App() {
       <h2 className="container p-4">Politica </h2>
       <Card1 />
       <Footer />
+>>>>>>> b8b36a111043f4d8e3a561aa6414237acd2d15ed
     </div>
   );
 }
