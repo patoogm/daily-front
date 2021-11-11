@@ -14,7 +14,7 @@ export default function App(props) {
 
   useEffect(() => {
     handleClick()   
-  }, [])
+  }, )
 
   return (
     <MDBRow className='row-cols-1 row-cols-md-3 gx-0'>
