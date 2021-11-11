@@ -5,12 +5,14 @@ import {
   MDBCarouselItem,
   MDBCarouselElement,
   MDBCarouselCaption,
+  MDBContainer,
 } from 'mdb-react-ui-kit';
 
 export default function App() {
   return (
     <MDBCarousel showControls showIndicators>
-      <MDBCarouselInner className='p-4'>
+      <MDBContainer>
+      <MDBCarouselInner>
         <MDBCarouselItem className='active'>
           <MDBCarouselElement src='https://mdbcdn.b-cdn.net/img/new/slides/041.jpg' alt='...' />
           <MDBCarouselCaption>
@@ -33,6 +35,7 @@ export default function App() {
           </MDBCarouselCaption>
         </MDBCarouselItem>
       </MDBCarouselInner>
-    </MDBCarousel>
+    </MDBContainer>
+  </MDBCarousel>
   );
 }

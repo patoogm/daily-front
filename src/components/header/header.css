@@ -48,6 +48,7 @@ a, a:visited{
   align-items: center;
   height: auto;
   width: 50%;
+  height: 100%;
 }
 .logo-container{
   justify-content: flex-start;
@@ -55,6 +56,9 @@ a, a:visited{
 .logo{
   margin-left: 5px;
   font-size: 30px;
+}
+.bi-list{
+  display: none;
 }
 .header-logo-icon{
   height: 35px;
@@ -81,4 +85,49 @@ a, a:visited{
   outline: 1px solid white;
   cursor: pointer;
   transition-duration: .5s;
+}
+/* MEDIA QUERY CELULARES */
+@media(max-width: 415px){
+  .header-core-container{
+    height: fit-content;
+  }
+  .header-social-icons{
+    justify-content: center;
+    height: 40px;
+  }
+  .social-icon{
+    margin: 0px 10px;
+    font-size: 15px;
+  }
+  .header-logo-and-buttons{
+    height: fit-content;
+    flex-direction: column;
+    padding: 10px 0px;
+  }
+  .buttons-container{
+    justify-content: center;
+    display: none;
+  }
+  .logo-container{
+    justify-content: space-between;
+    width: 100%;
+  }
+  .logo{
+    font-size: 25px;
+  }
+  .header-logo-icon{
+    height: 30px;
+    margin: 0px;
+  }
+  .bi-list{
+    display: block;
+    margin-right: 16px;
+    font-size: 30px;
+  }
+}
+@media(min-width: 380px) and (max-width: 415px){
+  .social-icon{
+    margin: 0px 10px;
+    font-size: 16px;
+  }
 }

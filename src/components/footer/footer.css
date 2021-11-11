@@ -1,8 +1,7 @@
-/* .footer-core-container{
-  position: absolute;
-  bottom: 0;
+.footer-core-container{
   width: 100%;
-} */
+  box-shadow: -1px 2px 15px -1px rgba(95,95,95,0.89);
+}
 .footer-links-container{
   height: 200px;
   width: 100%;
@@ -20,9 +19,6 @@
 .link-container:nth-child(1), .link-container:nth-child(2){
   height: 85%;
   width: 25%;
-}
-.link-container:nth-child(1){
-  /* border-right: 1px solid #24252A; */
 }
 .link-container:nth-child(3){
   flex-direction: row;
@@ -117,4 +113,75 @@
   right: 0;
   opacity: 1;
   transition-duration: .5s;
+}
+/* MEDIA QUERY CELULARES*/
+@media(min-width:100px) and (max-width: 375px){
+  .footer-logo{
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 12px
+  }
+  .footer-links-container{
+    flex-direction: column;
+    height: fit-content;
+  }
+  .link-container:nth-child(1), .link-container:nth-child(2), .link-container:nth-child(3){
+    width: 95%;
+    align-items: center;
+    height: 100%;
+    padding: 25px 0px;
+  }
+  .link-container:nth-child(1), .link-container:nth-child(2){
+    border-bottom: 1px dashed #24252A;
+  }
+  .footer-legal-container{
+    flex-direction: column;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0px;
+  }
+  .footer-end-logo{
+    margin: 0px;
+  }
+  .footer-end-link{
+    margin: 0px;
+    margin-bottom: 5px;
+  }  
+}
+@media(min-width: 380px) and (max-width: 1025px){
+  .footer-logo{
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 12px
+  }
+  .footer-links-container{
+    flex-direction: column;
+    height: fit-content;
+  }
+  .link-container:nth-child(1), .link-container:nth-child(2), .link-container:nth-child(3){
+    width: 95%;
+    align-items: center;
+    height: 100%;
+    padding: 25px 0px;
+  }
+  .link-container:nth-child(1), .link-container:nth-child(2){
+    border-bottom: 1px dashed #24252A;
+  }
+  .footer-legal-container{
+    flex-direction: column;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0px;
+  }
+  .footer-end-logo{
+    margin: 0px;
+  }
+  .footer-end-link{
+    margin: 0px;
+    margin-bottom: 5px;
+  }
 }

@@ -1,9 +1,10 @@
 import React from 'react';
-import { MDBCard, MDBCardHeader, MDBCardBody, MDBTypography } from 'mdb-react-ui-kit';
+import { MDBCard, MDBCardHeader, MDBCardBody, MDBTypography, MDBContainer, } from 'mdb-react-ui-kit';
 
 export default function App() {
   return (
-    <MDBCard className='p-4'>
+  <MDBContainer>
+    <MDBCard>
       <MDBCardHeader>Publicidad</MDBCardHeader>
       <MDBCardBody>
         <MDBTypography blockquote className='mb-0'>
@@ -11,5 +12,6 @@ export default function App() {
         </MDBTypography>
       </MDBCardBody>
     </MDBCard>
+  </MDBContainer>
   );
 }

@@ -91,10 +91,82 @@ body{
   background-color: #24252A;
   transition-duration: .5s;
   margin-top: 20px;
+  border: none;
 }
 .register-form-button:hover{
   background-color: white;
   color: #24252A;
   cursor: pointer;
   transition-duration: .5s;
+}
+/* MEDIA QUERY CELULARES */
+@media(min-width:100px) and (max-width: 375px){
+  .register-core-form{
+    width: 90%;
+  }
+  .register-title{
+    font-size: 25px;
+  }
+  .register-label{
+    font-size: 12px;
+  }
+  .register-input{
+    height: 30px;
+  }
+  .register-form-button{
+    width: 95%;
+    height: 40px;
+  }  
+  .register-core-container{
+    height: 110%;
+  }
+}
+@media(min-width: 380px) and (max-width: 415px){
+  .register-core-form{
+    width: 95%;
+  }
+  .register-title{
+    font-size: 35px;
+  }
+  .register-label{
+    font-size: 16px;
+  }
+  .register-input{
+    height: 45px;
+  }
+  .register-form-button{
+    width: 95%;
+    height: 90px;
+  }  
+  .register-core-container{
+    height: 110%;
+  }
+}
+/* MEDIA QUERY PARA CONTRARRESTAR TECLADO DE ANDROID */
+@media(max-height: 450px){
+  .register-core-container{
+    height: 160%;
+  }
+}
+/* MEDIA QUERY TABLETS */
+@media(min-width: 416px) and (max-width: 1025px){
+  .register-title{
+    font-size: 50px;
+    width: 85%;
+  }
+  .register-label{
+    font-size: 20px;
+    margin-left: 60px;
+  }
+  .register-input{
+    height: 50px;
+    width: 85%;
+  }
+  .register-form-button{
+    height: 90px;
+  }
+  .register-core-form{
+    width: 80%;
+    padding: 50px 0px;
+  }
 }
