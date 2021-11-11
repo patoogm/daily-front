@@ -8,27 +8,30 @@ import imgEnter from './images/enter.png'
 import imgEdit from './images/edit.png'
 import imgDelete from './images/delete.png'
 import {useState} from 'react'
+import { useEffect } from 'react';
 
 
 function NewsAdminPage() {
+  const [data,setData] = useState("a")
   const [txtTitle,setTxtTitle] = useState("")
   const [imgArticle,setImgArticle] = useState("")
   const [txtArticle,setTxtArticle] = useState("")
   const dteToday = "06/11/20"
-  const txtAutor = "61816f436e837d143f7addbc"
+  const txtAutor = data.article.autor_id
 
   const [news, setNews] = useState([])
+ 
 
-  setTimeout(() => {
-    fetch('http://localhost:8000/get-news')
-    .then(response => response.json())
-    .then(response => setNews(response))
-    .catch(err => {
-      console.log(err.message)
-    })
-  },1000)
-
+  const handleNews = () => {fetch('http://localhost:8000/get-news')
+  .then(response => response.json())
+  .then(response => setNews(response))
+  .catch(err => {
+    console.log(err.message)
+  })}
   
+  useEffect(() => {
+    handleNews()
+  }, [])
 
   const handleFrmNewArticles = (event) => {
     const body = {
@@ -50,6 +53,47 @@ function NewsAdminPage() {
       .then((json) => console.log(json));
   }
 
+  const editArticles = (event) => {
+    const body = {
+      title: txtTitle,
+      image: imgArticle,
+      newsBody: txtArticle,
+      date: dteToday,
+      autor_id: txtAutor
+    }
+
+    fetch('http://localhost:8000/'+data.article._id,{
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-type':'application/json;charset=UTF-8'
+      }
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  } 
+
+  const cleanForm = () => {
+    setTxtTitle("")
+    setImgArticle("")
+    setTxtArticle("")
+  }
+  const fillForm = (query) => {
+    setTxtTitle(query.article.title)
+    setTxtArticle(query.article.newsBody)
+    setData(query)
+    console.log(query)
+  } 
+
+  const deleteArticles = (query) => {
+    console.log(query.article)
+    fetch('http://localhost:8000/'+ query.article._id,{
+      method: 'DELETE'
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  } 
+  
   return (
     <div className="sectionArticles">
       <div> 
@@ -72,7 +116,7 @@ function NewsAdminPage() {
           <button id="btnSearchNews" type="button" class="btn btn-link"><img src={imgSearch} alt="imgSearch" width="40 px" height="40 px" /></button>
         </div>
         <div className="d-flex">
-          <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#mdlNewArticles">
+          <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#mdlNewArticles" onClick={(event) => cleanForm()}>
             <img src={imgAdd} alt="imgAdd" width="35 px" height="35 px" />
           </button>
         </div>
@@ -119,55 +163,32 @@ function NewsAdminPage() {
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Edit user</h5>
+              <h5 class="modal-title">Edit article</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form className="frmEditArticles">
+              <form className="frmEditArticles" onSubmit={editArticles}>
                 <div className="d-flex justify-content-between">
-                  <div className="mb-3">
-                    <label className="form-label">Username</label>
-                    <input type="text" class="form-control" id="txtName"/>
+                  <div className="mb-3 col-8">
+                    <label className="form-label">Title</label>
+                    <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtTitle(event.target.value)} value={txtTitle}/>
                   </div>
-                  <div className="mb-3">
-                    <label className="form-label">Name</label>
-                    <input type="text" class="form-control" id="txtName"/>
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Last name</label>
-                    <input type="text" class="form-control" id="txtLastName"/>
+                  <div className="mb-3 col-3">
+                    <label className="form-label">Image</label>
+                    <input type="file" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <div className="mb-3">
-                    <label className="form-label">Born date</label>
-                    <input type="date" class="form-control" id="txtBornDate" />
+                  <div className="mb-3 col-8">
+                    <label className="form-label">Article</label>
+                    <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => setTxtArticle(event.target.value)} value={txtArticle}/>
                   </div>
-                  <div className="mb-3">
-                    <label className="form-label">D.N.I.</label>
-                    <input type="text" class="form-control" id="txtDNI" />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">User type</label>
-                    <select className="form-control" id="txtSelect">
-                      <option value="reader">Reader</option>
-                      <option value="writer">Writer</option>
-                      <option value="administrator">Administrator</option>
-                    </select>
+                  <div className="mb-3 col-3 txtArticle">
+                    <img src="..." className="rounded float-start" alt="..."/> 
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
-                  <div className="mb-3">
-                    <label>Email address</label>
-                    <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Password</label>
-                    <input type="password" class="form-control" id="txtPassword" />
-                  </div>
-                  <div>
-                    <button type="submit" id="btnSaveUser" className="btn btn-primary">Save changes</button>
-                  </div>
+                  <button type="submit" id="btnSaveUser" className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
                 </div>    
               </form>
             </div>
@@ -175,61 +196,35 @@ function NewsAdminPage() {
         </div>
       </div>
 
-      <div className="modal fade" id="mdlViewUsers" tabindex="-1" aria-hidden="true">
+      <div className="modal fade" id="mdlViewArticles" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">New user</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Articles</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form className="frmNewUser">
+                <form className="frmViewArticles">
                 <div className="d-flex justify-content-between">
-                  <div className="mb-3">
-                    <label className="form-label">Username</label>
-                    <input type="text" class="form-control" id="txtName"/>
+                  <div className="mb-3 col-8">
+                    <label className="form-label">Title</label>
+                    <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtTitle(event.target.value)} value={txtTitle} disabled/>
                   </div>
-                  <div className="mb-3">
-                    <label className="form-label">Name</label>
-                    <input type="text" class="form-control" id="txtName"/>
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Last name</label>
-                    <input type="text" class="form-control" id="txtLastName"/>
+                  <div className="mb-3 col-3">
+                    <label className="form-label">Image</label>
+                    <input type="file" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle} disabled/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <div className="mb-3">
-                    <label className="form-label">Born date</label>
-                    <input type="date" class="form-control" id="txtBornDate" />
+                  <div className="mb-3 col-8">
+                    <label className="form-label">Article</label>
+                    <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => setTxtArticle(event.target.value)} value={txtArticle} disabled/>
                   </div>
-                  <div className="mb-3">
-                    <label className="form-label">D.N.I.</label>
-                    <input type="text" class="form-control" id="txtDNI" />
+                  <div className="mb-3 col-3 txtArticle">
+                    <img src="..." className="rounded float-start" alt="..."/> 
                   </div>
-                  <div className="mb-3">
-                    <label className="form-label">User type</label>
-                    <select className="form-control" id="txtSelect">
-                      <option value="reader">Reader</option>
-                      <option value="writer">Writer</option>
-                      <option value="administrator">Administrator</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="d-flex justify-content-between align-items-center">
-                  <div className="mb-3">
-                    <label>Email address</label>
-                    <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Password</label>
-                    <input type="password" class="form-control" id="txtPassword" />
-                  </div>
-                  <div>
-                    <button type="submit" id="btnSaveUser" className="btn btn-primary">Save changes</button>
-                  </div>
-                </div>    
-              </form>
+                </div>  
+              </form> 
             </div>
           </div>
         </div>
@@ -250,128 +245,18 @@ function NewsAdminPage() {
             </tr>
           </thead>
           <tbody>
-           {news.map((article) => (
+           {news.length>0?news.map((query) => (
               <tr> 
-                <th scope="row">{article.title}</th>
-                <td>{article.autor_id}</td>
-                <td>{article.date}</td>
+                <th scope="row">{query.article.title}</th>
+                <td>{query.article.autor_id}</td>
+                <td>{query.article.date}</td>
                 <td>Opinion</td>
                 <td>192</td>
-                <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlViewUsers" ><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></a></td>
-                <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlEditUsers"><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></a></td>
-                <td><a href="#"><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></a></td>
+                <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></a></td>
+                <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></a></td>
+                <td><a href="#" onClick={(event) => deleteArticles(query)}><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></a></td>
               </tr>
-            ))}
-            <tr>
-              <th scope="row">La razón que te traiciona</th>
-              <td>Franco Pichilini</td>
-              <td>16/02/2021</td>
-              <td>Economía</td>
-              <td>12</td>
-              <td><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></td>
-              <td><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></td>
-              <td><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></td>
-            </tr>
-            <tr>              
-              <th scope="row">Falabella se va del país</th>
-              <td>Torcuato Pichirri</td>
-              <td>16/02/2021</td>
-              <td>Actualidad</td>
-              <td>300</td>
-              <td><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></td>
-              <td><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></td>
-              <td><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></td>
-            </tr>
-            <tr>
-              <th scope="row">El nuevo Titanic</th>
-              <td>Torcuato Pichirri</td>
-              <td>16/02/2021</td>
-              <td>Economía</td>
-              <td>325</td>
-              <td><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></td>
-              <td><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></td>
-              <td><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></td>
-            </tr>
-            <tr>
-              <th scope="row">La fortaleza perdida</th>
-              <td>Franco Pichilini</td>
-              <td>16/02/2021</td>
-              <td>Literatura</td>
-              <td>12</td>
-              <td><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></td>
-              <td><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></td>
-              <td><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></td>
-            </tr>
-            <tr>              
-              <th scope="row">Nos vendieron espejitos de colores</th>
-              <td>Marcio Imola</td>
-              <td>15/02/2021</td>
-              <td>Economía</td>
-              <td>192</td>
-              <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlViewUsers" ><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></a></td>
-              <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlEditUsers"><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></a></td>
-              <td><a href="#"><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></a></td>
-            </tr>
-            <tr>
-              <th scope="row">La marea obsecuente</th>
-              <td>Geronimo Calibuto</td>
-              <td>15/02/2021</td>
-              <td>Opinion</td>
-              <td>192</td>
-              <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlViewUsers" ><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></a></td>
-              <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlEditUsers"><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></a></td>
-              <td><a href="#"><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></a></td>
-            </tr>
-            <tr>
-              <th scope="row">El chori radical</th>
-              <td>Geronimo Calibuto</td>
-              <td>15/02/2021</td>
-              <td>Política</td>
-              <td>192</td>
-              <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlViewUsers" ><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></a></td>
-              <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlEditUsers"><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></a></td>
-              <td><a href="#"><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></a></td>
-            </tr>
-            <tr>              
-              <th scope="row">Los 27 alimentos necesarios para prevenir el cancer</th>
-              <td>Rafael Peña</td>
-              <td>16/02/2021</td>
-              <td>Salud</td>
-              <td>127</td>
-              <td><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></td>
-              <td><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></td>
-              <td><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></td>
-            </tr>
-            <tr>
-              <th scope="row">Rodrigo De Paul vuelve al banco</th>
-              <td>Ernesto Zelarayan</td>
-              <td>16/02/2021</td>
-              <td>Deportes</td>
-              <td>1028</td>
-              <td><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></td>
-              <td><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></td>
-              <td><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></td>
-            </tr>
-            <tr>
-              <th scope="row">Patagonia abre nueva sucursal en Tucumán</th>
-              <td>Ernesto Zelarayan</td>
-              <td>17/02/2021</td>
-              <td>Actualidad</td>
-              <td>111</td>
-              <td><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></td>
-              <td><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></td>
-              <td><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></td>
-            </tr>
-            <tr>              
-              <th scope="row">Los espíritus lanzaron nuevo disco</th>
-              <td>Pablo Guyot</td>
-              <td>17/02/2021</td>
-              <td>Musica</td>
-              <td>254</td>
-              <td><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></td>
-              <td><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></td>
-              <td><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></td>
-            </tr>
+            )): <h1>Cargando</h1>} 
           </tbody>
         </table>  
       </div>
