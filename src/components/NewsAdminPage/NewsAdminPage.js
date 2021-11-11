@@ -12,12 +12,12 @@ import { useEffect } from 'react';
 
 
 function NewsAdminPage() {
-  const [data,setData] = useState("a")
+  const [data,setData] = useState({})
   const [txtTitle,setTxtTitle] = useState("")
   const [imgArticle,setImgArticle] = useState("")
   const [txtArticle,setTxtArticle] = useState("")
   const dteToday = "06/11/20"
-  const txtAutor = data.article.autor_id
+  const txtAutor = "618d84a4800f5dc139e591e9"
 
   const [news, setNews] = useState([])
  
