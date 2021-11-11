@@ -3,12 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-body{
-  height: 100%;
-}
-#root{
-  height: 100%;
-}
 .form-core-container{
   height: 100%;
   width: 100%;
