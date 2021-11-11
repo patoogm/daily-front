@@ -36,9 +36,6 @@ const Register = () => {
           <label htmlFor="dni" className="register-label">Número de Documento</label>
           <input type="number" name="dni" id="dni" className="register-input" required {...register("dni")}/>                
 
-          <label htmlFor="name" className="register-label">Provincia</label>
-          <input type="text" name="province" id="province" className="register-input" required {...register("province")} />
-
           <label htmlFor="email" className="register-label">Dirección de correo electrónico</label>
           <input type="email" name="email" id="email" className="register-input" required {...register("email")} />
 

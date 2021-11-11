@@ -18,22 +18,18 @@ const MobileMenu = () => {
     const six = document.querySelector('.six');
 
 
-    let toggleMenu = () => {
-
-     
+    let toggleMenu = () => {     
       let checkItem;
       if(menu.className.indexOf('active') > -1){
         checkItem = true;
       } else {        
         checkItem = false;
-      }
-   
+      }   
   
       if(checkItem){
         menu.classList.remove('active')
       } else {
-        menu.classList.add('active')
-        
+        menu.classList.add('active')        
       }
     }
   
@@ -48,11 +44,9 @@ const MobileMenu = () => {
           four.classList.remove('itemActive')
           five.classList.remove('itemActive')
           six.classList.remove('itemActive')
-
         },100)
       }
     })
-
   }, []);
 
   return (
