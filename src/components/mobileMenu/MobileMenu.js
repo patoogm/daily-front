@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import './mobileMenu.css'
 
 const MobileMenu = () => {
@@ -52,7 +51,7 @@ const MobileMenu = () => {
   return (
     <>
       <div ref={menuRef} className="mobile-menu">
-      <a href="/login" className="mobile-menu-item one login"><div>LOGIN</div></a>
+        <a href="/login" className="mobile-menu-item one login"><div>LOGIN</div></a>
         <a href="/register" className="mobile-menu-item two register"><div>REGISTER</div></a>
         <div className="mobile-menu-item three">HOME</div>
         <div className="mobile-menu-item four">ACTUALIDAD</div>
