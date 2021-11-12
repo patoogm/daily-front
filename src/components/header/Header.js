@@ -70,7 +70,7 @@ function Header() {
           </div>
           <div className="buttons-container">
             {isToken && <div className="logged-in">Bienvenido!</div>}
-            {isToken && <a href="/newPage-Page" className="admin-button"><div>Admin</div></a>}
+            {isToken && <a href="/NewsAdmin" className="admin-button"><div>Admin</div></a>}
             {!isToken && <a href="/login" className="login-button"><div>Login</div></a>}
             {!isToken && <a href="/register" className="register-button"><div>Register</div></a>}
           </div>
