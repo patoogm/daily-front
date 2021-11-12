@@ -31,6 +31,6 @@ export default function App(props) {
           </MDBCard>
         </MDBCol>)
       }
-    </MDBRow>
+      </MDBRow>
   );
 }

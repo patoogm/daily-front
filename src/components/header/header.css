@@ -1,7 +1,4 @@
-a, a:visited{
-  text-decoration: none;
-  color: white;
-}
+
 .header-core-container{
   height: 80px;
   width: 100%;
@@ -18,6 +15,9 @@ a, a:visited{
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+.bi{
+  color: white;
 }
 .social-icon{
   margin-right: 20px;
@@ -67,7 +67,12 @@ a, a:visited{
 .buttons-container{
   justify-content: flex-end;
 }
-.login-button, .register-button{
+.logged-in{
+  font-size: 20px;
+  font-weight: bolder;
+  margin-right: 20px;
+}
+.login-button, .register-button, .admin-button{
   margin-right: 12px;
   height: 30px;
   width: 150px;
@@ -79,13 +84,14 @@ a, a:visited{
   font-size: 15px;
   transition-duration: .5s;
 }
-.login-button:hover, .register-button:hover{
+.login-button:hover, .register-button:hover, .admin-button:hover{
   background-color: #24252A;
   color: white;
   outline: 1px solid white;
   cursor: pointer;
   transition-duration: .5s;
 }
+
 /* MEDIA QUERY CELULARES */
 @media(max-width: 415px){
   .header-core-container{
