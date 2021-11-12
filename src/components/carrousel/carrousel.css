@@ -1,0 +1,16 @@
+.car-item{
+  position: relative;
+}
+.car-item::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,0.8855917366946778) 0%, rgba(0,212,255,0) 100%);
+}
+.car-caption{
+  z-index: 5;
+}
