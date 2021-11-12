@@ -7,9 +7,10 @@ export default function App(props) {
   const [content, setContent] = useState([])
 
   const handleClick = () => {
-    // fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=${props.section}&pageSize=3&apiKey=b1a3dfcb23504041b4879a07a4fe3180`)
-    //   .then(response => response.json())
-    //   .then(json => setContent(json.articles))
+    fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=${props.section}&pageSize=3&apiKey=b1a3dfcb23504041b4879a07a4fe3180
+    `)
+      .then(response => response.json())
+      .then(json => console.log(json))
   }
 
   useEffect(() => {

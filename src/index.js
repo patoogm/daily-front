@@ -6,8 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
-
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+import NewsPagePage from './pages/NewsPage/NewsPagePage';
+
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
@@ -15,6 +17,7 @@ ReactDOM.render(
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/" element={<App />} />
+          <Route path="/newsadmin" element={<NewsPagePage />} />
         </Routes>
     </Router>
   </React.StrictMode>,
