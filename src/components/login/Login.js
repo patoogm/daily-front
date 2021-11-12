@@ -21,11 +21,16 @@ function Login() {
       .then(res => res.json())
       .then(json => localStorage.setItem("token", json.token))
 
-      if(localStorage.getItem("token")){
-        window.location.assign('/')
-      } else {
-        alert('Error en el logueo')
-      }
+      setTimeout( () => {
+        if(localStorage.getItem("token") === 'undefined' || localStorage.getItem('token') === null){
+          alert('Usuario o Contraseña erroneos')
+          localStorage.removeItem('token')
+        } else {
+          window.location.assign('/')
+        }
+      }, 500)
+
+      
   }
 
 

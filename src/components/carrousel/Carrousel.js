@@ -11,7 +11,7 @@ import './carrousel.css'
 
 export default function App() {
   return (
-    <MDBCarousel showControls showIndicators>
+    <MDBCarousel className="car-core" showControls showIndicators>
       <MDBContainer>
       <MDBCarouselInner>
         <MDBCarouselItem className='active car-item'>

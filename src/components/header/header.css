@@ -70,7 +70,14 @@
 .logged-in{
   font-size: 20px;
   font-weight: bolder;
-  margin-right: 20px;
+  margin-right: 12px;
+}
+.logOut{
+  margin-right: 12px;
+}
+.logOut:hover{
+  cursor: pointer;
+  border-bottom: 1px solid white;
 }
 .login-button, .register-button, .admin-button{
   margin-right: 12px;
