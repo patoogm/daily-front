@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
 import logo from "../../images/rollingDailyIcon.png"
 import '../header/header.css'
 
@@ -50,8 +49,15 @@ function Header() {
     })
   }, [])
 
-  let isToken = localStorage.getItem("token")
+  
+
+  let isToken = localStorage.getItem('token') === 'undefined' || localStorage.getItem('token') === null ? false : true
   console.log(isToken)
+
+  let logOut = () => {
+    localStorage.removeItem("token")
+    window.location.assign('/')
+  }
 
 
   return (
@@ -69,10 +75,9 @@ function Header() {
             <i ref={mobileButton} className="bi bi-list navToggle"></i>
           </div>
           <div className="buttons-container">
-            {isToken && <div className="logged-in">Bienvenido!</div>}
-            {isToken && <a href="/NewsAdmin" className="admin-button"><div>Admin</div></a>}
-            {!isToken && <a href="/login" className="login-button"><div>Login</div></a>}
-            {!isToken && <a href="/register" className="register-button"><div>Register</div></a>}
+            { !isToken ? <a href="/login" className="login-button"><div>Login</div></a> : <div className="logged-in">Bienvenido!</div>  }
+            { !isToken ? <a href="/register" className="register-button"><div>Register</div></a> : <a href="/NewsAdmin" className="admin-button"><div>Admin</div></a>  }
+            { !isToken ? <div></div> : <div className="logOut" onClick={logOut}>Cerrar Sesión</div> }
           </div>
         </div>
       </div>
