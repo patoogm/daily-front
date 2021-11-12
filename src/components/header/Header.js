@@ -50,6 +50,9 @@ function Header() {
     })
   }, [])
 
+  let isToken = localStorage.getItem("token")
+  console.log(isToken)
+
 
   return (
     <>
@@ -66,8 +69,10 @@ function Header() {
             <i ref={mobileButton} className="bi bi-list navToggle"></i>
           </div>
           <div className="buttons-container">
-            <Link to="/login"><div className="login-button">Login</div></Link>
-            <Link to="/register"><div className="register-button">Register</div></Link>
+            {isToken && <div className="logged-in">Bienvenido!</div>}
+            {isToken && <a href="/newPage-Page" className="admin-button"><div>Admin</div></a>}
+            {!isToken && <a href="/login" className="login-button"><div>Login</div></a>}
+            {!isToken && <a href="/register" className="register-button"><div>Register</div></a>}
           </div>
         </div>
       </div>
