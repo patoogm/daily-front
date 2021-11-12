@@ -1,12 +1,12 @@
 import React from 'react'
 import './newsAdminPage.css'
-import imgArticles from './images/news.png'
-import imgSearch from './images/search.png'
-import imgFilter from './images/filter.png'
-import imgAdd from './images/add.png'
-import imgEnter from './images/enter.png'
-import imgEdit from './images/edit.png'
-import imgDelete from './images/delete.png'
+import imgArticles from '../../images/news.png'
+import imgSearch from '../../images/search.png'
+import imgFilter from '../../images/filter.png'
+import imgAdd from '../../images/add.png'
+import imgEnter from '../../images/enter.png'
+import imgEdit from '../../images/edit.png'
+import imgDelete from '../../images/delete.png'
 import {useState} from 'react'
 import { useEffect } from 'react';
 
@@ -16,12 +16,22 @@ function NewsAdminPage() {
   const [txtTitle,setTxtTitle] = useState("")
   const [imgArticle,setImgArticle] = useState("")
   const [txtArticle,setTxtArticle] = useState("")
-  const dteToday = "06/11/20"
-  const txtAutor = "618d84a4800f5dc139e591e9"
+  
+  const txtAutor = '618e527979f2caa05f562ce0'
 
   const [news, setNews] = useState([])
  
+  const getCurrentDate = () => {
+    let newDate = new Date()
+    let date = newDate.getDate()
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear()
+    const currentDate = `${date}/${month<10?`0${month}`:`${month}`}/${year}`
+    return currentDate
+  }
 
+  const dteToday = getCurrentDate.toString()
+  
   const handleNews = () => {fetch('http://localhost:8000/get-news')
   .then(response => response.json())
   .then(response => setNews(response))
@@ -33,7 +43,7 @@ function NewsAdminPage() {
     handleNews()
   }, [])
 
-  const handleFrmNewArticles = (event) => {
+  const addArticles = (event) => {
     const body = {
       title: txtTitle,
       image: imgArticle,
@@ -41,7 +51,7 @@ function NewsAdminPage() {
       date: dteToday,
       autor_id: txtAutor
     }
-
+    console.log(body)
     fetch('http://localhost:8000/create-news',{
       method: 'POST',
       body: JSON.stringify(body),
@@ -51,6 +61,11 @@ function NewsAdminPage() {
     })
       .then((response) => response.json())
       .then((json) => console.log(json));
+    reload()
+  }
+
+  const reload = () => {
+    window.location.reload(true)
   }
 
   const editArticles = (event) => {
@@ -73,10 +88,11 @@ function NewsAdminPage() {
       .then((json) => console.log(json));
   } 
 
-  const cleanForm = () => {
+  const cleanForm = (query) => {
     setTxtTitle("")
     setImgArticle("")
     setTxtArticle("")
+    console.log(dteToday)
   }
   const fillForm = (query) => {
     setTxtTitle(query.article.title)
@@ -130,7 +146,7 @@ function NewsAdminPage() {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form className="frmNewArticles" onSubmit={handleFrmNewArticles}>
+              <form className="frmNewArticles" onSubmit={addArticles}>
                 <div className="d-flex justify-content-between">
                   <div className="mb-3 col-8">
                     <label className="form-label">Title</label>
@@ -151,7 +167,7 @@ function NewsAdminPage() {
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
-                  <button type="submit" id="btnSaveUser" className="btn btn-primary">Save changes</button>
+                  <button type="submit" id="btnSaveUser" className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
                 </div>    
               </form>
             </div>
@@ -248,7 +264,7 @@ function NewsAdminPage() {
            {news.length>0?news.map((query) => (
               <tr> 
                 <th scope="row">{query.article.title}</th>
-                <td>{query.article.autor_id}</td>
+                <td>{`${query.autor.name}  ${query.autor.lastName}`}</td>
                 <td>{query.article.date}</td>
                 <td>Opinion</td>
                 <td>192</td>
