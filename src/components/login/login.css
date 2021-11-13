@@ -92,6 +92,9 @@
   cursor: pointer;
   transition-duration: .5s;
 }
+.login-error{
+  color: red;
+}
 /* MEDIA QUERY CELULARES */
 @media(min-width:100px) and (max-width: 375px){
   .login-title{
