@@ -112,14 +112,14 @@ function NewsAdminPage() {
   
   return (
     <div className="sectionArticles">
-      <div> 
+      <div className="title-container"> 
         <img className="imgArticles" src={imgArticles} alt="imgArticles" width="60 px" height="60 px" />
         <label className="lblArticles">Articles</label>
       </div>
-      <div className="d-flex align-items-center justify-content-between">
+      <div className="d-flex align-items-center justify-content-around">
         <div className="dropdown">
           <a className="btn btn-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src={imgFilter} alt="imgFilter" width="40 px" height="40 px" />
+          <i class="bi bi-funnel"></i>
           </a>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <li><a class="dropdown-item" href="#">Born Date</a></li>
@@ -127,13 +127,13 @@ function NewsAdminPage() {
             <li><a class="dropdown-item" href="#">Type</a></li>
           </ul>
         </div>
-        <div className="d-flex col-4">
+        <div className="d-flex col-4 input-search-container">
           <input type="text" className="txtSearch" id="txtSearch"/> 
-          <button id="btnSearchNews" type="button" class="btn btn-link"><img src={imgSearch} alt="imgSearch" width="40 px" height="40 px" /></button>
+          <button id="btnSearchNews" type="button" class="btn btn-link"><i className="bi bi-search"></i></button>          
         </div>
         <div className="d-flex">
           <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#mdlNewArticles" onClick={(event) => cleanForm()}>
-            <img src={imgAdd} alt="imgAdd" width="35 px" height="35 px" />
+          <i class="bi bi-plus-circle"></i>
           </button>
         </div>
       </div>
@@ -246,15 +246,15 @@ function NewsAdminPage() {
         </div>
       </div>
 
-      <div className="container">
+      <div className="table-core-container">
         <table className="table table-hover">
           <thead>
             <tr>
-              <th scope="col">Article title</th>
+              <th scope="col">Título</th>
               <th scope="col">Autor</th>
-              <th scope="col">Release date</th>
-              <th scope="col">Section</th>
-              <th scope="col">Views</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Sección</th>
+              <th scope="col">Vistas</th>
               <th scope="col"></th>
               <th scope="col"></th>
               <th scope="col"></th>
@@ -272,7 +272,7 @@ function NewsAdminPage() {
                 <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></a></td>
                 <td><a href="#" onClick={(event) => deleteArticles(query)}><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></a></td>
               </tr>
-            )): <h1>Cargando</h1>} 
+            )): <h1 className="loading-content">Cargando...</h1>} 
           </tbody>
         </table>  
       </div>
