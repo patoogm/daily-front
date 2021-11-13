@@ -35,13 +35,24 @@
 .mdlNewArticles{
   height: 500px;
 }
-.bi-search, .bi-funnel, .bi-plus-circle{
+.bi-search, .bi-funnel, .bi-plus-circle, .bi-x-lg, .bi-pencil, .bi-eye{
   color: black;
   font-size: 25px;
+}
+.bi-search:hover, .bi-funnel:hover, .bi-plus-circle:hover, .bi-x-lg:hover, .bi-pencil:hover, .bi-eye:hover{
+  border-bottom: 1px solid black;
 }
 .table-core-container{
   padding: 20px;
 }
 .loading-content{
   margin-top: 15px;
+}
+button{
+  border: none;
+  background-color: transparent;
+}
+td, th{
+ vertical-align: middle;
+ text-align: center;
 }
