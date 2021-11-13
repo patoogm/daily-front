@@ -30,7 +30,7 @@ function NewsAdminPage() {
     return currentDate
   }
 
-  const dteToday = getCurrentDate.toString()
+  const dteToday = getCurrentDate()
   
   const handleNews = () => {fetch('http://localhost:8000/get-news')
   .then(response => response.json())
@@ -65,7 +65,9 @@ function NewsAdminPage() {
   }
 
   const reload = () => {
-    window.location.reload(true)
+    setTimeout(function(){
+      window.location.reload()
+    },500)
   }
 
   const editArticles = (event) => {
@@ -86,6 +88,7 @@ function NewsAdminPage() {
     })
       .then((response) => response.json())
       .then((json) => console.log(json));
+      reload()
   } 
 
   const cleanForm = (query) => {
@@ -108,6 +111,7 @@ function NewsAdminPage() {
     })
       .then((response) => response.json())
       .then((json) => console.log(json));
+      reload()
   } 
   
   return (
