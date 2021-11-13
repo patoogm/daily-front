@@ -119,13 +119,13 @@ function NewsAdminPage() {
       </div>
       <div className="d-flex align-items-center justify-content-around">
         <div className="dropdown">
-          <a className="btn btn-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <button className="btn btn-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="bi bi-funnel"></i>
-          </a>
+          </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Born Date</a></li>
-            <li><a class="dropdown-item" href="#">Name</a></li>
-            <li><a class="dropdown-item" href="#">Type</a></li>
+            <li><button class="dropdown-item">Born Date</button></li>
+            <li><button class="dropdown-item">Name</button></li>
+            <li><button class="dropdown-item">Type</button></li>
           </ul>
         </div>
         <div className="d-flex col-4 input-search-container">
@@ -269,9 +269,9 @@ function NewsAdminPage() {
                 <td>{query.article.date}</td>
                 <td>Opinion</td>
                 <td>192</td>
-                <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></a></td>
-                <td><a href="#" data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></a></td>
-                <td><a href="#" onClick={(event) => deleteArticles(query)}><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></a></td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></button></td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></button></td>
+                <td><button onClick={(event) => deleteArticles(query)}><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></button></td>
               </tr>
             )): <h1 className="loading-content">Cargando...</h1>} 
           </tbody>
