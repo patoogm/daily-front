@@ -1,10 +1,12 @@
-import React from 'react'
+import { useState } from 'react'
 import '../login/login.css'
 import { useForm } from 'react-hook-form'
 
 
 
 function Login() {
+
+  const [LoginError, setLoginError] = useState(false)
 
   const { register, handleSubmit } = useForm();
   const onSubmit = data => {
@@ -23,7 +25,7 @@ function Login() {
 
       setTimeout( () => {
         if(localStorage.getItem("token") === 'undefined' || localStorage.getItem('token') === null){
-          alert('Usuario o Contraseña erroneos')
+          setLoginError(true)
           localStorage.removeItem('token')
         } else {
           window.location.assign('/')
@@ -45,6 +47,7 @@ function Login() {
 
             <label htmlFor="password" className="login-label">Contraseña</label>
             <input type="password" name="password" id="password" className="login-input" {...register("password")}/>
+            {LoginError ? <span className="login-error">Usuario o Contraseña erróneos</span> : <span></span>}
             
             <input type="submit" className="login-form-button" value="ENTRAR" />
         </form>
