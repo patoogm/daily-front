@@ -60,12 +60,11 @@ body{
   border-bottom: 1px solid white;
 }
 .register-label{
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   align-self: flex-start;
   color: white;
   width: 70%;
-  margin-bottom: 5px;
 }
 .register-input{
   width: 100%;
@@ -90,7 +89,6 @@ body{
   color: white;
   background-color: #24252A;
   transition-duration: .5s;
-  margin-top: 20px;
   border: none;
 }
 .register-form-button:hover{
@@ -104,6 +102,22 @@ body{
   color: bisque;
   text-align: left;
   width: 100%;
+}
+.register-ok{
+  color: aquamarine;
+  font-size: 15px;
+}
+.register-con-cuenta{
+  color: white;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.register-login-link{
+  color: aquamarine;
+}
+.register-login-link:hover{
+  color: aquamarine;
+  border-bottom: 1px solid aquamarine;
 }
 /* MEDIA QUERY CELULARES */
 @media(min-width:100px) and (max-width: 375px){

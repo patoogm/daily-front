@@ -48,6 +48,8 @@ function Login() {
             <label htmlFor="password" className="login-label">Contraseña</label>
             <input type="password" name="password" id="password" className="login-input" {...register("password")}/>
             {LoginError ? <span className="login-error">Usuario o Contraseña erróneos</span> : <span></span>}
+
+            <div className="login-sin-cuenta">¿No tienes una cuenta? <a className="login-register-link" href="/register">¡Regístrate!</a></div>
             
             <input type="submit" className="login-form-button" value="ENTRAR" />
         </form>

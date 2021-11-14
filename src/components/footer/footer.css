@@ -29,8 +29,11 @@
 .link-span{
   font-size: 12px;
 }
-.link-span:nth-child(4){
+.editores, .fecha{
   font-weight: bolder;
+}
+.editores{
+  margin-top: 8px;
 }
 .footer-logo{
   font-size: 25px;
@@ -81,12 +84,12 @@
   background-color: #24252A;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   color: white;
   font-size: 12px;
 }
 .footer-end-logo{
   font-size: 18px;
-  margin: 0px 150px;
 }
 .footer-end-link{
   margin: 0px 15px;
