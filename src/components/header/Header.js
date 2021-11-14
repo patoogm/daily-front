@@ -4,17 +4,26 @@ import '../header/header.css'
 
 function Header() {
 
+  let isToken = localStorage.getItem('token') === 'undefined' || localStorage.getItem('token') === null ? false : true
+  console.log(isToken)
+
+  let logOut = () => {
+    localStorage.removeItem("token")
+    window.location.assign('/')
+  }
+
   let mobileButton = useRef()
 
   useEffect(() => {
-    const toggle = document.querySelector('.navToggle')
-    const menu = document.querySelector('.mobile-menu')
-    const one = document.querySelector('.one');
-    const two = document.querySelector('.two');
+    const toggle = document.querySelector('.navToggle');
+    const menu = document.querySelector('.mobile-menu');
+    const one = !isToken ? document.querySelector('.one') : document.querySelector('.seven');
+    const two = !isToken ? document.querySelector('.two') : document.querySelector('.eight');
     const three = document.querySelector('.three');
     const four = document.querySelector('.four');
     const five = document.querySelector('.five');
     const six = document.querySelector('.six');
+    const nine = !isToken ? 1+1 : document.querySelector('.nine');
 
 
     let toggleMenu = () => {     
@@ -43,22 +52,15 @@ function Header() {
           four.classList.add('itemActive')
           five.classList.add('itemActive')
           six.classList.add('itemActive')
+          if (isToken) {
+            nine.classList.add('itemActive')
+          }
         }, 250)
         
       }
     })
-  }, [])
-
+  }, [isToken])
   
-
-  let isToken = localStorage.getItem('token') === 'undefined' || localStorage.getItem('token') === null ? false : true
-  console.log(isToken)
-
-  let logOut = () => {
-    localStorage.removeItem("token")
-    window.location.assign('/')
-  }
-
 
   return (
     <>
