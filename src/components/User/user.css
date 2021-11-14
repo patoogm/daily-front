@@ -1,0 +1,47 @@
+.sectionUsers{
+  height: 100%;
+  width: 100%;
+  margin: 50px 0px;
+  padding: 0px 25px;
+}
+.dropdown{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title-container{
+  padding: 20px;
+}
+.lblUsers{
+  font-size: 30px;
+}
+.imgUser{
+  margin-right: 1%;
+}
+.input-search-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.txtSearch{
+  width: 100%;
+}
+.frmNewArticle{
+  padding: 10px;
+}
+.txtArticle{
+  height: 230px;
+}
+.mdlNewArticles{
+  height: 500px;
+}
+.bi-search, .bi-funnel, .bi-plus-circle{
+  color: black;
+  font-size: 25px;
+}
+.table-core-container{
+  padding: 20px;
+}
+.loading-content{
+  margin-top: 15px;
+}
