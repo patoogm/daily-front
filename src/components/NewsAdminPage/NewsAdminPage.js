@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 
 function NewsAdminPage() {
-  const [data,setData] = useState({})
+  const [newsById,setNewsById] = useState({})
   const [txtTitle,setTxtTitle] = useState("")
   const [imgArticle,setImgArticle] = useState("")
   const [txtArticle,setTxtArticle] = useState("")
@@ -28,7 +28,18 @@ function NewsAdminPage() {
   }
 
   const dteToday = getCurrentDate()
-  
+
+  const cleanForm = (query) => {
+    setTxtTitle("")
+    setImgArticle("")
+    setTxtArticle("")
+  }
+  const fillForm = (query) => {
+    setTxtTitle(query.article.title)
+    setTxtArticle(query.article.newsBody)
+    setNewsById(query)
+  } 
+
   const handleNews = () => {fetch('http://localhost:8000/get-news')
   .then(response => response.json())
   .then(response => setNews(response))
@@ -40,7 +51,7 @@ function NewsAdminPage() {
     handleNews()
   }, [])
 
-  const addArticles = (event) => {
+  const addArticle = (event) => {
     const body = {
       title: txtTitle,
       image: imgArticle,
@@ -48,7 +59,6 @@ function NewsAdminPage() {
       date: dteToday,
       autor_id: txtAutor
     }
-    console.log(body)
     fetch('http://localhost:8000/create-news',{
       method: 'POST',
       body: JSON.stringify(body),
@@ -67,7 +77,7 @@ function NewsAdminPage() {
     },500)
   }
 
-  const editArticles = (event) => {
+  const editArticle = (event) => {
     const body = {
       title: txtTitle,
       image: imgArticle,
@@ -76,7 +86,7 @@ function NewsAdminPage() {
       autor_id: txtAutor
     }
 
-    fetch('http://localhost:8000/'+data.article._id,{
+    fetch('http://localhost:8000/'+newsById.article._id,{
       method: 'PUT',
       body: JSON.stringify(body),
       headers: {
@@ -85,24 +95,10 @@ function NewsAdminPage() {
     })
       .then((response) => response.json())
       .then((json) => console.log(json));
-      reload()
+    reload()
   } 
 
-  const cleanForm = (query) => {
-    setTxtTitle("")
-    setImgArticle("")
-    setTxtArticle("")
-    console.log(dteToday)
-  }
-  const fillForm = (query) => {
-    setTxtTitle(query.article.title)
-    setTxtArticle(query.article.newsBody)
-    setData(query)
-    console.log(query)
-  } 
-
-  const deleteArticles = (query) => {
-    console.log(query.article)
+  const deleteArticle = (query) => {
     fetch('http://localhost:8000/'+ query.article._id,{
       method: 'DELETE'
     })
@@ -134,7 +130,7 @@ function NewsAdminPage() {
         </div>
         <div className="d-flex">
           <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#mdlNewArticles" onClick={(event) => cleanForm()}>
-          <i class="bi bi-plus-circle"></i>
+            <i class="bi bi-plus-circle"></i>
           </button>
         </div>
       </div>
@@ -147,7 +143,7 @@ function NewsAdminPage() {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form className="frmNewArticles" onSubmit={addArticles}>
+              <form className="frmNewArticles" onSubmit={addArticle}>
                 <div className="d-flex justify-content-between">
                   <div className="mb-3 col-8">
                     <label className="form-label">Title</label>
@@ -184,7 +180,7 @@ function NewsAdminPage() {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form className="frmEditArticles" onSubmit={editArticles}>
+              <form className="frmEditArticles" onSubmit={editArticle}>
                 <div className="d-flex justify-content-between">
                   <div className="mb-3 col-8">
                     <label className="form-label">Title</label>
@@ -271,7 +267,7 @@ function NewsAdminPage() {
                 <td>192</td>
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></button></td>
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></button></td>
-                <td><button onClick={(event) => deleteArticles(query)}><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></button></td>
+                <td><button onClick={(event) => deleteArticle(query)}><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></button></td>
               </tr>
             )): <h1 className="loading-content">Cargando...</h1>} 
           </tbody>
