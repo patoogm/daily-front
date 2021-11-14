@@ -93,7 +93,7 @@
   transition-duration: .5s;
 }
 .login-error{
-  color: red;
+  color: bisque;
 }
 /* MEDIA QUERY CELULARES */
 @media(min-width:100px) and (max-width: 375px){
