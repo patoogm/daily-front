@@ -1,14 +1,13 @@
 import React from 'react'
 import '../login/login.css'
 import { useForm } from 'react-hook-form'
-
-
+import { useState} from 'react'
 
 function Login() {
-
+  const [loggedEmail,setLoggedEmail] = useState("")
   const { register, handleSubmit } = useForm();
   const onSubmit = data => {
-    fetch('http://localhost:8000/login-user',{
+  fetch('http://localhost:8000/login-user',{
       method: 'POST',
       body: JSON.stringify({
         email: data.email,
@@ -20,19 +19,27 @@ function Login() {
     })
       .then(res => res.json())
       .then(json => localStorage.setItem("token", json.token))
-
       setTimeout( () => {
         if(localStorage.getItem("token") === 'undefined' || localStorage.getItem('token') === null){
           alert('Usuario o Contraseña erroneos')
           localStorage.removeItem('token')
         } else {
           window.location.assign('/')
+          setLoggedEmail(data.email)
         }
-      }, 500)
-
-      
+      }, 500)    
   }
 
+  /* if(localStorage.getItem("token") !== 'undefined' || localStorage.getItem('token') !== null){
+    getLoggedUser()
+  }
+
+  const getLoggedUser = () => {
+    fetch('http://localhost:8000/'+loggedEmail)
+    .then(response => response.json())
+    .then(response => localStorage.setItem("loggedUser",response._id))
+  }  */
+  
 
   return (
     <>
@@ -41,7 +48,7 @@ function Login() {
             <div className="login-title">Ingrese sus datos</div>
 
             <label htmlFor="email" className="login-label">Dirección de correo electrónico</label>
-            <input type="email" name="email" id="email" className="login-input" required {...register("email")} />
+            <input type="email" name="email" id="email" className="login-input" required {...register("email")}/>
 
             <label htmlFor="password" className="login-label">Contraseña</label>
             <input type="password" name="password" id="password" className="login-input" {...register("password")}/>

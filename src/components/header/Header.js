@@ -56,6 +56,7 @@ function Header() {
 
   let logOut = () => {
     localStorage.removeItem("token")
+    localStorage.removeItem("loggedUser")
     window.location.assign('/')
   }
 

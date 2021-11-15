@@ -19,7 +19,6 @@ const Register = () => {
       .then(res => res.json())
       .then(json => console.log(json))
       console.log(data)
-
   }
 
   return (

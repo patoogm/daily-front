@@ -13,8 +13,7 @@ function NewsAdminPage() {
   const [txtTitle,setTxtTitle] = useState("")
   const [imgArticle,setImgArticle] = useState("")
   const [txtArticle,setTxtArticle] = useState("")
-  
-  const txtAutor = '618e527979f2caa05f562ce0'
+  const txtAutor = '61808b30cf9c233a27508d2c'
 
   const [news, setNews] = useState([])
  
@@ -40,12 +39,11 @@ function NewsAdminPage() {
     setNewsById(query)
   } 
 
+
   const handleNews = () => {fetch('http://localhost:8000/get-news')
-  .then(response => response.json())
-  .then(response => setNews(response))
-  .catch(err => {
-    console.log(err.message)
-  })}
+    .then(response => response.json())
+    .then(response => setNews(response))
+  }
   
   useEffect(() => {
     handleNews()

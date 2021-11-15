@@ -9,6 +9,8 @@ import RegisterPage from './pages/Register/RegisterPage';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 import NewsPagePage from './pages/NewsPage/NewsPagePage';
 import UserPage from './pages/UserPage/UserPage'
+import Noticia from './components/new/Noticia';
+import { Component } from 'react';
 
 
 ReactDOM.render(
@@ -20,6 +22,7 @@ ReactDOM.render(
           <Route path="/" element={<App />} />
           <Route path="/newsadmin" element={<NewsPagePage />} />
           <Route path="/usersadmin" element={<UserPage />} />
+          <Route path="/detail-new" element={<Noticia />} />
         </Routes>
     </Router>
   </React.StrictMode>,

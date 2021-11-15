@@ -3,13 +3,11 @@ import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, 
 import './card.css'
 
 export default function App(props) {
-
   const [content, setContent] = useState([])
-
   const handleClick = () => {
     fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=${props.section}&pageSize=3&apiKey=b1a3dfcb23504041b4879a07a4fe3180`)
       .then(response => response.json())
-      .then(json => console.log(json))
+      .then(json => setContent(json))
   }
 
   useEffect(() => {
@@ -20,7 +18,7 @@ export default function App(props) {
     <MDBRow className='row-cols-1 row-cols-md-3 gx-0'>
       {
         content.map(noticia => 
-        <MDBCol className='p-2'>
+        <MDBCol className='p-2' onClick= {()=>{history.push(`/detail-new?${title}?${urlToImage}?${content}`)}}>
           <MDBCard className='h-100'>
             <MDBCardImage className='img-size' src={noticia.urlToImage} alt='...' position='top'/>
             <MDBCardBody>
