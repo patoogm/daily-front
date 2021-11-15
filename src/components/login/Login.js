@@ -21,7 +21,10 @@ function Login() {
       },
     })
       .then(res => res.json())
-      .then(json => localStorage.setItem("token", json.token))
+      .then(json => {
+        localStorage.setItem("token", json.token)
+        localStorage.setItem('_id', json._id)
+      })
 
       setTimeout( () => {
         if(localStorage.getItem("token") === 'undefined' || localStorage.getItem('token') === null){
