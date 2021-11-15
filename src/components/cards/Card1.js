@@ -18,7 +18,7 @@ export default function App(props) {
     <MDBRow className='row-cols-1 row-cols-md-3 gx-0'>
       {
         content.map(noticia => 
-        <MDBCol className='p-2' onClick= {()=>{history.push(`/detail-new?${title}?${urlToImage}?${content}`)}}>
+        <MDBCol className='p-2'>
           <MDBCard className='h-100'>
             <MDBCardImage className='img-size' src={noticia.urlToImage} alt='...' position='top'/>
             <MDBCardBody>

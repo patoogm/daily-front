@@ -13,7 +13,8 @@ function NewsAdminPage() {
   const [txtTitle,setTxtTitle] = useState("")
   const [imgArticle,setImgArticle] = useState("")
   const [txtArticle,setTxtArticle] = useState("")
-  const txtAutor = '61808b30cf9c233a27508d2c'
+
+  const txtAutor = localStorage.getItem('_id')
 
   const [news, setNews] = useState([])
  
@@ -57,6 +58,7 @@ function NewsAdminPage() {
       date: dteToday,
       autor_id: txtAutor
     }
+    
     fetch('http://localhost:8000/create-news',{
       method: 'POST',
       body: JSON.stringify(body),

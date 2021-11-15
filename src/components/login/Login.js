@@ -1,10 +1,11 @@
-import React from 'react'
+import { useState } from 'react'
 import '../login/login.css'
 import { useForm } from 'react-hook-form'
-import { useState} from 'react'
 
 function Login() {
-  const [loggedEmail,setLoggedEmail] = useState("")
+
+  const [LoginError, setLoginError] = useState(false)
+
   const { register, handleSubmit } = useForm();
   const onSubmit = data => {
   fetch('http://localhost:8000/login-user',{
@@ -18,28 +19,20 @@ function Login() {
       },
     })
       .then(res => res.json())
-      .then(json => localStorage.setItem("token", json.token))
+      .then(json => {
+        localStorage.setItem("token", json.token)
+        localStorage.setItem('_id', json._id)
+      })
+
       setTimeout( () => {
         if(localStorage.getItem("token") === 'undefined' || localStorage.getItem('token') === null){
-          alert('Usuario o Contraseña erroneos')
+          setLoginError(true)
           localStorage.removeItem('token')
         } else {
           window.location.assign('/')
-          setLoggedEmail(data.email)
         }
       }, 500)    
-  }
-
-  /* if(localStorage.getItem("token") !== 'undefined' || localStorage.getItem('token') !== null){
-    getLoggedUser()
-  }
-
-  const getLoggedUser = () => {
-    fetch('http://localhost:8000/'+loggedEmail)
-    .then(response => response.json())
-    .then(response => localStorage.setItem("loggedUser",response._id))
-  }  */
-  
+  }  
 
   return (
     <>
@@ -52,6 +45,9 @@ function Login() {
 
             <label htmlFor="password" className="login-label">Contraseña</label>
             <input type="password" name="password" id="password" className="login-input" {...register("password")}/>
+            {LoginError ? <span className="login-error">Usuario o Contraseña erróneos</span> : <span></span>}
+
+            <div className="login-sin-cuenta">¿No tienes una cuenta? <a className="login-register-link" href="/register">¡Regístrate!</a></div>
             
             <input type="submit" className="login-form-button" value="ENTRAR" />
         </form>
