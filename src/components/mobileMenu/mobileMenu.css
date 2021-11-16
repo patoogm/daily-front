@@ -1,9 +1,8 @@
 body{
   height: 100%;
 }
-
- #root{
-   height: 100%;
+#root{
+  height: 100%;
  }
 .mobile-menu{
   position: fixed;
