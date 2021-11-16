@@ -275,7 +275,7 @@ function User() {
         </div>
       </div>
 
-      <div className="container">
+      <div className="table-core-container">
         <table className="table table-hover">
           <thead>
             <tr>
@@ -295,9 +295,9 @@ function User() {
               <td>{user.dni}</td>
               <td>{user.email}</td>
               <td>Editor</td>
-              <td><button data-bs-toggle="modal" data-bs-target="#mdlViewUsers" onClick={(event) => fillForm(user)}><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></button></td>
-              <td><button data-bs-toggle="modal" data-bs-target="#mdlEditUsers" onClick={(event) => fillForm(user)}><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></button></td>
-              <td><button onClick={(event) => deleteUser(user)}><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></button></td>
+              <td><button data-bs-toggle="modal" data-bs-target="#mdlViewUsers" onClick={(event) => fillForm(user)}><i className="bi bi-eye"></i></button></td>
+              <td><button data-bs-toggle="modal" data-bs-target="#mdlEditUsers" onClick={(event) => fillForm(user)}><i className="bi bi-pencil"></i></button></td>
+              <td><button onClick={(event) => deleteUser(user)}><i className="bi bi-x-lg"></i></button></td>
             </tr>
             )): <h1 className="loading-content">Cargando... </h1>}
           </tbody>

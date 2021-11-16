@@ -1,6 +1,7 @@
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import NewsPage from '../../components/NewsAdminPage/NewsAdminPage'
+import MobileMenu from '../../components/mobileMenu/MobileMenu'
 
 
 function NewsPagePage() {
@@ -10,6 +11,7 @@ function NewsPagePage() {
   } else {
     return (
       <>
+        <MobileMenu />
         <Header />
         <NewsPage />
         <Footer />

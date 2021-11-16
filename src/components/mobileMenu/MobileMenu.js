@@ -23,6 +23,7 @@ const MobileMenu = () => {
     const five = document.querySelector('.five');
     const six = document.querySelector('.six');
     const nine = !isToken ? 1+1 : document.querySelector('.nine');
+    const ten = !isToken ? 1+1 : document.querySelector('.ten');
 
     console.log(one)
 
@@ -56,28 +57,13 @@ const MobileMenu = () => {
           six.classList.remove('itemActive')
           if (isToken) {
             nine.classList.remove('itemActive')
+            ten.classList.remove('itemActive')
           }
         },100)
         
       }
     })
-    document.removeEventListener('click', (event)=>{
-      if(!menuRef.current.contains(event.target) ){
-        menu.classList.remove('active')
-        setTimeout(()=>{
-          one.classList.remove('itemActive')
-          two.classList.remove('itemActive')
-          three.classList.remove('itemActive')
-          four.classList.remove('itemActive')
-          five.classList.remove('itemActive')
-          six.classList.remove('itemActive')
-          if (isToken) {
-            nine.classList.remove('itemActive')
-          }
-        },100)
-        
-      }
-    })
+
   }, [isToken]);
   
   return (
@@ -85,6 +71,7 @@ const MobileMenu = () => {
       <div ref={menuRef} className="mobile-menu">
         { !isToken ? <a href="/login" className="mobile-menu-item one login"><div>LOGIN</div></a> : <div className="logged-in-mobile seven">¡Bienvenido!</div>  }
         { !isToken ? <a href="/register" className="mobile-menu-item two register"><div>REGISTER</div></a> : <a href="/NewsAdmin" className="mobile-menu-item eight admin"><div>Admin</div></a>  }            
+        { !isToken ? <div></div> : <a href="/UsersAdmin" className="mobile-menu-item ten admin"><div>Users</div></a>  }            
         <div className="mobile-menu-item three">HOME</div>
         <div className="mobile-menu-item four">ACTUALIDAD</div>
         <div className="mobile-menu-item five">ULTIMO MOMENTO</div>

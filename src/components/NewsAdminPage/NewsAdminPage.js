@@ -266,9 +266,9 @@ function NewsAdminPage() {
                 <td>{query.article.date}</td>
                 <td>Opinion</td>
                 <td>192</td>
-                <td><button data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></button></td>
-                <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></button></td>
-                <td><button onClick={(event) => deleteArticle(query)}><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></button></td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><i className="bi bi-eye"></i></button></td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><i className="bi bi-pencil"></i></button></td>
+                <td><button onClick={(event) => deleteArticle(query)}><i className="bi bi-x-lg"></i></button></td>
               </tr>
             )): <tr><td className="loading-content">Cargando...</td></tr>} 
           </tbody>

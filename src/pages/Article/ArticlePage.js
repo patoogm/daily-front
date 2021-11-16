@@ -10,7 +10,6 @@ const ArticlePage = () => {
     <div>
       <MobileMenu />
       <Header />
-      <Navbar />
       <Noticias />
       <Footer />
     </div>

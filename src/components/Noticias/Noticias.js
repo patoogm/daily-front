@@ -4,15 +4,15 @@ import { useParams } from "react-router-dom";
 import './noticias.css'
 
 const Noticias = () => {
-  const params = useParams();
+  const {titulo, imagen, contenido} = useParams();
 
   return (
       <>
         <div className="noticias-core-container">
           <div className="article-container">
-            <h1 className="article-title">{params.title}</h1>
-            <img className="article-image" src={params.urlToImage} alt="ImagenNoticia" />
-            <p className="article-content">{params.content}</p>
+            <h1 className="article-title">{titulo}</h1>
+            <img className="article-image" src={Image} alt="ImagenNoticia" />
+            <p className="article-content">{contenido}</p>
           </div>
           <div className="cards-container">
             <div className="card-artesanal">

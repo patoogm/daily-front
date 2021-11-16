@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom'
 import './card.css'
+import Data from '../../data/Data.json'
 
 export default function App(props) {
   const [content, setContent] = useState([])
   const handleClick = () => {
+    
+    setContent(Data)
 
-    fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=${props.section}&pageSize=3&apiKey=7eb74fa920534eb3a215300069d7b2c4`)
-      .then(response => response.json())
-      .then(json => setContent(json.articles))
+    // fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=${props.section}&pageSize=3&apiKey=7eb74fa920534eb3a215300069d7b2c4`)
+    //   .then(response => response.json())
+    //   .then(json => setContent(json.articles))
 
   }
 
