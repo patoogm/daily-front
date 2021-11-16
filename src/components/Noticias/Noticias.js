@@ -8,7 +8,7 @@ const Noticias = () => {
   useEffect(() => {
     const detailArticle = JSON.parse(localStorage.getItem("article"))
     setArticle(detailArticle)
-      fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=health&pageSize=3&apiKey=d5c95e7bba3b4175834f65ddf15a8a0e`)
+      fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=health&pageSize=3&apiKey=042321d9894d48c18f9f67312f3ca2ae`)
       .then(response => response.json())
       .then(json => setContent(json.articles))
   }, [])
