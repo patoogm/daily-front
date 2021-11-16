@@ -8,6 +8,7 @@ const Noticias = () => {
   useEffect(() => {
     const detailArticle = JSON.parse(localStorage.getItem("article"))
     setArticle(detailArticle)
+
       fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=sports&pageSize=3&apiKey=042321d9894d48c18f9f67312f3ca2ae`)
       .then(response => response.json())
       .then(json => setContent(json.articles))
