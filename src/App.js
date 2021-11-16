@@ -7,7 +7,6 @@ import Card1 from './components/cards/Card1';
 import Advertising from './components/advertising/Advertising';
 import MobileMenu from "./components/mobileMenu/MobileMenu";
 
-
 function App() {
   return (
     <div className="App">
@@ -15,13 +14,17 @@ function App() {
       <Header />
       <Navbar />
       <Carrousel />
-      <h2 className="p-4">Ultimas Noticias </h2>
+      <h2 className="p-4">Últimas Noticias</h2>
+      <Card1 section="general"/>
+      <h2 className="p-4">Deportes</h2>
       <Card1 section="sports"/>
-      <h2 className="p-4">Deportes </h2>
-      <Card1 section="health"/>
       <Advertising />
-      <h2 className="p-4">Politica </h2>
-      <Card1 section="science"/>
+      <h2 className="p-4">Entretenimiento</h2>
+      <Card1 section="entertainment"/>
+      <h2 className="p-4">Salud</h2>
+      <Card1 section="health"/>
+      <h2 className="p-4">Tecnología</h2>
+      <Card1 section="technology"/>
       <Footer />
     </div>
   );

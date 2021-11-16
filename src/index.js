@@ -21,7 +21,7 @@ ReactDOM.render(
           <Route path="/" element={<App />} />
           <Route path="/newsadmin" element={<NewsPagePage />} />
           <Route path="/usersadmin" element={<UserPage />} />
-          <Route path="/article/:titulo/:imagen/:contenido" element={<ArticlePage />}/>
+          <Route path="/article/:title" element={<ArticlePage />}/>
         </Routes>
     </Router>
   </React.StrictMode>,

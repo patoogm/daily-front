@@ -1,9 +1,7 @@
 import React from 'react'
 import './newsAdminPage.css'
 import imgArticles from '../../images/news.png'
-import imgEnter from '../../images/enter.png'
-import imgEdit from '../../images/edit.png'
-import imgDelete from '../../images/delete.png'
+
 import {useState} from 'react'
 import { useEffect } from 'react';
 
@@ -87,7 +85,7 @@ function NewsAdminPage() {
       autor_id: txtAutor
     }
 
-    fetch('http://localhost:8000/'+newsById.article._id,{
+    fetch('http://localhost:8000/news/'+newsById.article._id,{
       method: 'PUT',
       body: JSON.stringify(body),
       headers: {
@@ -100,7 +98,7 @@ function NewsAdminPage() {
   } 
 
   const deleteArticle = (query) => {
-    fetch('http://localhost:8000/'+ query.article._id,{
+    fetch('http://localhost:8000/news/'+ query.article._id,{
       method: 'DELETE'
     })
       .then((response) => response.json())
