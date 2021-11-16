@@ -33,15 +33,15 @@ const Register = () => {
         <form className="register-core-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="register-title">Ingrese sus datos</div>
           <label htmlFor="name" className="register-label">Nombre</label>
-          <input type="text" name="name" id="name" className="register-input" required {...register("name")}/>                      
+          <input type="text" name="name" id="name" className="register-input" required {...register("name")} minLength='4' maxLength='25'/>                      
           <label htmlFor="lastName" className="register-label">Apellido</label>
-          <input type="text" name="lastName" id="lastName" className="register-input" required {...register("lastName")}/>
+          <input type="text" name="lastName" id="lastName" className="register-input" required {...register("lastName")} minLength='3' maxLength='20'/>
           <label htmlFor="dni" className="register-label">Número de Documento</label>
-          <input type="number" name="dni" id="dni" className="register-input" required {...register("dni")}/>
+          <input type="number" name="dni" id="dni" className="register-input" required {...register("dni")} minLength='6' maxLength='8'/>
           <label htmlFor="email" className="register-label">Correo Electrónico</label>
-          <input type="email" name="email" id="email" className="register-input" required {...register("email")}/>
+          <input type="email" name="email" id="email" className="register-input" required {...register("email")} minLength='10' maxLength='20'/>
           <label htmlFor="password" className="register-label">Contraseña</label>
-          <input type="password" name="password" id="password" className="register-input" required {...register("password")} minLength='5'/>
+          <input type="password" name="password" id="password" className="register-input" required {...register("password")} minLength='5' maxLength='15'/>
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[0].param === 'dni' ? <span className="register-error">* {RegisterError[0].msg}</span> : <span></span>}
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[0].param === 'email' ? <span className="register-error">* {RegisterError[0].msg}</span> : <span></span>}
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[1] === undefined ? <span></span> : RegisterError[1].param === 'email' ? <span className="register-error">* {RegisterError[1].msg}</span> : <span></span>}
