@@ -6,9 +6,9 @@ import './card.css'
 export default function Card1(props) {
   const [content, setContent] = useState([])
   const handleClick = () => {
-      fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=${props.section}&pageSize=3&apiKey=042321d9894d48c18f9f67312f3ca2ae`)
+        fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=${props.section}&pageSize=3&apiKey=7eb74fa920534eb3a215300069d7b2c4`)
       .then(response => response.json())
-      .then(json => console.log(json))
+      .then(json => setContent(json.articles))
   }
 
   useEffect(() => {
@@ -16,10 +16,10 @@ export default function Card1(props) {
   }, )
 
   return (
-    <MDBRow className='row-cols-1 row-cols-md-3 gx-0'>
+    <MDBRow className='row-cols-1 row-cols-md-3 gx-0 letra'>
       {
         content.map(noticia => 
-        <Link target="_blank" to={`/article/${noticia.title}`}>
+        <Link className='letra' target="_blank" to={`/article/${noticia.title}`}>
           <MDBCol className='p-2' onClick={()=>{
             localStorage.setItem("article", JSON.stringify(noticia))
           }}>

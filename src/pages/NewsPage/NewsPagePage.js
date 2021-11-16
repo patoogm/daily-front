@@ -1,6 +1,6 @@
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
-import NewsPage from '../../components/NewsAdminPage/NewsAdminPage'
+import NewsPage from '../../components/news-admin/News-admin'
 import MobileMenu from '../../components/mobileMenu/MobileMenu'
 
 

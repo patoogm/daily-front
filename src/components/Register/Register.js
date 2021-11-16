@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../Register/register.css';
+import '../register/register.css';
 import { useForm } from 'react-hook-form';
 
 const Register = () => {
