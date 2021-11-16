@@ -117,30 +117,30 @@ function NewsAdminPage() {
       <div className="d-flex align-items-center justify-content-around">
         <div className="dropdown">
           <button className="btn btn-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-funnel"></i>
+          <i className="bi bi-funnel"></i>
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><button class="dropdown-item">Born Date</button></li>
-            <li><button class="dropdown-item">Name</button></li>
-            <li><button class="dropdown-item">Type</button></li>
+            <li><button className="dropdown-item">Born Date</button></li>
+            <li><button className="dropdown-item">Name</button></li>
+            <li><button className="dropdown-item">Type</button></li>
           </ul>
         </div>
         <div className="d-flex col-4 input-search-container">
           <input type="text" className="txtSearch" id="txtSearch"/> 
-          <button id="btnSearchNews" type="button" class="btn btn-link"><i className="bi bi-search"></i></button>          
+          <button id="btnSearchNews" type="button" className="btn btn-link"><i className="bi bi-search"></i></button>          
         </div>
         <div className="d-flex">
-          <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#mdlNewArticles" onClick={(event) => cleanForm()}>
-            <i class="bi bi-plus-circle"></i>
+          <button type="button" className="btn btn-link" data-bs-toggle="modal" data-bs-target="#mdlNewArticles" onClick={(event) => cleanForm()}>
+            <i className="bi bi-plus-circle"></i>
           </button>
         </div>
       </div>
 
-      <div className="modal fade" id="mdlNewArticles" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content mdlNewArticles">
-            <div class="modal-header">
-              <h5 class="modal-title">New Article</h5>
+      <div className="modal fade" id="mdlNewArticles" tabIndex="-1" aria-hidden="true">
+        <div className="modal-dialog modal-lg">
+          <div className="modal-content mdlNewArticles">
+            <div className="modal-header">
+              <h5 className="modal-title">New Article</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -173,11 +173,11 @@ function NewsAdminPage() {
         </div>
       </div>
 
-      <div className="modal fade" id="mdlEditArticles" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Edit article</h5>
+      <div className="modal fade" id="mdlEditArticles" tabIndex="-1" aria-hidden="true">
+        <div className="modal-dialog modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Edit article</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -210,12 +210,12 @@ function NewsAdminPage() {
         </div>
       </div>
 
-      <div className="modal fade" id="mdlViewArticles" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Articles</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div className="modal fade" id="mdlViewArticles" tabIndex="-1" aria-hidden="true">
+        <div className="modal-dialog modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">Articles</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
                 <form className="frmViewArticles">
@@ -259,18 +259,18 @@ function NewsAdminPage() {
             </tr>
           </thead>
           <tbody>
-           {news.length>0?news.map((query) => (
-              <tr> 
+           {news.length>0?news.map((query, key) => (
+              <tr key={key}> 
                 <th scope="row">{query.article.title}</th>
                 <td>{`${query.autor.name}  ${query.autor.lastName}`}</td>
                 <td>{query.article.date}</td>
                 <td>Opinion</td>
                 <td>192</td>
-                <td><button data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><img src={imgEnter} alt="imgEnter" width="20 px" height="20 px" /></button></td>
-                <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><img src={imgEdit} alt="imgEdit" width="20 px" height="20 px" /></button></td>
-                <td><button onClick={(event) => deleteArticle(query)}><img src={imgDelete} alt="imgDelete" width="20 px" height="20 px" /></button></td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><i className="bi bi-eye"></i></button></td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><i className="bi bi-pencil"></i></button></td>
+                <td><button onClick={(event) => deleteArticle(query)}><i className="bi bi-x-lg"></i></button></td>
               </tr>
-            )): <h1 className="loading-content">Cargando...</h1>} 
+            )): <tr><td className="loading-content">Cargando...</td></tr>} 
           </tbody>
         </table>  
       </div>

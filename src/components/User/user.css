@@ -35,9 +35,12 @@
 .mdlNewArticles{
   height: 500px;
 }
-.bi-search, .bi-funnel, .bi-plus-circle{
+.bi-search, .bi-funnel, .bi-plus-circle, .bi-x-lg, .bi-pencil, .bi-eye{
   color: black;
   font-size: 25px;
+}
+.bi-x-lg:hover, .bi-pencil:hover, .bi-eye:hover{
+  border-bottom: 1px solid black;
 }
 .table-core-container{
   padding: 20px;

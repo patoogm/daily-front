@@ -1,0 +1,119 @@
+.noticias-core-container{
+  width: 100%;
+  height: 100%;
+  /* outline: 1px solid red; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50px 0px;
+}
+.article-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 100%;
+  border-right: 1px solid #24252A;
+  padding-right: 30px;
+  /* outline: 1px solid blue; */
+}
+.article-title{
+  padding: 15px;
+  font-size: 50px;
+}
+.article-image{
+  object-fit: cover;
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
+.article-content{
+  font-size: 16px;
+}
+.cards-container{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* outline: 1px solid green; */
+}
+.card-artesanal{
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #F9F9F9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: -1px 1px 10px -1px rgba(95,95,95,0.50);
+  transition-duration: .5s;
+  /* outline: 1px solid hotpink; */
+}
+.card-artesanal:hover{
+  transform: translateY(-5px);
+  transition-duration: .5s;
+}
+.card-image{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.card-title{
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* MEDIA QUERY CELULARES */
+@media(min-width:100px) and (max-width: 375px){
+  .noticias-core-container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .article-container{
+    width: 90%;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    border-bottom: 1px solid #24252A;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+  }
+  .article-title{
+    text-align: center;
+  }
+  .cards-container{
+    width: 60%;
+  }
+  .card-artesanal{
+    margin-bottom: 30px;
+  }
+}
+@media(min-width: 380px) and (max-width: 415px){
+  .noticias-core-container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .article-container{
+    width: 90%;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    border-bottom: 1px solid #24252A;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+  }
+  .article-title{
+    text-align: center;
+  }
+  .cards-container{
+    width: 60%;
+  }
+  .card-artesanal{
+    margin-bottom: 30px;
+  }
+}

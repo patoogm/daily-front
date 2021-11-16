@@ -24,6 +24,9 @@ function Header() {
     const five = document.querySelector('.five');
     const six = document.querySelector('.six');
     const nine = !isToken ? 1+1 : document.querySelector('.nine');
+    const ten = !isToken ? 1+1 : document.querySelector('.ten');
+
+    console.log(menu)
 
 
     let toggleMenu = () => {     
@@ -54,6 +57,7 @@ function Header() {
           six.classList.add('itemActive')
           if (isToken) {
             nine.classList.add('itemActive')
+            ten.classList.add('itemActive')
           }
         }, 250)
         
@@ -73,12 +77,13 @@ function Header() {
         <div className="header-logo-and-buttons">
           <div className="logo-container">
             
-            <span className="logo"><img className="header-logo-icon" src={logo} alt="" />ROLLING DAILY</span>
+            <a href="/" className="logo"><span><img className="header-logo-icon" src={logo} alt="" />ROLLING DAILY</span></a>
             <i ref={mobileButton} className="bi bi-list navToggle"></i>
           </div>
           <div className="buttons-container">
             { !isToken ? <a href="/login" className="login-button"><div>Login</div></a> : <div className="logged-in">Bienvenido!</div>  }
             { !isToken ? <a href="/register" className="register-button"><div>Register</div></a> : <a href="/NewsAdmin" className="admin-button"><div>Admin</div></a>  }
+            { !isToken ? <div></div> : <a href="/UsersAdmin" className="admin-button"><div>Users</div></a>  }
             { !isToken ? <div></div> : <div className="logOut" onClick={logOut}>Cerrar Sesión</div> }
           </div>
         </div>

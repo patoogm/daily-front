@@ -56,6 +56,10 @@
 .logo{
   margin-left: 5px;
   font-size: 30px;
+  color: white;
+}
+.logo:hover{
+  color: white;
 }
 .bi-list{
   display: none;
