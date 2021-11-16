@@ -21,8 +21,8 @@ function App() {
       <Advertising />
       <h2 className="p-4">Entretenimiento</h2>
       <Card1 section="entertainment"/>
-      <h2 className="p-4">Salud</h2>
-      <Card1 section="health"/>
+      <h2 className="p-4">Negocios</h2>
+      <Card1 section="business"/>
       <h2 className="p-4">Tecnología</h2>
       <Card1 section="technology"/>
       <Footer />
