@@ -1,44 +1,41 @@
-import React from "react";
-import Image from "../../images/ejemploNoticia.jpeg";
-import { useParams } from "react-router-dom";
+import React, {useState, useEffect} from "react";
 import './noticias.css'
 
 const Noticias = () => {
-  const {titulo, imagen, contenido} = useParams();
+  const [content, setContent] = useState([])
+  const [article, setArticle] = useState({})
+
+  useEffect(() => {
+    const detailArticle = JSON.parse(localStorage.getItem("article"))
+    setArticle(detailArticle)
+      fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=health&pageSize=3&apiKey=98b20159ef584866b02c659e0c424c6a`)
+      .then(response => response.json())
+      .then(json => setContent(json.articles))
+  }, [])
 
   return (
       <>
         <div className="noticias-core-container">
           <div className="article-container">
-            <h1 className="article-title">{titulo}</h1>
-            <img className="article-image" src={Image} alt="ImagenNoticia" />
-            <p className="article-content">{contenido}</p>
+            <h1 className="article-title">{article.title}</h1>
+            <img className="article-image" src={article.urlToImage} alt="ImagenNoticia" />
+            <p className="article-content">{article.description}</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi vero dolore quos ullam rerum recusandae non voluptas dolorem deleniti dolorum alias sint provident fugiat, aliquid odit sed harum, necessitatibus eius, esse expedita error ducimus vel! Harum dicta sed eum neque veritatis maiores, sit sapiente tenetur quibusdam blanditiis delectus eligendi numquam recusandae dolores, laborum enim corrupti voluptate ducimus eveniet error adipisci eius quis. Nobis quae distinctio architecto dicta, deleniti vel optio exercitationem cumque non eligendi inventore quod aspernatur aliquam asperiores error sunt natus tempore ex beatae fugit saepe veritatis? Voluptates explicabo veniam nostrum, iusto quaerat dolore deserunt animi aliquid? Vel, pariatur?</p>
           </div>
-          <div className="cards-container">
-            <div className="card-artesanal">
-              <img className="card-image" src={Image} alt="ImagenCard" />
-              <h6 className="card-title">Este es el titulo de card</h6>
-            </div>
-            <div className="card-artesanal">
-            <img className="card-image" src={Image} alt="ImagenCard" />
-            <h6 className="card-title">Este es el titulo de card</h6>
-            </div>
-            <div className="card-artesanal">
-            <img className="card-image" src={Image} alt="ImagenCard" />
-            <h6 className="card-title">Este es el titulo de card</h6>
-            </div>
-            <div className="card-artesanal">
-            <img className="card-image" src={Image} alt="ImagenCard" />
-            <h6 className="card-title">Este es el titulo de card</h6>
-            </div>
+          <div>
+          {
+            content.length > 0?content.map(noticia =>
+              (<div className="cards-container">
+                <div className="card-artesanal">
+                  <img className="card-image" src={noticia.urlToImage} alt="ImagenCard" />
+                  <h6 className="card-title">{noticia.title}</h6>
+                </div>
+              </div>)
+              ):<h4>Cargando noticias</h4>
+          }
           </div>
         </div>
       </>
-
-
-
-
-
 
     // <div>
     //   <div className="d-flex flex-row mx-4">

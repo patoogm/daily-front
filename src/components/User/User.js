@@ -1,11 +1,7 @@
 import React from 'react'
 import './user.css'
 import imgUser from '../../images/user.png'
-import imgEnter from '../../images/enter.png'
-import imgEdit from '../../images/edit.png'
-import imgDelete from '../../images/delete.png'
 import {useState, useEffect} from 'react'
-
 
 function User() {
   const [userById,setUserById] = useState({})
@@ -123,7 +119,6 @@ function User() {
           </button>
         </div>
       </div>
-
       <div className="modal fade" id="mdlAddUsers" tabindex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -175,7 +170,6 @@ function User() {
           </div>
         </div>
       </div>
-
       <div className="modal fade" id="mdlEditUsers" tabindex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -227,7 +221,6 @@ function User() {
           </div>
         </div>
       </div>
-
       <div className="modal fade" id="mdlViewUsers" tabindex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -274,7 +267,6 @@ function User() {
           </div>
         </div>
       </div>
-
       <div className="table-core-container">
         <table className="table table-hover">
           <thead>
