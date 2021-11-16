@@ -2,8 +2,6 @@ import { useState } from 'react'
 import '../login/login.css'
 import { useForm } from 'react-hook-form'
 
-
-
 function Login() {
 
   const [LoginError, setLoginError] = useState(false)
@@ -33,27 +31,20 @@ function Login() {
         } else {
           window.location.assign('/')
         }
-      }, 500)
-
-      
+      }, 500)     
   }
-
 
   return (
     <>
       <div className="form-core-container">
         <form className="core-form" onSubmit={handleSubmit(onSubmit)}>
             <div className="login-title">Ingrese sus datos</div>
-
             <label htmlFor="email" className="login-label">Dirección de correo electrónico</label>
             <input type="email" name="email" id="email" className="login-input" required {...register("email")} />
-
             <label htmlFor="password" className="login-label">Contraseña</label>
             <input type="password" name="password" id="password" className="login-input" {...register("password")}/>
             {LoginError ? <span className="login-error">Usuario o Contraseña erróneos</span> : <span></span>}
-
             <div className="login-sin-cuenta">¿No tienes una cuenta? <a className="login-register-link" href="/register">¡Regístrate!</a></div>
-            
             <input type="submit" className="login-form-button" value="ENTRAR" />
         </form>
       </div>

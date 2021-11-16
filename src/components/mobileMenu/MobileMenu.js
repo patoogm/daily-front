@@ -25,10 +25,6 @@ const MobileMenu = () => {
     const nine = !isToken ? 1+1 : document.querySelector('.nine');
     const ten = !isToken ? 1+1 : document.querySelector('.ten');
 
-    console.log(one)
-
-    
-
     let toggleMenu = () => {     
       let checkItem;
       if(menu.className.indexOf('active') > -1){
@@ -59,11 +55,9 @@ const MobileMenu = () => {
             nine.classList.remove('itemActive')
             ten.classList.remove('itemActive')
           }
-        },100)
-        
+        },100)    
       }
     })
-
   }, [isToken]);
   
   return (

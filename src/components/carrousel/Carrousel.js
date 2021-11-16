@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  MDBCarousel,
-  MDBCarouselInner,
-  MDBCarouselItem,
-  MDBCarouselElement,
-  MDBCarouselCaption,
-  MDBContainer,
-} from 'mdb-react-ui-kit';
+import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBCarouselElement, MDBCarouselCaption, MDBContainer } from 'mdb-react-ui-kit';
 import './carrousel.css'
 
 export default function App() {

@@ -26,9 +26,6 @@ function Header() {
     const nine = !isToken ? 1+1 : document.querySelector('.nine');
     const ten = !isToken ? 1+1 : document.querySelector('.ten');
 
-    console.log(menu)
-
-
     let toggleMenu = () => {     
       let checkItem;
       if(menu.className.indexOf('active') > -1){
@@ -59,13 +56,11 @@ function Header() {
             nine.classList.add('itemActive')
             ten.classList.add('itemActive')
           }
-        }, 250)
-        
+        }, 250)     
       }
     })
   }, [isToken])
   
-
   return (
     <>
       <div className="header-core-container">
@@ -75,8 +70,7 @@ function Header() {
           <a href="https://youtube.com" target="_blank" rel="noreferrer"><i className="social-icon bi bi-youtube"> Youtube</i></a>
         </div>
         <div className="header-logo-and-buttons">
-          <div className="logo-container">
-            
+          <div className="logo-container">           
             <a href="/" className="logo"><span><img className="header-logo-icon" src={logo} alt="" />ROLLING DAILY</span></a>
             <i ref={mobileButton} className="bi bi-list navToggle"></i>
           </div>
@@ -90,7 +84,6 @@ function Header() {
       </div>
     </>
   )
-
 }
 
 export default Header
