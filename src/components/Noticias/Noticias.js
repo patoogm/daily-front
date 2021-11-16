@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import './noticias.css'
+import '../Noticias/noticias.css'
 
 const Noticias = () => {
   const [content, setContent] = useState([])
@@ -8,7 +8,7 @@ const Noticias = () => {
   useEffect(() => {
     const detailArticle = JSON.parse(localStorage.getItem("article"))
     setArticle(detailArticle)
-      fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=health&pageSize=3&apiKey=87caef4ecbb243c1865910cbf27d524f`)
+    fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=sports&pageSize=3&apiKey=042321d9894d48c18f9f67312f3ca2ae`)
       .then(response => response.json())
       .then(json => setContent(json.articles))
   }, [])
@@ -22,10 +22,10 @@ const Noticias = () => {
             <p className="article-content">{article.description}</p>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi vero dolore quos ullam rerum recusandae non voluptas dolorem deleniti dolorum alias sint provident fugiat, aliquid odit sed harum, necessitatibus eius, esse expedita error ducimus vel! Harum dicta sed eum neque veritatis maiores, sit sapiente tenetur quibusdam blanditiis delectus eligendi numquam recusandae dolores, laborum enim corrupti voluptate ducimus eveniet error adipisci eius quis. Nobis quae distinctio architecto dicta, deleniti vel optio exercitationem cumque non eligendi inventore quod aspernatur aliquam asperiores error sunt natus tempore ex beatae fugit saepe veritatis? Voluptates explicabo veniam nostrum, iusto quaerat dolore deserunt animi aliquid? Vel, pariatur?</p>
           </div>
-          <div>
+          <div className="cards-container">
           {
             content.length > 0?content.map(noticia =>
-              (<div className="cards-container">
+              (<div>
                 <div className="card-artesanal">
                   <img className="card-image" src={noticia.urlToImage} alt="ImagenCard" />
                   <h6 className="card-title">{noticia.title}</h6>
