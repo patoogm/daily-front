@@ -6,7 +6,7 @@ import './card.css'
 export default function Card1(props) {
   const [content, setContent] = useState([])
   const handleClick = () => {
-        fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=${props.section}&pageSize=3&apiKey=d5c95e7bba3b4175834f65ddf15a8a0e`)
+        fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=${props.section}&pageSize=3&apiKey=042321d9894d48c18f9f67312f3ca2ae`)
       .then(response => response.json())
       .then(json => setContent(json.articles))
   }
