@@ -25,6 +25,8 @@ function Header() {
     const six = document.querySelector('.six');
     const nine = !isToken ? 1+1 : document.querySelector('.nine');
 
+    console.log(menu)
+
 
     let toggleMenu = () => {     
       let checkItem;

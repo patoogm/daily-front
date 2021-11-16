@@ -61,6 +61,23 @@ const MobileMenu = () => {
         
       }
     })
+    document.removeEventListener('click', (event)=>{
+      if(!menuRef.current.contains(event.target) ){
+        menu.classList.remove('active')
+        setTimeout(()=>{
+          one.classList.remove('itemActive')
+          two.classList.remove('itemActive')
+          three.classList.remove('itemActive')
+          four.classList.remove('itemActive')
+          five.classList.remove('itemActive')
+          six.classList.remove('itemActive')
+          if (isToken) {
+            nine.classList.remove('itemActive')
+          }
+        },100)
+        
+      }
+    })
   }, [isToken]);
   
   return (
