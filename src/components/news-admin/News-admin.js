@@ -1,5 +1,5 @@
 import React from 'react'
-import './newsAdminPage.css'
+import './news-admin.css'
 import imgArticles from '../../images/news.png'
 import {useState} from 'react'
 import { useEffect } from 'react';

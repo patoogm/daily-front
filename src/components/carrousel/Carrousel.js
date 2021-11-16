@@ -8,24 +8,24 @@ export default function App() {
       <MDBContainer>
       <MDBCarouselInner>
         <MDBCarouselItem className='active car-item'>
-          <MDBCarouselElement src='https://mdbcdn.b-cdn.net/img/new/slides/041.jpg' alt='carrousel-1' />
+          <MDBCarouselElement src='https://img.lagaceta.com.ar/fotos/notas/2021/11/16/se-reuni-con-fernndez-y-manzur-jaldo-viajo-para-gestionar-construccion-dos-estaciones-transformadoras-sur-provincia-919839-171805.jpg' alt='carrousel-1' />
           <MDBCarouselCaption className="car-caption"> 
             <h5>Noticia destacada 1</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <p>Con el Presidente y con Manzur, Jaldo firma convenios por más de $ 414 millones para obras eléctricas</p>
           </MDBCarouselCaption>
         </MDBCarouselItem>
         <MDBCarouselItem className="car-item">
-          <MDBCarouselElement src='https://mdbcdn.b-cdn.net/img/new/slides/042.jpg' alt='carrousel-2' />
+          <MDBCarouselElement src='https://img.lagaceta.com.ar/fotos/notas/2021/11/16/oficialismo-busca-lo-no-pudo-urnas-quedarse-intendencia-919845-181304.jpeg' alt='carrousel-2' />
           <MDBCarouselCaption className="car-caption">
             <h5>Noticia destacada 2</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>"El oficialismo busca lo que no pudo en las urnas: quedarse con la Intendencia"</p>
           </MDBCarouselCaption>
         </MDBCarouselItem>
         <MDBCarouselItem className="car-item">
-          <MDBCarouselElement src='https://mdbcdn.b-cdn.net/img/new/slides/043.jpg' alt='carrousel-3' />
+          <MDBCarouselElement src='https://img.lagaceta.com.ar/fotos/notas/2021/11/16/recuerdo-argentina-derroto-brasil-final-copa-america-jugada-maracana-919804-122057.jpg' alt='carrousel-3' />
           <MDBCarouselCaption className="car-caption"> 
             <h5>Noticia destacada 3</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            <p>Argentina-Brasil: hora, formaciones y TV del clásico sudamericano</p>
           </MDBCarouselCaption>
         </MDBCarouselItem>
       </MDBCarouselInner>
