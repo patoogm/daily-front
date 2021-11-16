@@ -1,12 +1,13 @@
 import React from 'react'
 import './newsAdminPage.css'
 import imgArticles from '../../images/news.png'
-
 import {useState} from 'react'
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form'
 
 
 function NewsAdminPage() {
+  const { register, handleSubmit } = useForm();
   const [newsById,setNewsById] = useState({})
   const [txtTitle,setTxtTitle] = useState("")
   const [imgArticle,setImgArticle] = useState("")
@@ -49,11 +50,11 @@ function NewsAdminPage() {
     handleNews()
   }, [])
 
-  const addArticle = (event) => {
+  const addArticle = data => {
     const body = {
-      title: txtTitle,
-      image: imgArticle,
-      newsBody: txtArticle,
+      title: data.txtTitle,
+      image: data.imgArticle,
+      newsBody: data.txtArticle,
       date: dteToday,
       autor_id: txtAutor
     }
@@ -142,21 +143,21 @@ function NewsAdminPage() {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form className="frmNewArticles" onSubmit={addArticle}>
+              <form className="frmNewArticles" onSubmit={handleSubmit(addArticle)}>
                 <div className="d-flex justify-content-between">
                   <div className="mb-3 col-8">
                     <label className="form-label">Title</label>
-                    <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtTitle(event.target.value)} value={txtTitle}/>
+                    <input type="text" className="form-control" id="txtTitle" required {...register("txtTitle")}/>
                   </div>
                   <div className="mb-3 col-3">
                     <label className="form-label">Image</label>
-                    <input type="file" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle}/>
+                    <input type="text" className="form-control" id="imgArticle" required {...register("imgArticle")}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between">
                   <div className="mb-3 col-8">
                     <label className="form-label">Article</label>
-                    <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => setTxtArticle(event.target.value)} value={txtArticle}/>
+                    <textarea type="textarea" className="form-control txtArticle" id="txtArticle" required {...register("txtArticle")}/>
                   </div>
                   <div className="mb-3 col-3 txtArticle">
                     <img src="..." className="rounded float-start" alt="..."/> 
@@ -170,7 +171,8 @@ function NewsAdminPage() {
           </div>
         </div>
       </div>
-
+      
+    {/* EDIT ARTICLE */}
       <div className="modal fade" id="mdlEditArticles" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -187,7 +189,7 @@ function NewsAdminPage() {
                   </div>
                   <div className="mb-3 col-3">
                     <label className="form-label">Image</label>
-                    <input type="file" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle}/>
+                    <input type="text" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between">

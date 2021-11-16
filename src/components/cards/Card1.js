@@ -6,9 +6,10 @@ import './card.css'
 export default function Card1(props) {
   const [content, setContent] = useState([])
   const handleClick = () => {
+
         fetch(`https://newsapi.org/v2/top-headlines?country=ar&category=${props.section}&pageSize=3&apiKey=87caef4ecbb243c1865910cbf27d524f`)
       .then(response => response.json())
-      .then(json => setContent(json.articles))
+      .then(json => console.log(json))
   }
 
   useEffect(() => {
