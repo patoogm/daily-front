@@ -1,3 +1,14 @@
+.car-core{
+  margin-top: 30px;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+.car-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .car-item{
   position: relative;
 }
@@ -14,6 +25,6 @@
 .car-caption{
   z-index: 5;
 }
-.car-core{
-  margin-top: 20px;
+.car-item.active{
+  border: none;
 }
