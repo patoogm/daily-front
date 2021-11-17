@@ -5,10 +5,9 @@ import './carrousel.css'
 export default function App() {
   return (
     <MDBCarousel className="car-core" showControls showIndicators>
-      <MDBContainer>
       <MDBCarouselInner>
         <MDBCarouselItem className='active car-item'>
-          <MDBCarouselElement src='https://img.lagaceta.com.ar/fotos/notas/2021/11/16/se-reuni-con-fernndez-y-manzur-jaldo-viajo-para-gestionar-construccion-dos-estaciones-transformadoras-sur-provincia-919839-171805.jpg' alt='carrousel-1' />
+          <MDBCarouselElement className="car-image" src='https://img.lagaceta.com.ar/fotos/notas/2021/11/16/se-reuni-con-fernndez-y-manzur-jaldo-viajo-para-gestionar-construccion-dos-estaciones-transformadoras-sur-provincia-919839-171805.jpg' alt='carrousel-1' />
           <MDBCarouselCaption className="car-caption"> 
             <h5>Noticia destacada 1</h5>
             <p>Con el Presidente y con Manzur, Jaldo firma convenios por más de $ 414 millones para obras eléctricas</p>
@@ -29,7 +28,6 @@ export default function App() {
           </MDBCarouselCaption>
         </MDBCarouselItem>
       </MDBCarouselInner>
-    </MDBContainer>
   </MDBCarousel>
   );
 }

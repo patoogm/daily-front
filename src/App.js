@@ -1,4 +1,4 @@
-import React from "react";
+import './app.css'
 import Header from "./components/header/Header";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -14,17 +14,17 @@ function App() {
       <Header />
       <Navbar />
       <Carrousel />
-      <h2 className="p-4">Últimas Noticias</h2>
-      <Card1 section="general"/>
-      <h2 className="p-4">Deportes</h2>
-      <Card1 section="sports"/>
+      <div className="app-categorias">Últimas Noticias</div>
+      <Card1 section="nation"/>
+      <h2 className="app-categorias">Deportes</h2>
+      {/* <Card1 section="sports"/>
       <Advertising />
       <h2 className="p-4">Entretenimiento</h2>
       <Card1 section="entertainment"/>
       <h2 className="p-4">Negocios</h2>
       <Card1 section="business"/>
       <h2 className="p-4">Tecnología</h2>
-      <Card1 section="technology"/>
+      <Card1 section="technology"/> */}
       <Footer />
     </div>
   );
