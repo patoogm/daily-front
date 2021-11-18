@@ -18,10 +18,10 @@ ReactDOM.render(
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/" element={<App />} />
           <Route path="/newsadmin" element={<NewsPagePage />} />
           <Route path="/usersadmin" element={<UserPage />} />
           <Route path="/article/:title" element={<ArticlePage />}/>
+          <Route path="/" element={<App />} />
         </Routes>
     </Router>
   </React.StrictMode>,

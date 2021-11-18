@@ -71,7 +71,7 @@ function Header() {
         </div>
         <div className="header-logo-and-buttons">
           <div className="logo-container">           
-            <a href="/" className="logo"><span><img className="header-logo-icon" src={logo} alt="" />ROLLING DAILY</span></a>
+            <a href="/" className="logo"><span className="logo-icon-span"><img className="header-logo-icon" src={logo} alt="" />ROLLING DAILY</span></a>
             <i ref={mobileButton} className="bi bi-list navToggle"></i>
           </div>
           <div className="buttons-container">
