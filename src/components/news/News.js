@@ -26,10 +26,10 @@ const Noticias = () => {
         <div className="noticias-core-container">
           <div className="article-container">
             <h1 className="article-title">{article.title}</h1>
-            <p className="article-subtitle">{article.excerpt}</p>
-            <span className="article-tag">{article.published_date}</span>
-            <img className="article-image" src={article.media} alt="ImagenNoticia" />
-            <p className="article-content">{article.summary}</p>
+            <p className="article-subtitle">{article.description}</p>
+            <span className="article-tag">{article.pubDate}</span>
+            <img className="article-image" src={article.image_url} alt="ImagenNoticia" />
+            <p className="article-content">{article.content}</p>
           </div>
           <div className="cards-container">
           {

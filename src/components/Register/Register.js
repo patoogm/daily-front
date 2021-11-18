@@ -39,7 +39,7 @@ const Register = () => {
           <label htmlFor="dni" className="register-label">Número de Documento</label>
           <input type="number" name="dni" id="dni" className="register-input" required {...register("dni")} minLength='6' maxLength='8'/>
           <label htmlFor="email" className="register-label">Correo Electrónico</label>
-          <input type="email" name="email" id="email" className="register-input" required {...register("email")} minLength='10' maxLength='20'/>
+          <input type="email" name="email" id="email" className="register-input" required {...register("email")} minLength='10' maxLength='40'/>
           <label htmlFor="password" className="register-label">Contraseña</label>
           <input type="password" name="password" id="password" className="register-input" required {...register("password")} minLength='5' maxLength='15'/>
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[0].param === 'dni' ? <span className="register-error">* {RegisterError[0].msg}</span> : <span></span>}

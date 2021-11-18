@@ -1,5 +1,5 @@
 .header-core-container{
-  height: 80px;
+  height: 100px;
   width: 100%;
   background-color: #24252A;
   box-shadow: -1px 3px 21px -1px rgba(95,95,95,0.89);
@@ -7,7 +7,7 @@
   position: relative;
 }
 .header-social-icons{
-  height: 30px;
+  height: 30%;
   width: 100%;
   outline: 1px solid white;
   color: white;
@@ -35,7 +35,9 @@
   cursor: pointer;
 }
 .header-logo-and-buttons{
-  height: 50px;
+  position: sticky;
+  top: 0;
+  height: 70%;
   width: 100%;
   color: white;
   display: flex;
@@ -52,10 +54,16 @@
 .logo-container{
   justify-content: flex-start;
 }
+.logo-icon-span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .logo{
   margin-left: 5px;
-  font-size: 30px;
+  font-size: 35px;
   color: white;
+  font-weight: bolder;
 }
 .logo:hover{
   color: white;
@@ -64,8 +72,9 @@
   display: none;
 }
 .header-logo-icon{
-  height: 35px;
+  height: 45px;
   margin-left: 35px;
+  margin-right: 10px;
 }
 .buttons-container{
   justify-content: flex-end;
@@ -84,7 +93,7 @@
 }
 .login-button, .register-button, .admin-button{
   margin-right: 12px;
-  height: 30px;
+  height: 40px;
   width: 150px;
   background-color: white;
   color: #24252A;
