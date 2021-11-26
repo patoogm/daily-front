@@ -137,30 +137,27 @@ function NewsAdminPage() {
 
       <div className="modal fade" id="mdlNewArticles" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
-          <div className="modal-content mdlNewArticles">
+          <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">New Article</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form className="frmNewArticles" onSubmit={handleSubmit(addArticle)}>
-                <div className="d-flex justify-content-between">
-                  <div className="mb-3 col-8">
+                <div className="d-flex justify-content-between div-new-article">
+                  <div className="mb-3 col-8 div-new-article-item">
                     <label className="form-label">Title</label>
                     <input type="text" className="form-control" id="txtTitle" required {...register("txtTitle")}/>
                   </div>
-                  <div className="mb-3 col-3">
+                  <div className="mb-3 col-3 div-new-article-item">
                     <label className="form-label">Image</label>
                     <input type="text" className="form-control" id="imgArticle" required {...register("imgArticle")}/>
                   </div>
                 </div>
-                <div className="d-flex justify-content-between">
-                  <div className="mb-3 col-8">
+                <div className="d-flex justify-content-between div-new-article">
+                  <div className="mb-3 col-8 div-new-article-item">
                     <label className="form-label">Article</label>
                     <textarea type="textarea" className="form-control txtArticle" id="txtArticle" required {...register("txtArticle")}/>
-                  </div>
-                  <div className="mb-3 col-3 txtArticle">
-                    <img src="..." className="rounded float-start" alt="..."/> 
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
@@ -182,23 +179,20 @@ function NewsAdminPage() {
             </div>
             <div className="modal-body">
               <form className="frmEditArticles" onSubmit={editArticle}>
-                <div className="d-flex justify-content-between">
-                  <div className="mb-3 col-8">
+                <div className="d-flex justify-content-between div-edit-article">
+                  <div className="mb-3 col-8 div-edit-article-item">
                     <label className="form-label">Title</label>
                     <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtTitle(event.target.value)} value={txtTitle}/>
                   </div>
-                  <div className="mb-3 col-3">
+                  <div className="mb-3 col-3 div-edit-article-item">
                     <label className="form-label">Image</label>
                     <input type="text" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle}/>
                   </div>
                 </div>
-                <div className="d-flex justify-content-between">
-                  <div className="mb-3 col-8">
+                <div className="d-flex justify-content-between div-edit-article">
+                  <div className="mb-3 col-8 div-edit-article-item">
                     <label className="form-label">Article</label>
                     <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => setTxtArticle(event.target.value)} value={txtArticle}/>
-                  </div>
-                  <div className="mb-3 col-3 txtArticle">
-                    <img src="..." className="rounded float-start" alt="..."/> 
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
@@ -219,23 +213,20 @@ function NewsAdminPage() {
             </div>
             <div className="modal-body">
                 <form className="frmViewArticles">
-                <div className="d-flex justify-content-between">
-                  <div className="mb-3 col-8">
+                <div className="d-flex justify-content-between div-view-article">
+                  <div className="mb-3 col-8 div-view-article-item">
                     <label className="form-label">Title</label>
                     <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtTitle(event.target.value)} value={txtTitle} disabled/>
                   </div>
-                  <div className="mb-3 col-3">
+                  <div className="mb-3 col-3 div-view-article-item">
                     <label className="form-label">Image</label>
-                    <input type="file" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle} disabled/>
+                    <input type="text" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle} disabled/>
                   </div>
                 </div>
-                <div className="d-flex justify-content-between">
-                  <div className="mb-3 col-8">
+                <div className="d-flex justify-content-between div-view-article">
+                  <div className="mb-3 col-8 div-view-article-item">
                     <label className="form-label">Article</label>
                     <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => setTxtArticle(event.target.value)} value={txtArticle} disabled/>
-                  </div>
-                  <div className="mb-3 col-3 txtArticle">
-                    <img src="..." className="rounded float-start" alt="..."/> 
                   </div>
                 </div>  
               </form> 

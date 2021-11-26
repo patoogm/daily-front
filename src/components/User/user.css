@@ -51,3 +51,15 @@
 .loading-content{
   margin-top: 15px;
 }
+@media(min-width:380px) and (max-width: 415px){
+  .div-new-user, .div-view-user, .div-edit-user{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .div-new-user-item, .div-view-user-item, .div-edit-user-item{
+    width: 100%;
+  }
+}
