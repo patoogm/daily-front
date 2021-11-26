@@ -5,7 +5,9 @@ import '../header/header.css'
 function Header() {
 
   let isToken = localStorage.getItem('token') === 'undefined' || localStorage.getItem('token') === null ? false : true
-  console.log(isToken)
+  let userRole = localStorage.getItem('user_role')
+  let userName = localStorage.getItem('user_name')
+  
 
   let logOut = () => {
     localStorage.removeItem("token")
@@ -15,7 +17,7 @@ function Header() {
   let mobileButton = useRef()
 
   useEffect(() => {
-    const toggle = document.querySelector('.navToggle');
+
     const menu = document.querySelector('.mobile-menu');
     const one = !isToken ? document.querySelector('.one') : document.querySelector('.seven');
     const two = !isToken ? document.querySelector('.two') : document.querySelector('.eight');
@@ -26,40 +28,38 @@ function Header() {
     const nine = !isToken ? 1+1 : document.querySelector('.nine');
     const ten = !isToken ? 1+1 : document.querySelector('.ten');
 
-    let toggleMenu = () => {     
-      let checkItem;
-      if(menu.className.indexOf('active') > -1){
-        checkItem = true;
-      } else {        
-        checkItem = false;
-      }   
-  
-      if(checkItem){
-        menu.classList.remove('active')
-      } else {
-        menu.classList.add('active')
-      }
-    }
-  
-    toggle.addEventListener('click', toggleMenu, false);
-    document.addEventListener('click', (event)=>{
-      if(mobileButton.current.contains(event.target)){
+
+    const toggleMobileMenu = (event) => {
+      if(mobileButton?.current?.contains(event.target)){
         menu.classList.add('active')
         setTimeout(()=>{
           one.classList.add('itemActive')
-          two.classList.add('itemActive')
+          if (isToken && (userRole === 'writer' || userRole === 'admin')) {
+            two.classList.add('itemActive')            
+          } else if (!isToken) {
+            two.classList.add('itemActive')
+          }
           three.classList.add('itemActive')
           four.classList.add('itemActive')
           five.classList.add('itemActive')
           six.classList.add('itemActive')
           if (isToken) {
             nine.classList.add('itemActive')
+          }
+          if (isToken && userRole === 'admin') {
             ten.classList.add('itemActive')
           }
         }, 250)     
       }
-    })
-  }, [isToken])
+    }
+  
+    document.addEventListener('click', toggleMobileMenu, false )
+
+    return () => {
+      document.removeEventListener('click', toggleMobileMenu, false )
+    }
+
+  }, [isToken, userRole])
   
   return (
     <>
@@ -75,9 +75,9 @@ function Header() {
             <i ref={mobileButton} className="bi bi-list navToggle"></i>
           </div>
           <div className="buttons-container">
-            { !isToken ? <a href="/login" className="login-button"><div>Login</div></a> : <div className="logged-in">Bienvenido!</div>  }
-            { !isToken ? <a href="/register" className="register-button"><div>Register</div></a> : <a href="/NewsAdmin" className="admin-button"><div>Admin</div></a>  }
-            { !isToken ? <div></div> : <a href="/UsersAdmin" className="admin-button"><div>Users</div></a>  }
+            { !isToken ? <a href="/login" className="login-button"><div>LOGIN</div></a> : <div className="logged-in">¡Bienvenido {userName}!</div>  }
+            { !isToken ? <a href="/register" className="register-button"><div>REGISTER</div></a> : userRole === 'writer' || userRole === 'admin' ? <a href="/NewsAdmin" className="admin-button"><div>Admin</div></a> : null }
+            { !isToken ? null : userRole === 'admin' ? <a href="/UsersAdmin" className="admin-button"><div>Users</div></a> : null  }
             { !isToken ? <div></div> : <div className="logOut" onClick={logOut}>Cerrar Sesión</div> }
           </div>
         </div>

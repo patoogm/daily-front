@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react"
 import './news.css'
 
 const Noticias = () => {
-  let apiURL = 'https://api.newscatcherapi.com/v2/'
-  let apiKey = 'xb_wthuPYwUjQ35iPMKI6dKwF7FD0CJxLffYQ_wCm0g'
 
   const [content, setContent] = useState([])
   const [article, setArticle] = useState({})
@@ -11,15 +9,12 @@ const Noticias = () => {
   useEffect(() => {
     const detailArticle = JSON.parse(localStorage.getItem("article"))
     setArticle(detailArticle)
-    fetch(`${apiURL}latest_headlines?countries=AR&page_size=3`,{
-      method: 'GET',
-      headers: {
-        'x-api-key':`${apiKey}`
-      }
-    })
+    fetch('http://localhost:8000/get-news')
       .then(response => response.json())
-      .then(json => setContent(json.articles))
+      .then(json => setContent(json))
   }, [])
+
+  
 
   return (
       <>
@@ -27,17 +22,17 @@ const Noticias = () => {
           <div className="article-container">
             <h1 className="article-title">{article.title}</h1>
             <p className="article-subtitle">{article.description}</p>
-            <span className="article-tag">{article.pubDate}</span>
-            <img className="article-image" src={article.image_url} alt="ImagenNoticia" />
-            <p className="article-content">{article.content}</p>
+            <span className="article-tag">{article.date}</span>
+            <img className="article-image" src={article.image} alt="ImagenNoticia" />
+            <p className="article-content">{article.newsBody}</p>
           </div>
           <div className="cards-container">
           {
-            content.length > 0?content.map(noticia =>
+            content.length > 0?content.slice(10,13).map(noticia =>
               (<div>
                 <div className="card-artesanal">
-                  <img className="card-image" src={noticia.media} alt="ImagenCard" />
-                  <h6 className="card-title">{noticia.title}</h6>
+                  <img className="card-image" src={noticia.article.image} alt="ImagenCard" />
+                  <h6 className="card-title">{noticia.article.title}</h6>
                 </div>
               </div>)
               ):<h4>Cargando noticias</h4>

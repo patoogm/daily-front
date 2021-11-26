@@ -11,6 +11,9 @@ function User() {
   const [txtDni,setTxtDni] = useState("")
   const [txtEmail,setTxtEmail] = useState("")
   const [txtPassword,setTxtPassword] = useState("")
+  const [txtRole, setTxtRole] = useState("reader")
+
+  console.log(txtRole)
 
   const cleanForm = (user) => {
     setTxtName("")
@@ -26,6 +29,7 @@ function User() {
     setTxtDni(user.dni)
     setTxtEmail(user.email)
     setTxtPassword(user.password)
+    setTxtRole(user.role)
     console.log(userById)
   } 
 
@@ -37,6 +41,12 @@ function User() {
   useEffect(() => {
     handleUsers()
   },[])
+  
+  const reload = () => {
+    setTimeout(function(){
+      window.location.reload()
+    }, 500)
+  }
 
   const addUser = (event) => {
     const body = {
@@ -44,7 +54,8 @@ function User() {
       lastName: txtLastName,
       dni: txtDni,
       email: txtEmail,
-      password: txtPassword
+      password: txtPassword,
+      role: txtRole
     }
     fetch('http://localhost:8000/create-users',{
       method: 'POST',
@@ -55,14 +66,9 @@ function User() {
     })
       .then((response) => response.json())
       .then((json) => console.log(json));
-    reload()
+      reload()
   }
 
-  const reload = () => {
-    setTimeout(function(){
-      window.location.reload()
-    },500)
-  }
 
   const editUser = (event) => {
     const body = {
@@ -70,7 +76,8 @@ function User() {
       lastName: txtLastName,
       dni: txtDni,
       email: txtEmail,
-      password: txtPassword
+      password: txtPassword,
+      role: txtRole
     }
     console.log(body)
     fetch('http://localhost:8000/'+ userById._id,{
@@ -102,50 +109,50 @@ function User() {
       <div className="d-flex align-items-center justify-content-between">
         <div className="dropdown">
           <button className="btn btn-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-funnel"></i>
+          <i className="bi bi-funnel"></i>
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><button class="dropdown-item">DNI</button></li>
-            <li><button class="dropdown-item">Name</button></li>
+            <li key="DNI"><button className="dropdown-item">DNI</button></li>
+            <li key="Name"><button className="dropdown-item">Name</button></li>
           </ul>
          </div>
         <div className="d-flex col-4 input-search-container">
           <input type="text" className="txtSearch" id="txtSearch"/> 
-          <button id="btnSearchNews" type="button" class="btn btn-link"><i className="bi bi-search"></i></button>
+          <button id="btnSearchNews" type="button" className="btn btn-link"><i className="bi bi-search"></i></button>
         </div>
         <div className="d-flex">
-          <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#mdlAddUsers" onClick={(event) => cleanForm()}>
-            <i class="bi bi-plus-circle"></i>
+          <button type="button" className="btn btn-link" data-bs-toggle="modal" data-bs-target="#mdlAddUsers" onClick={(event) => cleanForm()}>
+            <i className="bi bi-plus-circle"></i>
           </button>
         </div>
       </div>
-      <div className="modal fade" id="mdlAddUsers" tabindex="-1" aria-hidden="true">
+      <div className="modal fade" id="mdlAddUsers" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">New user</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form className="frmNewUser" onSubmit={addUser}>
                 <div className="d-flex justify-content-between">
                   <div className="mb-3">
                     <label className="form-label">Name</label>
-                    <input type="text" class="form-control" id="txtName" onChange={(event) => setTxtName(event.target.value)} value={txtName}/>
+                    <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtName(event.target.value)} value={txtName}/>
                   </div>
                   <div className="mb-3">
                     <label className="form-label">Last name</label>
-                    <input type="text" class="form-control" id="txtLastName" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} />
+                    <input type="text" className="form-control" id="txtLastName" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} />
                   </div>
                   <div className="mb-3">
                     <label className="form-label">D.N.I.</label>
-                    <input type="text" class="form-control" id="txtDNI" onChange={(event) => setTxtDni(event.target.value)} value={txtDni}/>
+                    <input type="text" className="form-control" id="txtDNI1" onChange={(event) => setTxtDni(event.target.value)} value={txtDni}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="mb-3">
                     <label className="form-label">User type</label>
-                    <select className="form-control" id="txtSelect">
+                    <select value={txtRole} className="form-control" id="txtSelect" onChange={(event) => setTxtRole(event.target.value)}>
                       <option value="reader">Reader</option>
                       <option value="writer">Writer</option>
                       <option value="administrator">Administrator</option>
@@ -153,16 +160,16 @@ function User() {
                   </div>
                   <div className="mb-3 col-5">
                     <label className="form-label">Email address</label>
-                    <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} />
+                    <input type="email" className="form-control" id="txtEmail" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} />
                   </div>
                   <div className="mb-3">
                     <label className="form-label">Password</label>
-                    <input type="password" class="form-control" id="txtPassword" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword}/>
+                    <input type="password" className="form-control" id="txtPassword" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-center align-items-center">
                   <div>
-                    <button type="submit" id="btnSaveUser" className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                    <button type="submit" id="btnSaveUser1" className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
                   </div>
                 </div>    
               </form>
@@ -170,45 +177,46 @@ function User() {
           </div>
         </div>
       </div>
-      <div className="modal fade" id="mdlEditUsers" tabindex="-1" aria-hidden="true">
+      <div className="modal fade" id="mdlEditUsers" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">Edit user</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form className="frmEditUser" onSubmit={editUser}>
                 <div className="d-flex justify-content-between">
                   <div className="mb-3">
                     <label className="form-label">Name</label>
-                    <input type="text" class="form-control" id="txtName" onChange={(event) => setTxtName(event.target.value)} value={txtName}/>
+                    <input type="text" className="form-control" id="txtName2" onChange={(event) => setTxtName(event.target.value)} value={txtName}/>
                   </div>
                   <div className="mb-3">
                     <label className="form-label">Last name</label>
-                    <input type="text" class="form-control" id="txtLastName" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} />
+                    <input type="text" className="form-control" id="txtLastName2" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} />
                   </div>
                   <div className="mb-3">
                     <label className="form-label">D.N.I.</label>
-                    <input type="text" class="form-control" id="txtDNI" onChange={(event) => setTxtDni(event.target.value)} value={txtDni}/>
+                    <input type="text" className="form-control" id="txtDNI2" onChange={(event) => setTxtDni(event.target.value)} value={txtDni}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="mb-3">
                     <label className="form-label">User type</label>
-                    <select className="form-control" id="txtSelect">
-                      <option value="reader">Reader</option>
-                      <option value="writer">Writer</option>
-                      <option value="administrator">Administrator</option>
+                    <select className="form-control" id="txtSelect2" onChange={(event) => setTxtRole(event.target.value)} defaultValue={txtRole}>
+                      <option value={txtRole}>{txtRole}</option>
+                      { txtRole === "reader" ? null : <option value="reader">reader</option> }
+                      { txtRole === "writer" ? null : <option value="writer">writer</option> }
+                      { txtRole === "admin" ? null : <option value="admin">admin</option> }
                     </select>
                   </div>
                   <div className="mb-3 col-5">
                     <label className="form-label">Email address</label>
-                    <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} />
+                    <input type="email" className="form-control" id="txtEmail2" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} />
                   </div>
                   <div className="mb-3">
                     <label className="form-label">Password</label>
-                    <input type="password" class="form-control" id="txtPassword" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword}/>
+                    <input type="password" className="form-control" id="txtPassword2" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-center align-items-center">
@@ -221,45 +229,43 @@ function User() {
           </div>
         </div>
       </div>
-      <div className="modal fade" id="mdlViewUsers" tabindex="-1" aria-hidden="true">
+      <div className="modal fade" id="mdlViewUsers" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">View user</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form className="frmViewUser">
                 <div className="d-flex justify-content-between">
                   <div className="mb-3">
                     <label className="form-label">Name</label>
-                    <input type="text" class="form-control" id="txtName" onChange={(event) => setTxtName(event.target.value)} value={txtName} disabled/>
+                    <input type="text" className="form-control" id="txtName3" onChange={(event) => setTxtName(event.target.value)} value={txtName} disabled/>
                   </div>
                   <div className="mb-3">
                     <label className="form-label">Last name</label>
-                    <input type="text" class="form-control" id="txtLastName" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} disabled/>
+                    <input type="text" className="form-control" id="txtLastName3" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} disabled/>
                   </div>
                   <div className="mb-3">
                     <label className="form-label">D.N.I.</label>
-                    <input type="text" class="form-control" id="txtDNI" onChange={(event) => setTxtDni(event.target.value)} value={txtDni} disabled/>
+                    <input type="text" className="form-control" id="txtDNI3" onChange={(event) => setTxtDni(event.target.value)} value={txtDni} disabled/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="mb-3">
                     <label className="form-label">User type</label>
-                    <select className="form-control" id="txtSelect" disabled>
-                      <option value="reader">Reader</option>
-                      <option value="writer">Writer</option>
-                      <option value="administrator">Administrator</option>
+                    <select className="form-control" id="txtSelect3" disabled>
+                      <option value="reader">{txtRole}</option>
                     </select>
                   </div>
                   <div className="mb-3 col-5">
                     <label className="form-label">Email address</label>
-                    <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} disabled/>
+                    <input type="email" className="form-control" id="txtEmail3" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} disabled/>
                   </div>
                   <div className="mb-3">
                     <label className="form-label">Password</label>
-                    <input type="password" class="form-control" id="txtPassword" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword} disabled/>
+                    <input type="password" className="form-control" id="txtPassword3" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword} disabled/>
                   </div>
                 </div>  
               </form>
@@ -286,12 +292,12 @@ function User() {
               <th scope="row">{`${user.name} ${user.lastName}`}</th>
               <td>{user.dni}</td>
               <td>{user.email}</td>
-              <td>Editor</td>
+              <td>{user.role}</td>
               <td><button data-bs-toggle="modal" data-bs-target="#mdlViewUsers" onClick={(event) => fillForm(user)}><i className="bi bi-eye"></i></button></td>
               <td><button data-bs-toggle="modal" data-bs-target="#mdlEditUsers" onClick={(event) => fillForm(user)}><i className="bi bi-pencil"></i></button></td>
-              <td><button onClick={(event) => deleteUser(user)}><i className="bi bi-x-lg"></i></button></td>
+              <td>{user.role === "admin" ? null : <button onClick={(event) => deleteUser(user)}><i className="bi bi-x-lg"></i></button>}</td>
             </tr>
-            )): <h1 className="loading-content">Cargando... </h1>}
+            )): <tr><td><h1 className="loading-content">Cargando... </h1></td></tr>}
           </tbody>
         </table>  
       </div>
