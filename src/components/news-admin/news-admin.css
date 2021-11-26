@@ -32,9 +32,6 @@
 .txtArticle{
   height: 230px;
 }
-.mdlNewArticles{
-  height: 500px;
-}
 .bi-search, .bi-funnel, .bi-plus-circle, .bi-x-lg, .bi-pencil, .bi-eye{
   color: black;
   font-size: 25px;
@@ -58,4 +55,17 @@ button{
 td, th{
  vertical-align: middle;
  text-align: center;
+}
+/* MEDIA QUERY CELULARES */
+@media(min-width:320px) and (max-width: 415px){
+  .div-new-article, .div-edit-article, .div-view-article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .div-new-article-item, .div-edit-article-item, .div-view-article-item{
+    width: 100%;
+  }
 }

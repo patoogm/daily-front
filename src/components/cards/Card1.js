@@ -1,5 +1,4 @@
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import { Link } from 'react-router-dom'
 import './card.css'
 
 

@@ -35,7 +35,7 @@ function App() {
       <MobileMenu />
       <Header />
       <Navbar />
-      <Carrousel categoryOne={politics} categoryTwo={economy} categoryThree={sports} />
+      <Carrousel content={content} />
       <div className="app-categorias">Deportes</div>
       <Card1 category={sports}/>
       <h2 className="app-categorias">Política</h2>

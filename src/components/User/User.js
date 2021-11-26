@@ -135,22 +135,22 @@ function User() {
             </div>
             <div className="modal-body">
               <form className="frmNewUser" onSubmit={addUser}>
-                <div className="d-flex justify-content-between">
-                  <div className="mb-3">
+                <div className="d-flex justify-content-between div-new-user">
+                  <div className="mb-3 div-new-user-item">
                     <label className="form-label">Name</label>
                     <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtName(event.target.value)} value={txtName}/>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 div-new-user-item">
                     <label className="form-label">Last name</label>
                     <input type="text" className="form-control" id="txtLastName" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} />
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 div-new-user-item">
                     <label className="form-label">D.N.I.</label>
                     <input type="text" className="form-control" id="txtDNI1" onChange={(event) => setTxtDni(event.target.value)} value={txtDni}/>
                   </div>
                 </div>
-                <div className="d-flex justify-content-between align-items-center">
-                  <div className="mb-3">
+                <div className="d-flex justify-content-between align-items-center div-new-user">
+                  <div className="mb-3 div-new-user-item">
                     <label className="form-label">User type</label>
                     <select value={txtRole} className="form-control" id="txtSelect" onChange={(event) => setTxtRole(event.target.value)}>
                       <option value="reader">Reader</option>
@@ -158,11 +158,11 @@ function User() {
                       <option value="administrator">Administrator</option>
                     </select>
                   </div>
-                  <div className="mb-3 col-5">
+                  <div className="mb-3 col-5 div-new-user-item">
                     <label className="form-label">Email address</label>
                     <input type="email" className="form-control" id="txtEmail" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} />
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 div-new-user-item">
                     <label className="form-label">Password</label>
                     <input type="password" className="form-control" id="txtPassword" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword}/>
                   </div>
@@ -186,22 +186,22 @@ function User() {
             </div>
             <div className="modal-body">
               <form className="frmEditUser" onSubmit={editUser}>
-                <div className="d-flex justify-content-between">
-                  <div className="mb-3">
+                <div className="d-flex justify-content-between div-edit-user">
+                  <div className="mb-3 div-edit-user-item">
                     <label className="form-label">Name</label>
                     <input type="text" className="form-control" id="txtName2" onChange={(event) => setTxtName(event.target.value)} value={txtName}/>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 div-edit-user-item">
                     <label className="form-label">Last name</label>
                     <input type="text" className="form-control" id="txtLastName2" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} />
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 div-edit-user-item">
                     <label className="form-label">D.N.I.</label>
                     <input type="text" className="form-control" id="txtDNI2" onChange={(event) => setTxtDni(event.target.value)} value={txtDni}/>
                   </div>
                 </div>
-                <div className="d-flex justify-content-between align-items-center">
-                  <div className="mb-3">
+                <div className="d-flex justify-content-between align-items-center div-edit-user">
+                  <div className="mb-3 div-edit-user-item">
                     <label className="form-label">User type</label>
                     <select className="form-control" id="txtSelect2" onChange={(event) => setTxtRole(event.target.value)} defaultValue={txtRole}>
                       <option value={txtRole}>{txtRole}</option>
@@ -210,11 +210,11 @@ function User() {
                       { txtRole === "admin" ? null : <option value="admin">admin</option> }
                     </select>
                   </div>
-                  <div className="mb-3 col-5">
+                  <div className="mb-3 col-5 div-edit-user-item">
                     <label className="form-label">Email address</label>
                     <input type="email" className="form-control" id="txtEmail2" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} />
-                  </div>
-                  <div className="mb-3">
+                  </div> 
+                  <div className="mb-3 div-edit-user-item">
                     <label className="form-label">Password</label>
                     <input type="password" className="form-control" id="txtPassword2" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword}/>
                   </div>
@@ -238,32 +238,32 @@ function User() {
             </div>
             <div className="modal-body">
               <form className="frmViewUser">
-                <div className="d-flex justify-content-between">
-                  <div className="mb-3">
+                <div className="d-flex justify-content-between div-view-user">
+                  <div className="mb-3 div-view-user-item">
                     <label className="form-label">Name</label>
                     <input type="text" className="form-control" id="txtName3" onChange={(event) => setTxtName(event.target.value)} value={txtName} disabled/>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 div-view-user-item">
                     <label className="form-label">Last name</label>
                     <input type="text" className="form-control" id="txtLastName3" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} disabled/>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 div-view-user-item">
                     <label className="form-label">D.N.I.</label>
                     <input type="text" className="form-control" id="txtDNI3" onChange={(event) => setTxtDni(event.target.value)} value={txtDni} disabled/>
                   </div>
                 </div>
-                <div className="d-flex justify-content-between align-items-center">
-                  <div className="mb-3">
+                <div className="d-flex justify-content-between align-items-center div-view-user">
+                  <div className="mb-3 div-view-user-item">
                     <label className="form-label">User type</label>
                     <select className="form-control" id="txtSelect3" disabled>
                       <option value="reader">{txtRole}</option>
                     </select>
                   </div>
-                  <div className="mb-3 col-5">
+                  <div className="mb-3 col-5 div-view-user-item">
                     <label className="form-label">Email address</label>
                     <input type="email" className="form-control" id="txtEmail3" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} disabled/>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 div-view-user-item">
                     <label className="form-label">Password</label>
                     <input type="password" className="form-control" id="txtPassword3" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword} disabled/>
                   </div>
