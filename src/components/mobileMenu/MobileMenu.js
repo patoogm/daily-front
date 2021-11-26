@@ -4,7 +4,8 @@ import './mobileMenu.css'
 const MobileMenu = () => {
 
   let isToken = localStorage.getItem('token') === 'undefined' || localStorage.getItem('token') === null ? false : true
-  console.log(isToken)
+  let userRole = localStorage.getItem('user_role')
+  let userName = localStorage.getItem('user_name')
 
   let logOut = () => {
     localStorage.removeItem("token")
@@ -25,47 +26,45 @@ const MobileMenu = () => {
     const nine = !isToken ? 1+1 : document.querySelector('.nine');
     const ten = !isToken ? 1+1 : document.querySelector('.ten');
 
-    let toggleMenu = () => {     
-      let checkItem;
-      if(menu.className.indexOf('active') > -1){
-        checkItem = true;
-      } else {        
-        checkItem = false;
-      }   
-  
-      if(checkItem){
-        menu.classList.remove('active')
-      } else {
-        menu.classList.add('active')        
-      }
+    
+
+    let toggleMobileMenu = (event) => {
+        if(!menuRef.current.contains(event.target)){
+          menu.classList.remove('active')
+          setTimeout(()=>{
+            one.classList.remove('itemActive')
+            if (isToken && (userRole === 'writer' || userRole === 'admin')) {
+              two.classList.remove('itemActive') 
+            } else if (!isToken) {
+              two.classList.remove('itemActive')
+            }
+            three.classList.remove('itemActive')
+            four.classList.remove('itemActive')
+            five.classList.remove('itemActive')
+            six.classList.remove('itemActive')
+            if (isToken) {
+              nine.classList.remove('itemActive')
+            }
+            if (isToken && userRole === 'admin') {
+              ten.classList.remove('itemActive')
+            }
+          },100)    
+        }
     }
   
-    toggle.addEventListener('click', toggleMenu, false);
-    document.addEventListener('click', (event)=>{
-      if(!menuRef.current.contains(event.target) ){
-        menu.classList.remove('active')
-        setTimeout(()=>{
-          one.classList.remove('itemActive')
-          two.classList.remove('itemActive')
-          three.classList.remove('itemActive')
-          four.classList.remove('itemActive')
-          five.classList.remove('itemActive')
-          six.classList.remove('itemActive')
-          if (isToken) {
-            nine.classList.remove('itemActive')
-            ten.classList.remove('itemActive')
-          }
-        },100)    
-      }
-    })
-  }, [isToken]);
+    document.addEventListener('click', toggleMobileMenu, false)
+
+    return () => {
+      document.removeEventListener('click', toggleMobileMenu, false )
+    }
+  }, [isToken, userRole]);
   
   return (
     <>
       <div ref={menuRef} className="mobile-menu">
-        { !isToken ? <a href="/login" className="mobile-menu-item one login"><div>LOGIN</div></a> : <div className="logged-in-mobile seven">¡Bienvenido!</div>  }
-        { !isToken ? <a href="/register" className="mobile-menu-item two register"><div>REGISTER</div></a> : <a href="/NewsAdmin" className="mobile-menu-item eight admin"><div>Admin</div></a>  }            
-        { !isToken ? <div></div> : <a href="/UsersAdmin" className="mobile-menu-item ten admin"><div>Users</div></a>  }            
+        { !isToken ? <a href="/login" className="mobile-menu-item one login"><div>LOGIN</div></a> : <div className="logged-in-mobile seven">¡Bienvenido {userName}!</div>  }
+        { !isToken ? <a href="/register" className="mobile-menu-item two register"><div>REGISTER</div></a> : userRole === 'writer' || userRole === 'admin' ? <a href="/NewsAdmin" className="mobile-menu-item eight admin"><div>Admin</div></a> : null }            
+        { !isToken ? <div></div> : userRole === 'admin' ? <a href="/UsersAdmin" className="mobile-menu-item ten admin"><div>Users</div></a> : null  }            
         <div className="mobile-menu-item three">HOME</div>
         <div className="mobile-menu-item four">ACTUALIDAD</div>
         <div className="mobile-menu-item five">ULTIMO MOMENTO</div>

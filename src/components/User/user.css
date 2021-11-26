@@ -43,7 +43,10 @@
   border-bottom: 1px solid black;
 }
 .table-core-container{
+  height: 70%;
   padding: 20px;
+  overflow-x: auto;
+  overflow-x: auto;
 }
 .loading-content{
   margin-top: 15px;

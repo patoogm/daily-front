@@ -70,6 +70,8 @@ body{
   align-items: center;
   padding: 10px 0px;
   font-size: 15px;
+  word-wrap: break-word;
+  text-align: center;
 }
 .register{
   margin-bottom: 50px;

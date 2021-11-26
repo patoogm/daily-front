@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: lighter;
+  font-weight: 300;
   position: relative;
 }
 .navbar-button:hover{
@@ -32,11 +32,10 @@
   transition-duration: .3s;
 }
 .navbar-button:hover:before{
-  height: 3px;
+  height: 4px;
   transition-duration: .3s;
   opacity: 1;
 }
-
 
 /* MEDIA QUERY CELULAR */
 @media(min-width: 380px) and (max-width: 415px){

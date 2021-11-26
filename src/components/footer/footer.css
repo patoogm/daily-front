@@ -9,6 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url('../../images/footersvg.png');
+  background-repeat: no-repeat;
 }
 .link-container{
   display: flex;
@@ -128,6 +130,7 @@
   .footer-links-container{
     flex-direction: column;
     height: fit-content;
+    background-image: none;
   }
   .link-container:nth-child(1), .link-container:nth-child(2), .link-container:nth-child(3){
     width: 95%;
@@ -163,6 +166,7 @@
   .footer-links-container{
     flex-direction: column;
     height: fit-content;
+    background-image: none;
   }
   .link-container:nth-child(1), .link-container:nth-child(2), .link-container:nth-child(3){
     width: 95%;

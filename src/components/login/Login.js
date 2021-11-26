@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form'
 function Login() {
 
   const [LoginError, setLoginError] = useState(false)
-
   const { register, handleSubmit } = useForm();
+
   const onSubmit = data => {
     fetch('http://localhost:8000/login-user',{
       method: 'POST',
@@ -22,12 +22,15 @@ function Login() {
       .then(json => {
         localStorage.setItem("token", json.token)
         localStorage.setItem('_id', json._id)
+        localStorage.setItem('user_role', json.role)
+        localStorage.setItem('user_name', json.name)
       })
 
       setTimeout( () => {
         if(localStorage.getItem("token") === 'undefined' || localStorage.getItem('token') === null){
           setLoginError(true)
           localStorage.removeItem('token')
+          localStorage.removeItem('user_role')
         } else {
           window.location.assign('/')
         }
