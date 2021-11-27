@@ -36,6 +36,7 @@ function NewsAdminPage() {
   const fillForm = (query) => {
     setTxtTitle(query.article.title)
     setTxtArticle(query.article.newsBody)
+    setImgArticle(query.article.image)
     setNewsById(query)
   } 
 

@@ -5,10 +5,12 @@ function Navbar() {
   return (
     <>
       <div className="navbar-core-container">
-        <div className="navbar-button">Home</div>
-        <div className="navbar-button">Actualidad</div>
-        <div className="navbar-button">Último Momento</div>
-        <div className="navbar-button">Contacto</div>
+        <a className="navbar-button" href="#actualidad"><div>Actualidad</div></a>
+        <a className="navbar-button" href="#deportes"><div>Deportes</div></a>
+        <a className="navbar-button" href="#politica"><div>Política</div></a>
+        <a className="navbar-button" href="#economia"><div>Economía</div></a>
+        <a className="navbar-button" href="#entretenimiento"><div>Entretenimiento</div></a>
+        <a className="navbar-button" href="#sociedad"><div>Sociedad</div></a>       
       </div>
     </>
   )

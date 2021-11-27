@@ -144,6 +144,7 @@ body{
 @media(min-width: 380px) and (max-width: 415px){
   .register-core-form{
     width: 95%;
+    height: 80%;
   }
   .register-title{
     font-size: 35px;

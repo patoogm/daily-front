@@ -11,7 +11,7 @@ export default function App( { content } ) {
      content.length ? <MDBCarousel className="car-core" showControls showIndicators>
      <MDBCarouselInner>
        <MDBCarouselItem className='active car-item'>
-         <MDBCarouselElement className="car-image" src={content[randomNumberOne].article.image} alt='carrousel-1' />
+         <MDBCarouselElement id="actualidad" className="car-image" src={content[randomNumberOne].article.image} alt='carrousel-1' />
          <MDBCarouselCaption className="car-caption"> 
            <h5>{content[randomNumberOne].article.title}</h5>
            <p>{content[randomNumberOne].article.description}</p>
