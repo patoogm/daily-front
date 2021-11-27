@@ -15,7 +15,6 @@ const MobileMenu = () => {
   let menuRef = useRef();
 
   useEffect(() => {
-    const toggle = document.querySelector('.navToggle');
     const menu = document.querySelector('.mobile-menu');
     const one = !isToken ? document.querySelector('.one') : document.querySelector('.seven');
     const two = !isToken ? document.querySelector('.two') : document.querySelector('.eight');

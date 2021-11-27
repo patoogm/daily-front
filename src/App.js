@@ -36,16 +36,16 @@ function App() {
       <Header />
       <Navbar />
       <Carrousel content={content} />
-      <div className="app-categorias">Deportes</div>
+      <div className="app-categorias" id="deportes">Deportes</div>
       <Card1 category={sports}/>
-      <h2 className="app-categorias">Política</h2>
+      <h2 className="app-categorias" id="politica">Política</h2>
       <Card1 category={politics}/>
       <Advertising />
-      <h2 className="app-categorias">Economía</h2>
+      <h2 className="app-categorias" id="economia">Economía</h2>
       <Card1 category={economy}/>
-      <h2 className="app-categorias">Entretenimiento</h2>
+      <h2 className="app-categorias" id="entretenimiento">Entretenimiento</h2>
       <Card1 category={entertainment}/>
-      <h2 className="app-categorias">Sociedad</h2>
+      <h2 className="app-categorias" id="sociedad">Sociedad</h2>
       <Card1 category={society}/>
       <Footer />
     </div>

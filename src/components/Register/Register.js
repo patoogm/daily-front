@@ -5,10 +5,16 @@ import { useForm } from 'react-hook-form';
 const Register = () => {
 
   const { register, handleSubmit, reset } = useForm();
-  const [RegisterError, setRegisterError] = useState([])
+
+  const [ RegisterError, setRegisterError ] = useState([])
+  const [ Password, setPassword ] = useState("")
+  const [ PasswordConfirm, setPasswordConfirm ] = useState("")
+  const [ PasswordMatchError, setPasswordMatchError] = useState("")
 
   const onSubmit = data => {
-    fetch('http://localhost:8000/create-users',{
+    if (Password === PasswordConfirm) {
+      setPasswordMatchError("")
+      fetch('http://localhost:8000/create-users',{
       method: 'POST',
       body: JSON.stringify(
         data
@@ -18,7 +24,10 @@ const Register = () => {
       },
     })
       .then(res => res.json())
-      .then(json => setRegisterError(json.errors))      
+      .then(json => setRegisterError(json.errors))
+    } else {
+      setPasswordMatchError("Las contraseñas no coinciden")
+    }    
   }
 
   useEffect(() => {
@@ -41,12 +50,15 @@ const Register = () => {
           <label htmlFor="email" className="register-label">Correo Electrónico</label>
           <input type="email" name="email" id="email" className="register-input" required {...register("email")} minLength='10' maxLength='40'/>
           <label htmlFor="password" className="register-label">Contraseña</label>
-          <input type="password" name="password" id="password" className="register-input" required {...register("password")} minLength='5' maxLength='15'/>
+          <input type="password" name="password" id="password" className="register-input" required {...register("password")} minLength='5' maxLength='15' onChange={event => setPassword(event.target.value)} />
+          <label htmlFor="password" className="register-label">Confirmar contraseña</label>
+          <input type="password" name="password-confirm" id="password-confirm" className="register-input" onChange={event => setPasswordConfirm(event.target.value)} />
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[0].param === 'dni' ? <span className="register-error">* {RegisterError[0].msg}</span> : <span></span>}
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[0].param === 'email' ? <span className="register-error">* {RegisterError[0].msg}</span> : <span></span>}
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[1] === undefined ? <span></span> : RegisterError[1].param === 'email' ? <span className="register-error">* {RegisterError[1].msg}</span> : <span></span>}
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[1] === undefined ? <span></span> : RegisterError[1].param === 'dni' ? <span className="register-error">* {RegisterError[1].msg}</span> : <span></span>}
           {RegisterError === undefined ? <span className="register-ok">¡Usuario creado con éxito!</span> : <span></span>}
+          {PasswordMatchError === "" ? <span></span> : <span className="register-error">{PasswordMatchError}</span> }
           <div className="register-con-cuenta">¿Ya posees una cuenta? <a className="register-login-link" href="/login">¡Logueate!</a></div>
           <input type="submit" className="register-form-button" value="REGISTRARSE"/>
         </form>
