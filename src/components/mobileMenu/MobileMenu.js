@@ -22,6 +22,8 @@ const MobileMenu = () => {
     const four = document.querySelector('.four');
     const five = document.querySelector('.five');
     const six = document.querySelector('.six');
+    const eleven = document.querySelector('.eleven')
+    const twelve = document.querySelector('.twelve')
     const nine = !isToken ? 1+1 : document.querySelector('.nine');
     const ten = !isToken ? 1+1 : document.querySelector('.ten');
 
@@ -41,6 +43,8 @@ const MobileMenu = () => {
             four.classList.remove('itemActive')
             five.classList.remove('itemActive')
             six.classList.remove('itemActive')
+            eleven.classList.remove('itemActive')
+            twelve.classList.remove('itemActive')
             if (isToken) {
               nine.classList.remove('itemActive')
             }
@@ -64,10 +68,12 @@ const MobileMenu = () => {
         { !isToken ? <a href="/login" className="mobile-menu-item one login"><div>LOGIN</div></a> : <div className="logged-in-mobile seven">¡Bienvenido {userName}!</div>  }
         { !isToken ? <a href="/register" className="mobile-menu-item two register"><div>REGISTER</div></a> : userRole === 'writer' || userRole === 'admin' ? <a href="/NewsAdmin" className="mobile-menu-item eight admin"><div>Admin</div></a> : null }            
         { !isToken ? <div></div> : userRole === 'admin' ? <a href="/UsersAdmin" className="mobile-menu-item ten admin"><div>Users</div></a> : null  }            
-        <div className="mobile-menu-item three">HOME</div>
-        <div className="mobile-menu-item four">ACTUALIDAD</div>
-        <div className="mobile-menu-item five">ULTIMO MOMENTO</div>
-        <div className="mobile-menu-item six">CONTACTO</div>
+        <div className="mobile-menu-item three">ACTUALIDAD</div>
+        <div className="mobile-menu-item four">DEPORTES</div>
+        <div className="mobile-menu-item five">POLÍTICA</div>
+        <div className="mobile-menu-item six">ECONOMÍA</div>
+        <div className="mobile-menu-item eleven">ENTRETENIMIENTO</div>
+        <div className="mobile-menu-item twelve">SOCIEDAD</div>
         { !isToken ? <div></div> : <div className="log-out nine" onClick={logOut}>Cerrar Sesión</div> }
       </div>
     </>

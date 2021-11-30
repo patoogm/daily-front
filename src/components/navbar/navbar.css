@@ -59,7 +59,7 @@
 }
 
 /* MEDIA QUERY CELULAR */
-@media(min-width: 380px) and (max-width: 415px){
+@media(min-width: 320px) and (max-width: 415px){
   .navbar-core-container{
     display: none;
   }

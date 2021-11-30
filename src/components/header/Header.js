@@ -25,8 +25,12 @@ function Header() {
     const four = document.querySelector('.four');
     const five = document.querySelector('.five');
     const six = document.querySelector('.six');
+    const eleven = document.querySelector('.eleven')
+    const twelve = document.querySelector('.twelve')
     const nine = !isToken ? 1+1 : document.querySelector('.nine');
     const ten = !isToken ? 1+1 : document.querySelector('.ten');
+
+    
 
 
     const toggleMobileMenu = (event) => {
@@ -43,6 +47,8 @@ function Header() {
           four.classList.add('itemActive')
           five.classList.add('itemActive')
           six.classList.add('itemActive')
+          eleven.classList.add('itemActive')
+          twelve.classList.add('itemActive')
           if (isToken) {
             nine.classList.add('itemActive')
           }

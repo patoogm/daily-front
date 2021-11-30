@@ -5,14 +5,18 @@ import User from '../../components/User/User'
 import MobileMenu from '../../components/mobileMenu/MobileMenu'
 
 function UserPage() {
-  return (
-    <>
-      <MobileMenu />
-      <Header />
-      <User />
-      <Footer />
-    </>
-  )
+  if (localStorage.getItem('token') === 'undefined' || localStorage.getItem('token') === null) {
+    window.location.assign('/login')
+  } else {
+    return (
+      <>
+        <MobileMenu />
+        <Header />
+        <User />
+        <Footer />
+      </>
+    )
+  }
 }
 
 export default UserPage
