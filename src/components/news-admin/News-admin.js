@@ -12,6 +12,8 @@ function NewsAdminPage() {
   const [txtTitle,setTxtTitle] = useState("")
   const [imgArticle,setImgArticle] = useState("")
   const [txtArticle,setTxtArticle] = useState("")
+  const [txtDescription, setTxtDescription] = useState("")
+  const [txtCategory, setTxtCategory] = useState("")
 
   const txtAutor = localStorage.getItem('_id')
 
@@ -37,6 +39,8 @@ function NewsAdminPage() {
     setTxtTitle(query.article.title)
     setTxtArticle(query.article.newsBody)
     setImgArticle(query.article.image)
+    setTxtDescription(query.article.description)
+    setTxtCategory(query.article.category)
     setNewsById(query)
   } 
 
@@ -57,7 +61,9 @@ function NewsAdminPage() {
       image: data.imgArticle,
       newsBody: data.txtArticle,
       date: dteToday,
-      autor_id: txtAutor
+      autor_id: txtAutor,
+      description: data.txtDescription,
+      category: data.txtCategory
     }
     
     fetch('http://localhost:8000/create-news',{
@@ -84,7 +90,9 @@ function NewsAdminPage() {
       image: imgArticle,
       newsBody: txtArticle,
       date: dteToday,
-      autor_id: txtAutor
+      autor_id: txtAutor,
+      description: txtDescription,
+      category: txtCategory
     }
 
     fetch('http://localhost:8000/news/'+newsById.article._id,{
@@ -136,6 +144,7 @@ function NewsAdminPage() {
         </div>
       </div>
 
+      {/* AGREGAR ARTICULO */}
       <div className="modal fade" id="mdlNewArticles" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -147,17 +156,33 @@ function NewsAdminPage() {
               <form className="frmNewArticles" onSubmit={handleSubmit(addArticle)}>
                 <div className="d-flex justify-content-between div-new-article">
                   <div className="mb-3 col-8 div-new-article-item">
-                    <label className="form-label">Title</label>
+                    <label className="form-label">Titulo</label>
                     <input type="text" className="form-control" id="txtTitle" required {...register("txtTitle")}/>
                   </div>
                   <div className="mb-3 col-3 div-new-article-item">
-                    <label className="form-label">Image</label>
+                    <label className="form-label">Imagen</label>
                     <input type="text" className="form-control" id="imgArticle" required {...register("imgArticle")}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between div-new-article">
                   <div className="mb-3 col-8 div-new-article-item">
-                    <label className="form-label">Article</label>
+                    <label className="form-label">Descripcion</label>
+                    <input type="text" className="form-control" id="txtDescription" required {...register("txtDescription")}/>
+                  </div>
+                  <div className="mb-3 col-3 div-new-article-item">
+                    <label className="form-label">Categoria</label>
+                    <select value='sports' className="form-control" id="txtCategory" onChange={(event) => setTxtCategory(event.target.value)}>
+                      <option value="sports">Deportes</option>
+                      <option value="politics">Politica</option>
+                      <option value="economy">Economia</option>
+                      <option value="entertainment">Entretenimiento</option>
+                      <option value="society">Sociedad</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="d-flex justify-content-between div-new-article">
+                  <div className="mb-3 col-8 div-new-article-item">
+                    <label className="form-label">Cuerpo</label>
                     <textarea type="textarea" className="form-control txtArticle" id="txtArticle" required {...register("txtArticle")}/>
                   </div>
                 </div>
@@ -170,7 +195,7 @@ function NewsAdminPage() {
         </div>
       </div>
       
-    {/* EDIT ARTICLE */}
+    {/* EDITAR ARTICULO */}
       <div className="modal fade" id="mdlEditArticles" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -182,17 +207,27 @@ function NewsAdminPage() {
               <form className="frmEditArticles" onSubmit={editArticle}>
                 <div className="d-flex justify-content-between div-edit-article">
                   <div className="mb-3 col-8 div-edit-article-item">
-                    <label className="form-label">Title</label>
-                    <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtTitle(event.target.value)} value={txtTitle}/>
+                    <label className="form-label">Titulo</label>
+                    <input type="text" className="form-control" id="txtTitle" onChange={(event) => setTxtTitle(event.target.value)} value={txtTitle}/>
                   </div>
                   <div className="mb-3 col-3 div-edit-article-item">
-                    <label className="form-label">Image</label>
+                    <label className="form-label">Imagen</label>
                     <input type="text" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between div-edit-article">
                   <div className="mb-3 col-8 div-edit-article-item">
-                    <label className="form-label">Article</label>
+                    <label className="form-label">Descripcion</label>
+                    <input type="text" className="form-control" id="txtDescription" onChange={(event) => setTxtDescription(event.target.value)} value={txtDescription}/>
+                  </div>
+                  <div className="mb-3 col-3 div-edit-article-item">
+                    <label className="form-label">Categoria</label>
+                    <input type="text" className="form-control" id="txtCategory" onChange={(event) => setTxtCategory(event.target.value)} value={txtCategory}/>
+                  </div>
+                </div>
+                <div className="d-flex justify-content-between div-edit-article">
+                  <div className="mb-3 col-8 div-edit-article-item">
+                    <label className="form-label">Cuerpo</label>
                     <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => setTxtArticle(event.target.value)} value={txtArticle}/>
                   </div>
                 </div>
@@ -205,6 +240,7 @@ function NewsAdminPage() {
         </div>
       </div>
 
+      {/* VER ARTICULO */}
       <div className="modal fade" id="mdlViewArticles" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -216,17 +252,27 @@ function NewsAdminPage() {
                 <form className="frmViewArticles">
                 <div className="d-flex justify-content-between div-view-article">
                   <div className="mb-3 col-8 div-view-article-item">
-                    <label className="form-label">Title</label>
+                    <label className="form-label">Titulo</label>
                     <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtTitle(event.target.value)} value={txtTitle} disabled/>
                   </div>
                   <div className="mb-3 col-3 div-view-article-item">
-                    <label className="form-label">Image</label>
+                    <label className="form-label">Imagen</label>
                     <input type="text" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle} disabled/>
+                  </div>
+                </div>
+                <div className="d-flex justify-content-between div-edit-article">
+                  <div className="mb-3 col-8 div-edit-article-item">
+                    <label className="form-label">Descripcion</label>
+                    <input type="text" className="form-control" id="txtDescription" onChange={(event) => setTxtDescription(event.target.value)} value={txtDescription} disabled/>
+                  </div>
+                  <div className="mb-3 col-3 div-edit-article-item">
+                    <label className="form-label">Categoria</label>
+                    <input type="text" className="form-control" id="txtCategory" onChange={(event) => setTxtCategory(event.target.value)} value={txtCategory} disabled/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between div-view-article">
                   <div className="mb-3 col-8 div-view-article-item">
-                    <label className="form-label">Article</label>
+                    <label className="form-label">Cuerpo</label>
                     <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => setTxtArticle(event.target.value)} value={txtArticle} disabled/>
                   </div>
                 </div>  
@@ -243,8 +289,7 @@ function NewsAdminPage() {
               <th scope="col">Título</th>
               <th scope="col">Autor</th>
               <th scope="col">Fecha</th>
-              <th scope="col">Sección</th>
-              <th scope="col">Vistas</th>
+              <th scope="col">Categoría</th>
               <th scope="col"></th>
               <th scope="col"></th>
               <th scope="col"></th>
@@ -256,8 +301,7 @@ function NewsAdminPage() {
                 <th scope="row">{query.article.title}</th>
                 <td>{`${query.autor.name}  ${query.autor.lastName}`}</td>
                 <td>{query.article.date}</td>
-                <td>Opinion</td>
-                <td>192</td>
+                <td>{query.article.category}</td>
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><i className="bi bi-eye"></i></button></td>
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><i className="bi bi-pencil"></i></button></td>
                 <td><button onClick={(event) => deleteArticle(query)}><i className="bi bi-x-lg"></i></button></td>

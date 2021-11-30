@@ -12,6 +12,7 @@ function User() {
   const [txtEmail,setTxtEmail] = useState("")
   const [txtPassword,setTxtPassword] = useState("")
   const [txtRole, setTxtRole] = useState("reader")
+  const token = localStorage.getItem('token')
 
   console.log(txtRole)
 
@@ -49,6 +50,7 @@ function User() {
   }
 
   const addUser = (event) => {
+    event.preventDefault()
     const body = {
       name: txtName,
       lastName: txtLastName,
@@ -61,12 +63,12 @@ function User() {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
-        'Content-type':'application/json;charset=UTF-8'
+        'Content-type':'application/json;charset=UTF-8',
+        'access-token': token
       }
     })
       .then((response) => response.json())
       .then((json) => console.log(json));
-      reload()
   }
 
 
