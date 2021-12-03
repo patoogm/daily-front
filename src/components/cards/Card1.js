@@ -2,9 +2,7 @@ import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, 
 import './card.css'
 
 
-export default function Card1( {category} ) {  
- 
-  
+export default function Card1( {category} ) {   
 
   return (
 
@@ -22,10 +20,10 @@ export default function Card1( {category} ) {
               <MDBCardText className="tarjeta-contenido">{noticia.article.description}</MDBCardText>
             </MDBCardBody>
           </MDBCard>
-        </MDBCol>
+          </MDBCol>
         </a>
         )
       }
-      </MDBRow>  
+  </MDBRow>  
   )
 }
