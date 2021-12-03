@@ -32,7 +32,7 @@ export default function App( { content } ) {
          </MDBCarouselCaption>
        </MDBCarouselItem>
      </MDBCarouselInner>
- </MDBCarousel> : null
+     </MDBCarousel> : null
     
   );
 }
