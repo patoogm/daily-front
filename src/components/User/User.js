@@ -6,15 +6,16 @@ import {useState, useEffect} from 'react'
 function User() {
   const [userById,setUserById] = useState({})
   const [users,setUsers] = useState ([])
+  const [searchList,setSearchList] = useState ([])
   const [txtName,setTxtName] = useState("")
   const [txtLastName,setTxtLastName] = useState("")
   const [txtDni,setTxtDni] = useState("")
   const [txtEmail,setTxtEmail] = useState("")
   const [txtPassword,setTxtPassword] = useState("")
   const [txtRole, setTxtRole] = useState("reader")
+  const [txtSearch, setTxtSearch] = useState("")
+  const [btnSearch, setBtnSearch] = useState(false)
   const token = localStorage.getItem('token')
-
-  console.log(txtRole)
 
   const cleanForm = (user) => {
     setTxtName("")
@@ -33,6 +34,13 @@ function User() {
     setTxtRole(user.role)
     console.log(userById)
   } 
+
+  const handleSearch = () => {
+    fetch('http://localhost:8000/'+txtSearch)
+    .then(response => response.json())
+    .then(response => setSearchList(response))
+    setBtnSearch(true)
+  }
 
   const handleUsers = () => {
     fetch('http://localhost:8000/get-users')
@@ -104,11 +112,14 @@ function User() {
   } 
   return (
     <div className="sectionUsers">
+      {/* TITULO E ICONO */}
       <div className="title-container"> 
         <img src={imgUser} alt="imgUser" width="60 px" height="60 px" />
         <label className="lblUsers">Users</label>
       </div>
+      {/* BUSCAR Y ORDENAR USUARIO */}
       <div className="d-flex align-items-center justify-content-between">
+        {/* ORDENAR USUARIO */}
         <div className="dropdown">
           <button className="btn btn-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           <i className="bi bi-funnel"></i>
@@ -118,9 +129,13 @@ function User() {
             <li key="Name"><button className="dropdown-item">Name</button></li>
           </ul>
          </div>
+        {/* BUSCAR USUARIO */}
         <div className="d-flex col-4 input-search-container">
-          <input type="text" className="txtSearch" id="txtSearch"/> 
-          <button id="btnSearchNews" type="button" className="btn btn-link"><i className="bi bi-search"></i></button>
+          <input type="text" className="txtSearch" id="txtSearch" onChange={(event) => {
+            setTxtSearch(event.target.value)
+            setBtnSearch(false)  
+          }}/> 
+          <button id="btnSearchNews" type="button" className="btn btn-link" onClick={handleSearch}><i className="bi bi-search"></i></button>
         </div>
         <div className="d-flex">
           <button type="button" className="btn btn-link" data-bs-toggle="modal" data-bs-target="#mdlAddUsers" onClick={(event) => cleanForm()}>
@@ -128,6 +143,7 @@ function User() {
           </button>
         </div>
       </div>
+       {/* AGREGAR USUARIO */}
       <div className="modal fade" id="mdlAddUsers" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -179,6 +195,7 @@ function User() {
           </div>
         </div>
       </div>
+      {/* EDITAR USUARIO */}
       <div className="modal fade" id="mdlEditUsers" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -231,6 +248,7 @@ function User() {
           </div>
         </div>
       </div>
+      {/* VER USUARIO */}
       <div className="modal fade" id="mdlViewUsers" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -275,6 +293,7 @@ function User() {
           </div>
         </div>
       </div>
+      {/* MOSTRAR USUARIO */}
       <div className="table-core-container">
         <table className="table table-hover">
           <thead>
@@ -289,18 +308,31 @@ function User() {
             </tr>
           </thead>
           <tbody>
-            {users.length>0?users.map((user) =>(
-            <tr>
-              <th scope="row">{`${user.name} ${user.lastName}`}</th>
-              <td>{user.dni}</td>
-              <td>{user.email}</td>
-              <td>{user.role}</td>
-              <td><button data-bs-toggle="modal" data-bs-target="#mdlViewUsers" onClick={(event) => fillForm(user)}><i className="bi bi-eye"></i></button></td>
-              <td><button data-bs-toggle="modal" data-bs-target="#mdlEditUsers" onClick={(event) => fillForm(user)}><i className="bi bi-pencil"></i></button></td>
-              <td>{user.role === "admin" ? null : <button onClick={(event) => deleteUser(user)}><i className="bi bi-x-lg"></i></button>}</td>
-            </tr>
-            )): <tr><td><h1 className="loading-content">Cargando... </h1></td></tr>}
-          </tbody>
+            
+            {txtSearch !== "" && btnSearch === true?
+              searchList.length>0?searchList.map((user) =>(
+              <tr>
+                <th scope="row">{`${user.name} ${user.lastName}`}</th>
+                <td>{user.dni}</td>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlViewUsers" onClick={(event) => fillForm(user)}><i className="bi bi-eye"></i></button></td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlEditUsers" onClick={(event) => fillForm(user)}><i className="bi bi-pencil"></i></button></td>
+                <td>{user.role === "admin" ? null : <button onClick={(event) => deleteUser(user)}><i className="bi bi-x-lg"></i></button>}</td>
+              </tr>
+              )): <tr><td><h1 className="loading-content">No se encontraron registros relacionados a la búsqueda </h1></td></tr>
+            : users.length>0?users.map((user) =>(
+              <tr>
+                <th scope="row">{`${user.name} ${user.lastName}`}</th>
+                <td>{user.dni}</td>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlViewUsers" onClick={(event) => fillForm(user)}><i className="bi bi-eye"></i></button></td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlEditUsers" onClick={(event) => fillForm(user)}><i className="bi bi-pencil"></i></button></td>
+                <td>{user.role === "admin" ? null : <button onClick={(event) => deleteUser(user)}><i className="bi bi-x-lg"></i></button>}</td>
+              </tr>
+              )): <tr><td><h1 className="loading-content">Cargando... </h1></td></tr>}
+            </tbody>
         </table>  
       </div>
     </div>
