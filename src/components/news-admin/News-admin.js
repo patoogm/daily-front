@@ -8,16 +8,18 @@ import { useForm } from 'react-hook-form'
 
 function NewsAdminPage() {
   const { register, handleSubmit } = useForm();
-  const [newsById,setNewsById] = useState({})
+  const [btnSearch,setBtnSearch] = useState(false)
   const [txtTitle,setTxtTitle] = useState("")
   const [imgArticle,setImgArticle] = useState("")
   const [txtArticle,setTxtArticle] = useState("")
   const [txtDescription, setTxtDescription] = useState("")
   const [txtCategory, setTxtCategory] = useState("")
-
+  const [txtSearch,setTxtSearch] = useState("")
   const txtAutor = localStorage.getItem('_id')
 
+  const [newsById,setNewsById] = useState({})
   const [news, setNews] = useState([])
+  const [searchList, setSearchList] = useState([])
  
   const getCurrentDate = () => {
     let newDate = new Date()
@@ -29,7 +31,7 @@ function NewsAdminPage() {
   }
 
   const dteToday = getCurrentDate()
-
+  
   const cleanForm = (query) => {
     setTxtTitle("")
     setImgArticle("")
@@ -43,6 +45,14 @@ function NewsAdminPage() {
     setTxtCategory(query.article.category)
     setNewsById(query)
   } 
+
+  const handleSearch = () => {
+    fetch('http://localhost:8000/'+ txtSearch)
+    .then(response => response.json())
+    .then(response => setSearchList(response))
+    console.log(searchList)
+    setBtnSearch(true)
+  }
 
   const handleNews = () => {fetch('http://localhost:8000/get-news')
   .then(response => response.json())
@@ -118,11 +128,14 @@ function NewsAdminPage() {
   
   return (
     <div className="sectionArticles">
+      {/* TITULO E ICONO */}
       <div className="title-container"> 
         <img className="imgArticles" src={imgArticles} alt="imgArticles" width="60 px" height="60 px" />
         <label className="lblArticles">Articles</label>
       </div>
+      {/* BUSCAR Y ORDENAR ARTICULOS */}
       <div className="d-flex align-items-center justify-content-around">
+        {/*ORDENAR ARTICULOS */}
         <div className="dropdown">
           <button className="btn btn-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           <i className="bi bi-funnel"></i>
@@ -133,9 +146,13 @@ function NewsAdminPage() {
             <li><button className="dropdown-item">Type</button></li>
           </ul>
         </div>
+        {/* BUSCAR ARTICULO */}
         <div className="d-flex col-4 input-search-container">
-          <input type="text" className="txtSearch" id="txtSearch"/> 
-          <button id="btnSearchNews" type="button" className="btn btn-link"><i className="bi bi-search"></i></button>          
+          <input type="text" className="txtSearch" id="txtSearch" onChange={(event) => {
+            setTxtSearch(event.target.value)
+            setBtnSearch(false)
+          }}/> 
+          <button id="btnSearchNews" type="button" className="btn btn-link" onClick={handleSearch}><i className="bi bi-search"></i></button>          
         </div>
         <div className="d-flex">
           <button type="button" className="btn btn-link" data-bs-toggle="modal" data-bs-target="#mdlNewArticles" onClick={(event) => cleanForm()}>
@@ -195,7 +212,7 @@ function NewsAdminPage() {
         </div>
       </div>
       
-    {/* EDITAR ARTICULO */}
+      {/* EDITAR ARTICULO */}
       <div className="modal fade" id="mdlEditArticles" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
@@ -281,7 +298,8 @@ function NewsAdminPage() {
           </div>
         </div>
       </div>
-
+      
+      {/* MOSTRAR ARTICULO */}
       <div className="table-core-container">
         <table className="table table-hover">
           <thead>
@@ -296,7 +314,20 @@ function NewsAdminPage() {
             </tr>
           </thead>
           <tbody>
-           {news.length>0?news.map((query, key) => (
+           
+           {txtSearch !== "" && btnSearch === true?
+              searchList.length>0?searchList.map((query, key) => (
+                <tr key={key}> 
+                  <th scope="row">{query.article.title}</th>
+                  <td>{`${query.autor.name}  ${query.autor.lastName}`}</td>
+                  <td>{query.article.date}</td>
+                  <td>{query.article.category}</td>
+                  <td><button data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><i className="bi bi-eye"></i></button></td>
+                  <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><i className="bi bi-pencil"></i></button></td>
+                  <td><button onClick={(event) => deleteArticle(query)}><i className="bi bi-x-lg"></i></button></td>
+                </tr>
+              )): <tr><td className="loading-content">No se encontraron registros relacionados a la búsqueda</td></tr>
+            : news.length>0?news.map((query, key) => (
               <tr key={key}> 
                 <th scope="row">{query.article.title}</th>
                 <td>{`${query.autor.name}  ${query.autor.lastName}`}</td>
@@ -306,7 +337,7 @@ function NewsAdminPage() {
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><i className="bi bi-pencil"></i></button></td>
                 <td><button onClick={(event) => deleteArticle(query)}><i className="bi bi-x-lg"></i></button></td>
               </tr>
-            )): <tr><td className="loading-content">Cargando...</td></tr>} 
+            )): <tr><td className="loading-content">Cargando...</td></tr>}
           </tbody>
         </table>  
       </div>
