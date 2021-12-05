@@ -36,7 +36,7 @@ function User() {
   } 
 
   const handleSearch = () => {
-    fetch('http://localhost:8000/'+txtSearch)
+    fetch('http://localhost:8000/users/'+txtSearch)
     .then(response => response.json())
     .then(response => setSearchList(response))
     setBtnSearch(true)
@@ -131,7 +131,7 @@ function User() {
          </div>
         {/* BUSCAR USUARIO */}
         <div className="d-flex col-4 input-search-container">
-          <input type="text" className="txtSearch" id="txtSearch" onChange={(event) => {
+          <input type="text" placeholder="Enter a surname" className="txtSearch" id="txtSearch" onChange={(event) => {
             setTxtSearch(event.target.value)
             setBtnSearch(false)  
           }}/> 
@@ -320,7 +320,7 @@ function User() {
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlEditUsers" onClick={(event) => fillForm(user)}><i className="bi bi-pencil"></i></button></td>
                 <td>{user.role === "admin" ? null : <button onClick={(event) => deleteUser(user)}><i className="bi bi-x-lg"></i></button>}</td>
               </tr>
-              )): <tr><td><h1 className="loading-content">No se encontraron registros relacionados a la búsqueda </h1></td></tr>
+              )): <tr><td><h3 className="loading-content">No se encontraron registros relacionados a la búsqueda </h3></td></tr>
             : users.length>0?users.map((user) =>(
               <tr>
                 <th scope="row">{`${user.name} ${user.lastName}`}</th>

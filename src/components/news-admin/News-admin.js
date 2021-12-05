@@ -47,7 +47,7 @@ function NewsAdminPage() {
   } 
 
   const handleSearch = () => {
-    fetch('http://localhost:8000/'+ txtSearch)
+    fetch('http://localhost:8000/news/'+ txtSearch)
     .then(response => response.json())
     .then(response => setSearchList(response))
     console.log(searchList)
@@ -148,7 +148,7 @@ function NewsAdminPage() {
         </div>
         {/* BUSCAR ARTICULO */}
         <div className="d-flex col-4 input-search-container">
-          <input type="text" className="txtSearch" id="txtSearch" onChange={(event) => {
+          <input type="text" className="txtSearch" placeholder="Enter a word related the article" id="txtSearch" onChange={(event) => {
             setTxtSearch(event.target.value)
             setBtnSearch(false)
           }}/> 
