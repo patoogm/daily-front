@@ -166,7 +166,7 @@ function NewsAdminPage() {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">New Article</h5>
+              <h5 className="modal-title">Nuevo Artículo</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -174,17 +174,17 @@ function NewsAdminPage() {
                 <div className="d-flex justify-content-between div-new-article">
                   <div className="mb-3 col-8 div-new-article-item">
                     <label className="form-label">Titulo</label>
-                    <input type="text" className="form-control" id="txtTitle" required {...register("txtTitle")}/>
+                    <input type="text" className="form-control" id="txtTitle" minLength="3" maxLength="100" required {...register("txtTitle")}/>
                   </div>
                   <div className="mb-3 col-3 div-new-article-item">
                     <label className="form-label">Imagen</label>
-                    <input type="text" className="form-control" id="imgArticle" required {...register("imgArticle")}/>
+                    <input type="url" className="form-control" id="imgArticle" required {...register("imgArticle")}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between div-new-article">
                   <div className="mb-3 col-8 div-new-article-item">
                     <label className="form-label">Descripcion</label>
-                    <input type="text" className="form-control" id="txtDescription" required {...register("txtDescription")}/>
+                    <input type="text" className="form-control" id="txtDescription" minLength="10" maxLength="200" required {...register("txtDescription")}/>
                   </div>
                   <div className="mb-3 col-3 div-new-article-item">
                     <label className="form-label">Categoria</label>
@@ -200,11 +200,11 @@ function NewsAdminPage() {
                 <div className="d-flex justify-content-between div-new-article">
                   <div className="mb-3 col-8 div-new-article-item">
                     <label className="form-label">Cuerpo</label>
-                    <textarea type="textarea" className="form-control txtArticle" id="txtArticle" required {...register("txtArticle")}/>
+                    <textarea type="textarea" className="form-control txtArticle" id="txtArticle" minLength="10" maxLength="700" required {...register("txtArticle")}/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
-                  <button type="submit" id="btnSaveUser" className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                  <button type="submit" id="btnSaveUser" className="btn btn-primary">Guardar</button>
                 </div>    
               </form>
             </div>
@@ -217,7 +217,7 @@ function NewsAdminPage() {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Edit article</h5>
+              <h5 className="modal-title">Editar artículo</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -225,31 +225,36 @@ function NewsAdminPage() {
                 <div className="d-flex justify-content-between div-edit-article">
                   <div className="mb-3 col-8 div-edit-article-item">
                     <label className="form-label">Titulo</label>
-                    <input type="text" className="form-control" id="txtTitle" onChange={(event) => setTxtTitle(event.target.value)} value={txtTitle}/>
+                    <input type="text" className="form-control" id="txtTitle" onChange={(event) => 
+                      setTxtTitle(event.target.value)} value={txtTitle} minLength="3" maxLength="40" required/>
                   </div>
                   <div className="mb-3 col-3 div-edit-article-item">
                     <label className="form-label">Imagen</label>
-                    <input type="text" className="form-control" id="imgArticle" onChange={(event) => setImgArticle(event.target.value)} value={imgArticle}/>
+                    <input type="text" className="form-control" id="imgArticle" onChange={(event) => 
+                      setImgArticle(event.target.value)} value={imgArticle} />
                   </div>
                 </div>
                 <div className="d-flex justify-content-between div-edit-article">
                   <div className="mb-3 col-8 div-edit-article-item">
                     <label className="form-label">Descripcion</label>
-                    <input type="text" className="form-control" id="txtDescription" onChange={(event) => setTxtDescription(event.target.value)} value={txtDescription}/>
+                    <input type="text" className="form-control" id="txtDescription" onChange={(event) =>
+                       setTxtDescription(event.target.value)} value={txtDescription} minLength="10" maxLength="200" required/>
                   </div>
                   <div className="mb-3 col-3 div-edit-article-item">
                     <label className="form-label">Categoria</label>
-                    <input type="text" className="form-control" id="txtCategory" onChange={(event) => setTxtCategory(event.target.value)} value={txtCategory}/>
+                    <input type="text" className="form-control" id="txtCategory" onChange={(event) => 
+                      setTxtCategory(event.target.value)} value={txtCategory} />
                   </div>
                 </div>
                 <div className="d-flex justify-content-between div-edit-article">
                   <div className="mb-3 col-8 div-edit-article-item">
                     <label className="form-label">Cuerpo</label>
-                    <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => setTxtArticle(event.target.value)} value={txtArticle}/>
+                    <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => 
+                      setTxtArticle(event.target.value)} value={txtArticle} minLength="10" maxLength="700" required/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
-                  <button type="submit" id="btnSaveUser" className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                  <button type="submit" id="btnSaveUser" className="btn btn-primary">Guardar cambios</button>
                 </div>    
               </form>
             </div>
