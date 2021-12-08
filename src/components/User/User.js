@@ -58,7 +58,6 @@ function User() {
   }
 
   const addUser = (event) => {
-    event.preventDefault()
     const body = {
       name: txtName,
       lastName: txtLastName,
@@ -67,6 +66,7 @@ function User() {
       password: txtPassword,
       role: txtRole
     }
+    console.log(body)
     fetch('http://localhost:8000/create-users',{
       method: 'POST',
       body: JSON.stringify(body),
@@ -115,21 +115,12 @@ function User() {
       {/* TITULO E ICONO */}
       <div className="title-container"> 
         <img src={imgUser} alt="imgUser" width="60 px" height="60 px" />
-        <label className="lblUsers">Users</label>
+        <label className="lblUsers">Usuarios</label>
       </div>
-      {/* BUSCAR Y ORDENAR USUARIO */}
+      {/* BUSCAR USUARIO */}
       <div className="d-flex align-items-center justify-content-between">
-        {/* ORDENAR USUARIO */}
-        <div className="dropdown">
-          <button className="btn btn-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          <i className="bi bi-funnel"></i>
-          </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li key="DNI"><button className="dropdown-item">DNI</button></li>
-            <li key="Name"><button className="dropdown-item">Name</button></li>
-          </ul>
+        <div>
          </div>
-        {/* BUSCAR USUARIO */}
         <div className="d-flex col-4 input-search-container">
           <input type="text" placeholder="Enter a surname" className="txtSearch" id="txtSearch" onChange={(event) => {
             setTxtSearch(event.target.value)
@@ -148,46 +139,52 @@ function User() {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">New user</h5>
+              <h5 className="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form className="frmNewUser" onSubmit={addUser}>
                 <div className="d-flex justify-content-between div-new-user">
                   <div className="mb-3 div-new-user-item">
-                    <label className="form-label">Name</label>
-                    <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtName(event.target.value)} value={txtName}/>
+                    <label className="form-label">Nombre</label>
+                    <input type="text" className="form-control" id="txtName" onChange={(event) => 
+                      setTxtName(event.target.value)} value={txtName}  maxLength="20" required/>
                   </div>
                   <div className="mb-3 div-new-user-item">
-                    <label className="form-label">Last name</label>
-                    <input type="text" className="form-control" id="txtLastName" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} />
+                    <label className="form-label">Apellido</label>
+                    <input type="text" className="form-control" id="txtLastName" onChange={(event) => 
+                      setTxtLastName(event.target.value)} value={txtLastName}  maxLength="20" required/>
                   </div>
                   <div className="mb-3 div-new-user-item">
                     <label className="form-label">D.N.I.</label>
-                    <input type="text" className="form-control" id="txtDNI1" onChange={(event) => setTxtDni(event.target.value)} value={txtDni}/>
+                    <input type="number" className="form-control txtDNI" id="txtDNI1" title="El DNI debe tener 8 cifras" onChange={(event) => 
+                      setTxtDni(event.target.value)} value={txtDni} min="1000000" max="99999999" required/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center div-new-user">
                   <div className="mb-3 div-new-user-item">
-                    <label className="form-label">User type</label>
-                    <select value={txtRole} className="form-control" id="txtSelect" onChange={(event) => setTxtRole(event.target.value)}>
+                    <label className="form-label">Tipo de usuario</label>
+                    <select value={txtRole} className="form-control" id="txtSelect" onChange={(event) => 
+                      setTxtRole(event.target.value)}>
                       <option value="reader">Reader</option>
                       <option value="writer">Writer</option>
                       <option value="administrator">Administrator</option>
                     </select>
                   </div>
                   <div className="mb-3 col-5 div-new-user-item">
-                    <label className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="txtEmail" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} />
+                    <label className="form-label">Correo electrónico</label>
+                    <input type="email" className="form-control" id="txtEmail" aria-describedby="emailHelp" onChange={(event) => 
+                      setTxtEmail(event.target.value)} value={txtEmail}  maxLength="30" required/>
                   </div>
                   <div className="mb-3 div-new-user-item">
-                    <label className="form-label">Password</label>
-                    <input type="password" className="form-control" id="txtPassword" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword}/>
+                    <label className="form-label">Contraseña</label>
+                    <input type="password" className="form-control" id="txtPassword" onChange={(event) => 
+                      setTxtPassword(event.target.value)} value={txtPassword} maxLength="20" required/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-center align-items-center">
                   <div>
-                    <button type="submit" id="btnSaveUser1" className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                    <button type="submit" id="btnSaveUser1" className="btn btn-primary">Save changes</button>
                   </div>
                 </div>    
               </form>
@@ -200,7 +197,7 @@ function User() {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Edit user</h5>
+              <h5 className="modal-title" id="exampleModalLabel">Editar usuario</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -208,15 +205,18 @@ function User() {
                 <div className="d-flex justify-content-between div-edit-user">
                   <div className="mb-3 div-edit-user-item">
                     <label className="form-label">Name</label>
-                    <input type="text" className="form-control" id="txtName2" onChange={(event) => setTxtName(event.target.value)} value={txtName}/>
+                    <input type="text" className="form-control" id="txtName2" onChange={(event) => 
+                      setTxtName(event.target.value)} value={txtName} maxLength="20" required/>
                   </div>
                   <div className="mb-3 div-edit-user-item">
                     <label className="form-label">Last name</label>
-                    <input type="text" className="form-control" id="txtLastName2" onChange={(event) => setTxtLastName(event.target.value)} value={txtLastName} />
+                    <input type="text" className="form-control" id="txtLastName2" onChange={(event) => 
+                      setTxtLastName(event.target.value)} value={txtLastName} maxLength="20" required/>
                   </div>
                   <div className="mb-3 div-edit-user-item">
                     <label className="form-label">D.N.I.</label>
-                    <input type="text" className="form-control" id="txtDNI2" onChange={(event) => setTxtDni(event.target.value)} value={txtDni}/>
+                    <input type="number" className="form-control txtDNI" id="txtDNI2" onChange={(event) => 
+                      setTxtDni(event.target.value)} value={txtDni} min="1000000" max="99999999" required/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center div-edit-user">
@@ -231,16 +231,18 @@ function User() {
                   </div>
                   <div className="mb-3 col-5 div-edit-user-item">
                     <label className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="txtEmail2" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} />
+                    <input type="email" className="form-control" id="txtEmail2" aria-describedby="emailHelp" onChange={(event) => 
+                      setTxtEmail(event.target.value)} value={txtEmail}  maxLength="20" required/>
                   </div> 
                   <div className="mb-3 div-edit-user-item">
                     <label className="form-label">Password</label>
-                    <input type="password" className="form-control" id="txtPassword2" onChange={(event) => setTxtPassword(event.target.value)} value={txtPassword}/>
+                    <input type="password" className="form-control" id="txtPassword2" onChange={(event) => 
+                      setTxtPassword(event.target.value)} value={txtPassword} maxLength="20" required/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-center align-items-center">
                   <div>
-                    <button type="submit" id="btnSaveUser" className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                    <button type="submit" id="btnSaveUser" className="btn btn-primary">Save changes</button>
                   </div>
                 </div>    
               </form>
