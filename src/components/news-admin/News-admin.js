@@ -131,7 +131,7 @@ function NewsAdminPage() {
       {/* TITULO E ICONO */}
       <div className="title-container"> 
         <img className="imgArticles" src={imgArticles} alt="imgArticles" width="60 px" height="60 px" />
-        <label className="lblArticles">Articles</label>
+        <label className="lblArticles">Articulos</label>
       </div>
       {/* BUSCAR Y ORDENAR ARTICULOS */}
       <div className="d-flex align-items-center justify-content-around">
@@ -141,9 +141,9 @@ function NewsAdminPage() {
           <i className="bi bi-funnel"></i>
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><button className="dropdown-item">Born Date</button></li>
-            <li><button className="dropdown-item">Name</button></li>
-            <li><button className="dropdown-item">Type</button></li>
+            <li><button className="dropdown-item">Fecha de nacimiento</button></li>
+            <li><button className="dropdown-item">Nombre</button></li>
+            <li><button className="dropdown-item">Tipo</button></li>
           </ul>
         </div>
         {/* BUSCAR ARTICULO */}
@@ -173,7 +173,7 @@ function NewsAdminPage() {
               <form className="frmNewArticles" onSubmit={handleSubmit(addArticle)}>
                 <div className="d-flex justify-content-between div-new-article">
                   <div className="mb-3 col-8 div-new-article-item">
-                    <label className="form-label">Titulo</label>
+                    <label className="form-label">Título</label>
                     <input type="text" className="form-control" id="txtTitle" minLength="3" maxLength="100" required {...register("txtTitle")}/>
                   </div>
                   <div className="mb-3 col-3 div-new-article-item">
@@ -183,15 +183,15 @@ function NewsAdminPage() {
                 </div>
                 <div className="d-flex justify-content-between div-new-article">
                   <div className="mb-3 col-8 div-new-article-item">
-                    <label className="form-label">Descripcion</label>
+                    <label className="form-label">Descripción</label>
                     <input type="text" className="form-control" id="txtDescription" minLength="10" maxLength="200" required {...register("txtDescription")}/>
                   </div>
                   <div className="mb-3 col-3 div-new-article-item">
                     <label className="form-label">Categoria</label>
                     <select value='sports' className="form-control" id="txtCategory" onChange={(event) => setTxtCategory(event.target.value)}>
                       <option value="sports">Deportes</option>
-                      <option value="politics">Politica</option>
-                      <option value="economy">Economia</option>
+                      <option value="politics">Política</option>
+                      <option value="economy">Economía</option>
                       <option value="entertainment">Entretenimiento</option>
                       <option value="society">Sociedad</option>
                     </select>
@@ -224,7 +224,7 @@ function NewsAdminPage() {
               <form className="frmEditArticles" onSubmit={editArticle}>
                 <div className="d-flex justify-content-between div-edit-article">
                   <div className="mb-3 col-8 div-edit-article-item">
-                    <label className="form-label">Titulo</label>
+                    <label className="form-label">Título</label>
                     <input type="text" className="form-control" id="txtTitle" onChange={(event) => 
                       setTxtTitle(event.target.value)} value={txtTitle} minLength="3" maxLength="40" required/>
                   </div>
@@ -236,12 +236,12 @@ function NewsAdminPage() {
                 </div>
                 <div className="d-flex justify-content-between div-edit-article">
                   <div className="mb-3 col-8 div-edit-article-item">
-                    <label className="form-label">Descripcion</label>
+                    <label className="form-label">Descripción</label>
                     <input type="text" className="form-control" id="txtDescription" onChange={(event) =>
                        setTxtDescription(event.target.value)} value={txtDescription} minLength="10" maxLength="200" required/>
                   </div>
                   <div className="mb-3 col-3 div-edit-article-item">
-                    <label className="form-label">Categoria</label>
+                    <label className="form-label">Categoría</label>
                     <input type="text" className="form-control" id="txtCategory" onChange={(event) => 
                       setTxtCategory(event.target.value)} value={txtCategory} />
                   </div>
@@ -267,14 +267,14 @@ function NewsAdminPage() {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Articles</h5>
+              <h5 className="modal-title" id="exampleModalLabel">Artículo</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
                 <form className="frmViewArticles">
                 <div className="d-flex justify-content-between div-view-article">
                   <div className="mb-3 col-8 div-view-article-item">
-                    <label className="form-label">Titulo</label>
+                    <label className="form-label">Título</label>
                     <input type="text" className="form-control" id="txtName" onChange={(event) => setTxtTitle(event.target.value)} value={txtTitle} disabled/>
                   </div>
                   <div className="mb-3 col-3 div-view-article-item">
