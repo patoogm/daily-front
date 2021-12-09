@@ -65,9 +65,9 @@ const MobileMenu = () => {
   return (
     <>
       <div ref={menuRef} className="mobile-menu">
-        { !isToken ? <a href="/login" className="mobile-menu-item one login"><div>LOGIN</div></a> : <div className="logged-in-mobile seven">¡Bienvenido {userName}!</div>  }
-        { !isToken ? <a href="/register" className="mobile-menu-item two register"><div>REGISTER</div></a> : userRole === 'writer' || userRole === 'admin' ? <a href="/NewsAdmin" className="mobile-menu-item eight admin"><div>Admin</div></a> : null }            
-        { !isToken ? <div></div> : userRole === 'admin' ? <a href="/UsersAdmin" className="mobile-menu-item ten admin"><div>Users</div></a> : null  }            
+        { !isToken ? <a href="/login" className="mobile-menu-item one login"><div>INGRESAR</div></a> : <div className="logged-in-mobile seven">¡Bienvenido {userName}!</div>  }
+        { !isToken ? <a href="/register" className="mobile-menu-item two register"><div>REGÍSTRATE</div></a> : userRole === 'writer' || userRole === 'admin' ? <a href="/NewsAdmin" className="mobile-menu-item eight admin"><div>Administrador</div></a> : null }            
+        { !isToken ? <div></div> : userRole === 'admin' ? <a href="/UsersAdmin" className="mobile-menu-item ten admin"><div>Usuario</div></a> : null  }            
         <div className="mobile-menu-item three">ACTUALIDAD</div>
         <div className="mobile-menu-item four">DEPORTES</div>
         <div className="mobile-menu-item five">POLÍTICA</div>

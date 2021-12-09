@@ -81,9 +81,9 @@ function Header() {
             <i ref={mobileButton} className="bi bi-list navToggle"></i>
           </div>
           <div className="buttons-container">
-            { !isToken ? <a href="/login" className="login-button"><div>LOGIN</div></a> : <div className="logged-in">¡Bienvenido {userName}!</div>  }
-            { !isToken ? <a href="/register" className="register-button"><div>REGISTER</div></a> : userRole === 'writer' || userRole === 'admin' ? <a href="/NewsAdmin" className="admin-button"><div>Admin</div></a> : null }
-            { !isToken ? null : userRole === 'admin' ? <a href="/UsersAdmin" className="admin-button"><div>Users</div></a> : null  }
+            { !isToken ? <a href="/login" className="login-button"><div>INGRESAR</div></a> : <div className="logged-in">¡Bienvenido {userName}!</div>  }
+            { !isToken ? <a href="/register" className="register-button"><div>REGÍSTRATE</div></a> : userRole === 'writer' || userRole === 'admin' ? <a href="/NewsAdmin" className="admin-button"><div>Administrador</div></a> : null }
+            { !isToken ? null : userRole === 'admin' ? <a href="/UsersAdmin" className="admin-button"><div>Usuario</div></a> : null  }
             { !isToken ? <div></div> : <div className="logOut" onClick={logOut}>Cerrar Sesión</div> }
           </div>
         </div>
