@@ -16,7 +16,6 @@ function NewsAdminPage() {
   const [txtCategory, setTxtCategory] = useState("")
   const [txtSearch,setTxtSearch] = useState("")
   const txtAutor = localStorage.getItem('_id')
-
   const [newsById,setNewsById] = useState({})
   const [news, setNews] = useState([])
   const [searchList, setSearchList] = useState([])
@@ -117,8 +116,8 @@ function NewsAdminPage() {
     reload()
   } 
 
-  const deleteArticle = (query) => {
-    fetch('http://localhost:8000/news/'+ query.article._id,{
+  const deleteArticle = (newsById) => {
+    fetch('http://localhost:8000/news/'+ newsById.article._id,{
       method: 'DELETE'
     })
       .then((response) => response.json())
@@ -133,22 +132,12 @@ function NewsAdminPage() {
         <img className="imgArticles" src={imgArticles} alt="imgArticles" width="60 px" height="60 px" />
         <label className="lblArticles">Articulos</label>
       </div>
-      {/* BUSCAR Y ORDENAR ARTICULOS */}
+      {/* BUSCAR */}
       <div className="d-flex align-items-center justify-content-around">
-        {/*ORDENAR ARTICULOS */}
-        <div className="dropdown">
-          <button className="btn btn-link dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          <i className="bi bi-funnel"></i>
-          </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><button className="dropdown-item">Fecha de nacimiento</button></li>
-            <li><button className="dropdown-item">Nombre</button></li>
-            <li><button className="dropdown-item">Tipo</button></li>
-          </ul>
-        </div>
+        <div ></div>
         {/* BUSCAR ARTICULO */}
         <div className="d-flex col-4 input-search-container">
-          <input type="text" className="txtSearch" placeholder="Enter a word related the article" id="txtSearch" onChange={(event) => {
+          <input type="text" className="txtSearch" placeholder="Ingrese una palabra relacionada al articulo" id="txtSearch" onChange={(event) => {
             setTxtSearch(event.target.value)
             setBtnSearch(false)
           }}/> 
@@ -188,7 +177,7 @@ function NewsAdminPage() {
                   </div>
                   <div className="mb-3 col-3 div-new-article-item">
                     <label className="form-label">Categoria</label>
-                    <select value='sports' className="form-control" id="txtCategory" onChange={(event) => setTxtCategory(event.target.value)}>
+                    <select value='sports' className="form-control" id="txtCategory" required {...register("txtCategory")}>
                       <option value="sports">Deportes</option>
                       <option value="politics">Política</option>
                       <option value="economy">Economía</option>
@@ -230,7 +219,7 @@ function NewsAdminPage() {
                   </div>
                   <div className="mb-3 col-3 div-edit-article-item">
                     <label className="form-label">Imagen</label>
-                    <input type="text" className="form-control" id="imgArticle" onChange={(event) => 
+                    <input type="url" className="form-control" id="imgArticle" onChange={(event) => 
                       setImgArticle(event.target.value)} value={imgArticle} />
                   </div>
                 </div>
@@ -304,6 +293,25 @@ function NewsAdminPage() {
         </div>
       </div>
       
+      {/* ELIMINAR USUARIO */}
+      <div class="modal" id="mdlDeleteArticles" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Eliminar usuario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro/a que desea eliminar el registro?</p>
+            </div>
+            <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>,
+                  <button type="button" class="btn btn-primary" onClick={(event) => deleteArticle(newsById)} >Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* MOSTRAR ARTICULO */}
       <div className="table-core-container">
         <table className="table table-hover">
@@ -329,7 +337,8 @@ function NewsAdminPage() {
                   <td>{query.article.category}</td>
                   <td><button data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><i className="bi bi-eye"></i></button></td>
                   <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><i className="bi bi-pencil"></i></button></td>
-                  <td><button onClick={(event) => deleteArticle(query)}><i className="bi bi-x-lg"></i></button></td>
+                  <td><button data-bs-toggle="modal" data-bs-target="#mdlDeleteArticles" onClick={(event) =>
+                  setNewsById(query)} ><i className="bi bi-x-lg"></i></button></td>
                 </tr>
               )): <tr><td className="loading-content">No se encontraron registros relacionados a la búsqueda</td></tr>
             : news.length>0?news.map((query, key) => (
@@ -340,7 +349,8 @@ function NewsAdminPage() {
                 <td>{query.article.category}</td>
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlViewArticles" onClick={(event) => fillForm(query)}><i className="bi bi-eye"></i></button></td>
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlEditArticles" onClick={(event) => fillForm(query)}><i className="bi bi-pencil"></i></button></td>
-                <td><button onClick={(event) => deleteArticle(query)}><i className="bi bi-x-lg"></i></button></td>
+                <td><button data-bs-toggle="modal" data-bs-target="#mdlDeleteArticles" onClick={(event) =>
+                  setNewsById(query)} ><i className="bi bi-x-lg"></i></button></td>
               </tr>
             )): <tr><td className="loading-content">Cargando...</td></tr>}
           </tbody>

@@ -53,6 +53,7 @@ const Register = () => {
           <input type="password" name="password" id="password" className="register-input" required {...register("password")} minLength='5' maxLength='15' onChange={event => setPassword(event.target.value)} />
           <label htmlFor="password" className="register-label">Confirmar contraseña</label>
           <input type="password" name="password-confirm" id="password-confirm" className="register-input" onChange={event => setPasswordConfirm(event.target.value)} />
+          <input type="text" name="role" id='role' className='register-input' value="reader" {...register("role")} hidden/>
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[0].param === 'dni' ? <span className="register-error">* {RegisterError[0].msg}</span> : <span></span>}
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[0].param === 'email' ? <span className="register-error">* {RegisterError[0].msg}</span> : <span></span>}
           {RegisterError === undefined ? <span></span> : RegisterError.length === 0 ? <span></span> : RegisterError[1] === undefined ? <span></span> : RegisterError[1].param === 'email' ? <span className="register-error">* {RegisterError[1].msg}</span> : <span></span>}
