@@ -5,6 +5,7 @@ import {useState, useEffect} from 'react'
 
 function User() {
   const [userById,setUserById] = useState({})
+  const [news, setNews] = useState([])
   const [users,setUsers] = useState ([])
   const [searchList,setSearchList] = useState ([])
   const [txtName,setTxtName] = useState("")
@@ -15,7 +16,8 @@ function User() {
   const [txtRole, setTxtRole] = useState("reader")
   const [txtSearch, setTxtSearch] = useState("")
   const [btnSearch, setBtnSearch] = useState(false)
-  const token = localStorage.getItem('token')
+  const [userSelected,setUserSelected] = useState([])
+  const [newsByAutor,setNewsByAutor] = useState([])
 
   const cleanForm = (user) => {
     setTxtName("")
@@ -47,9 +49,6 @@ function User() {
     .then(response => response.json())
     .then(response => setUsers(response))
   }
-  useEffect(() => {
-    handleUsers()
-  },[])
   
   const reload = () => {
     setTimeout(function(){
@@ -72,11 +71,11 @@ function User() {
       body: JSON.stringify(body),
       headers: {
         'Content-type':'application/json;charset=UTF-8',
-        'access-token': token
       }
     })
       .then((response) => response.json())
       .then((json) => console.log(json));
+    reload()
   }
 
 
@@ -102,6 +101,19 @@ function User() {
     reload()
   }
 
+  const handleNews = () => {fetch('http://localhost:8000/get-news')
+    .then(response => response.json())
+    .then(response => setNews(response))
+  .catch(err => {
+    console.log(err.message)
+  })}
+
+  const openDeleteModal = (user) => {
+    setNewsByAutor(news.filter(noticia => noticia.article.autor_id === user._id))
+    setUserSelected(user)
+    console.log(newsByAutor)
+  }
+
   const deleteUser = (user) => {
     fetch('http://localhost:8000/'+ user._id,{
       method: 'DELETE'
@@ -110,6 +122,12 @@ function User() {
       .then((json) => console.log(json));
       reload()
   } 
+
+  useEffect(() => {
+    handleUsers()
+    handleNews()
+  },[])
+
   return (
     <div className="sectionUsers">
       {/* TITULO E ICONO */}
@@ -295,6 +313,34 @@ function User() {
           </div>
         </div>
       </div>
+      {/* ELIMINAR USUARIO */}
+      <div class="modal" id="mdlDeleteUser" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Eliminar usuario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {newsByAutor.length === 0?
+                <p>¿Está seguro/a que desea eliminar el registro?</p>
+              :
+                <p>No es posible eliminar este usuario, asegurese que no tenga noticias de su autoría antes de realizar esta acción</p>}
+            </div>
+            <div class="modal-footer">
+              {newsByAutor.length === 0?
+                 (
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>,
+                  <button type="button" class="btn btn-primary" onClick={(event) => deleteUser(userSelected)} >Confirmar</button>
+                )
+              :
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* MOSTRAR USUARIO */}
       <div className="table-core-container">
         <table className="table table-hover">
@@ -320,7 +366,8 @@ function User() {
                 <td>{user.role}</td>
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlViewUsers" onClick={(event) => fillForm(user)}><i className="bi bi-eye"></i></button></td>
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlEditUsers" onClick={(event) => fillForm(user)}><i className="bi bi-pencil"></i></button></td>
-                <td>{user.role === "admin" ? null : <button onClick={(event) => deleteUser(user)}><i className="bi bi-x-lg"></i></button>}</td>
+                <td>{user.role === "admin" ? null : <button data-bs-toggle="modal" data-bs-target="#mdlDeleteUser" onClick={(event) =>
+                  openDeleteModal(user)} ><i className="bi bi-x-lg"></i></button>}</td>
               </tr>
               )): <tr><td><h3 className="loading-content">No se encontraron registros relacionados a la búsqueda </h3></td></tr>
             : users.length>0?users.map((user) =>(
@@ -331,7 +378,8 @@ function User() {
                 <td>{user.role}</td>
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlViewUsers" onClick={(event) => fillForm(user)}><i className="bi bi-eye"></i></button></td>
                 <td><button data-bs-toggle="modal" data-bs-target="#mdlEditUsers" onClick={(event) => fillForm(user)}><i className="bi bi-pencil"></i></button></td>
-                <td>{user.role === "admin" ? null : <button onClick={(event) => deleteUser(user)}><i className="bi bi-x-lg"></i></button>}</td>
+                <td>{user.role === "admin" ? null : <button data-bs-toggle="modal" data-bs-target="#mdlDeleteUser" onClick={(event) =>
+                  openDeleteModal(user)} ><i className="bi bi-x-lg"></i></button>}</td>
               </tr>
               )): <tr><td><h1 className="loading-content">Cargando... </h1></td></tr>}
             </tbody>
