@@ -5,11 +5,12 @@ const Noticias = () => {
 
   const [content, setContent] = useState([])
   const [article, setArticle] = useState({})
+  const baseURL = process.env.REACT_APP_DB_CONNECTION
 
   useEffect(() => {
     const detailArticle = JSON.parse(localStorage.getItem("article"))
     setArticle(detailArticle)
-    fetch('http://localhost:8000/get-news')
+    fetch(`${baseURL}/get-news`)
       .then(response => response.json())
       .then(json => setContent(json))
   }, [])

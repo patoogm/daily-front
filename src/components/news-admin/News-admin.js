@@ -19,6 +19,7 @@ function NewsAdminPage() {
   const [newsById,setNewsById] = useState({})
   const [news, setNews] = useState([])
   const [searchList, setSearchList] = useState([])
+  const baseURL = process.env.REACT_APP_DB_CONNECTION
  
   const getCurrentDate = () => {
     let newDate = new Date()
@@ -46,14 +47,13 @@ function NewsAdminPage() {
   } 
 
   const handleSearch = () => {
-    fetch('http://localhost:8000/news/'+ txtSearch)
+    fetch(`${baseURL}/news/`+ txtSearch)
     .then(response => response.json())
     .then(response => setSearchList(response))
-    console.log(searchList)
     setBtnSearch(true)
   }
 
-  const handleNews = () => {fetch('http://localhost:8000/get-news')
+  const handleNews = () => {fetch(`${baseURL}/get-news`)
   .then(response => response.json())
   .then(response => setNews(response))
   .catch(err => {
@@ -75,7 +75,7 @@ function NewsAdminPage() {
       category: data.txtCategory
     }
     
-    fetch('http://localhost:8000/create-news',{
+    fetch(`${baseURL}/create-news`,{
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
@@ -104,7 +104,7 @@ function NewsAdminPage() {
       category: txtCategory
     }
 
-    fetch('http://localhost:8000/news/'+newsById.article._id,{
+    fetch(`${baseURL}/news/`+newsById.article._id,{
       method: 'PUT',
       body: JSON.stringify(body),
       headers: {
@@ -117,7 +117,7 @@ function NewsAdminPage() {
   } 
 
   const deleteArticle = (newsById) => {
-    fetch('http://localhost:8000/news/'+ newsById.article._id,{
+    fetch(`${baseURL}/news`+ newsById.article._id,{
       method: 'DELETE'
     })
       .then((response) => response.json())
@@ -133,7 +133,7 @@ function NewsAdminPage() {
         <label className="lblArticles">Articulos</label>
       </div>
       {/* BUSCAR */}
-      <div className="d-flex align-items-center justify-content-around">
+      <div className="d-flex align-items-center justify-content-around search-container">
         <div ></div>
         {/* BUSCAR ARTICULO */}
         <div className="d-flex col-4 input-search-container">
@@ -231,8 +231,14 @@ function NewsAdminPage() {
                   </div>
                   <div className="mb-3 col-3 div-edit-article-item">
                     <label className="form-label">Categoría</label>
-                    <input type="text" className="form-control" id="txtCategory" onChange={(event) => 
-                      setTxtCategory(event.target.value)} value={txtCategory} />
+                    <select className="form-control" id="txtCategory" onChange={(event) => 
+                      setTxtCategory(event.target.value)} value={txtCategory} >
+                      <option value="sports">Deportes</option>
+                      <option value="politics">Política</option>
+                      <option value="economy">Economía</option>
+                      <option value="entertainment">Entretenimiento</option>
+                      <option value="society">Sociedad</option>
+                    </select>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between div-edit-article">

@@ -6,9 +6,10 @@ function Login() {
 
   const [LoginError, setLoginError] = useState(false)
   const { register, handleSubmit } = useForm();
+  const baseURL = process.env.REACT_APP_DB_CONNECTION
 
   const onSubmit = data => {
-    fetch('http://localhost:8000/login-user',{
+    fetch(`${baseURL}/login-user`,{
       method: 'POST',
       body: JSON.stringify({
         email: data.email,

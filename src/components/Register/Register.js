@@ -10,11 +10,13 @@ const Register = () => {
   const [ Password, setPassword ] = useState("")
   const [ PasswordConfirm, setPasswordConfirm ] = useState("")
   const [ PasswordMatchError, setPasswordMatchError] = useState("")
+  
+  const baseURL = process.env.REACT_APP_DB_CONNECTION
 
   const onSubmit = data => {
     if (Password === PasswordConfirm) {
       setPasswordMatchError("")
-      fetch('http://localhost:8000/create-users',{
+      fetch(`${baseURL}/create-users`,{
       method: 'POST',
       body: JSON.stringify(
         data
