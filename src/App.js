@@ -17,7 +17,7 @@ function App() {
     fetch(`${baseURL}/get-news`)
       .then((response) => response.json())
       .then((json) => setContent(json));
-  }, [baseURL, content])
+  }, [baseURL])
   
   const sports = content.filter(noticia => noticia.article.category === 'sports')
   const politics = content.filter(noticia => noticia.article.category === 'politics')
