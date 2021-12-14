@@ -6,7 +6,7 @@ const Noticias = () => {
   const [content, setContent] = useState([])
   const [article, setArticle] = useState({})
   const baseURL = process.env.REACT_APP_DB_CONNECTION
-  const randomNumber = Math.floor(30*Math.random())+1
+  const randomNumber = Math.floor(26*Math.random())+1
   const randomNumberPlus = randomNumber + 3
 
   useEffect(() => {
