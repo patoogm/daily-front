@@ -8,7 +8,7 @@
   margin-right: 2.5% !important;
 }
 .tarjeta{
-  height: 450px;
+  height: 410px;
   margin-bottom: 30px;
   text-align: center;
 }
@@ -23,7 +23,10 @@
 .card-body{
   padding: 0px;
 }
+.tarjeta-title{
+  margin: 10px 10px 0px 10px;
+}
 .tarjeta-contenido{
-  margin-top: 15px;
+  margin: 10px 10px 0px 10px;
   font-size: 14px;
 }
