@@ -6,6 +6,8 @@ const Noticias = () => {
   const [content, setContent] = useState([])
   const [article, setArticle] = useState({})
   const baseURL = process.env.REACT_APP_DB_CONNECTION
+  const randomNumber = Math.floor(30*Math.random())+1
+  const randomNumberPlus = randomNumber + 3
 
   useEffect(() => {
     const detailArticle = JSON.parse(localStorage.getItem("article"))
@@ -29,14 +31,18 @@ const Noticias = () => {
           </div>
           <div className="cards-container">
           {
-            content.length > 0?content.slice(10,13).map(noticia =>
-              (<div>
-                <div className="card-artesanal">
-                  <img className="card-image" src={noticia.article.image} alt="ImagenCard" />
-                  <h6 className="card-title">{noticia.article.title}</h6>
+            content.length > 0 ?
+             content.slice(randomNumber,randomNumberPlus).map(noti =>
+              (
+              <a key={noti.article._id} className="letra" href={`/article/${noti.article.title.replace(/%\s/g, '_')}`}>
+                <div className="card-artesanal"  onClick={()=>{ localStorage.setItem("article", JSON.stringify(noti.article))}}>
+                  <img className="card-image" src={noti.article.image} alt="ImagenCard" />
+                  <h6 className="card-title">{noti.article.title}</h6>
                 </div>
-              </div>)
-              ):<h4>Cargando noticias</h4>
+              </a>)
+              )
+            :
+            <h4>Cargando noticias</h4>
           }
           </div>
         </div>

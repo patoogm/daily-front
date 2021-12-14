@@ -9,7 +9,7 @@ export default function Card1( {category} ) {
   <MDBRow className='row-cols-1 row-cols-md-3 gx-0 tarjeta-core-container'>
       {
         category.map( noticia => 
-        <a key={noticia.article._id} className='letra' href={`/article/${noticia.title}`}>
+        <a key={noticia.article._id} className='letra' href={`/article/${noticia.article.title.replace(/\s/g, '_')}`}>
           <MDBCol className='p-2  tarjeta' onClick={()=>{
             localStorage.setItem("article", JSON.stringify(noticia.article))
           }}>
