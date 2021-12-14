@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     handleClick()   
-  }, [])
+  })
   
   const sports = content.filter(noticia => noticia.article.category === 'sports')
   const politics = content.filter(noticia => noticia.article.category === 'politics')
