@@ -347,11 +347,8 @@ function User() {
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">DNI</th>
-              <th scope="col">Correo electronico</th>
+              <th scope="col">Correo electrónico</th>
               <th scope="col">Tipo</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
