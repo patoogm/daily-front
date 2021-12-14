@@ -17,8 +17,6 @@ const Noticias = () => {
       .then(json => setContent(json))
   }, [baseURL])
 
-  
-
   return (
       <>
         <div className="noticias-core-container">

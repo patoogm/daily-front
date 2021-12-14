@@ -5,7 +5,6 @@ import {useState} from 'react'
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 
-
 function NewsAdminPage() {
   const { register, handleSubmit } = useForm();
   const [btnSearch,setBtnSearch] = useState(false)
@@ -131,14 +130,14 @@ function NewsAdminPage() {
       {/* TITULO E ICONO */}
       <div className="title-container"> 
         <img className="imgArticles" src={imgArticles} alt="imgArticles" width="60 px" height="60 px" />
-        <label className="lblArticles">Articulos</label>
+        <label className="lblArticles">Artículos</label>
       </div>
       {/* BUSCAR */}
       <div className="d-flex align-items-center justify-content-around search-container">
         <div ></div>
         {/* BUSCAR ARTICULO */}
         <div className="d-flex col-4 input-search-container">
-          <input type="text" className="txtSearch" placeholder="Ingrese una palabra relacionada al articulo" id="txtSearch" onChange={(event) => {
+          <input type="text" className="txtSearch" placeholder="Ingrese una palabra relacionada al artículo" id="txtSearch" onChange={(event) => {
             setTxtSearch(event.target.value)
             setBtnSearch(false)
           }}/> 
@@ -177,7 +176,7 @@ function NewsAdminPage() {
                     <input type="text" className="form-control" id="txtDescription" minLength="10" maxLength="200" required {...register("txtDescription")}/>
                   </div>
                   <div className="mb-3 col-3 div-new-article-item">
-                    <label className="form-label">Categoria</label>
+                    <label className="form-label">Categoría</label>
                     <select defaultValue='sports' className="form-control" id="txtCategory" required {...register("txtCategory")}>
                       <option value="sports">Deportes</option>
                       <option value="politics">Política</option>
@@ -189,7 +188,7 @@ function NewsAdminPage() {
                 </div>
                 <div className="d-flex justify-content-between div-new-article">
                   <div className="mb-3 col-8 div-new-article-item">
-                    <label className="form-label">Cuerpo</label>
+                    <label className="form-label">Cuerpo de la noticia</label>
                     <textarea type="textarea" className="form-control txtArticle" id="txtArticle" minLength="10" maxLength="700" required {...register("txtArticle")}/>
                   </div>
                 </div>
@@ -244,7 +243,7 @@ function NewsAdminPage() {
                 </div>
                 <div className="d-flex justify-content-between div-edit-article">
                   <div className="mb-3 col-8 div-edit-article-item">
-                    <label className="form-label">Cuerpo</label>
+                    <label className="form-label">Cuerpo de la noticia</label>
                     <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => 
                       setTxtArticle(event.target.value)} value={txtArticle} minLength="10" maxLength="700" required/>
                   </div>
@@ -284,13 +283,13 @@ function NewsAdminPage() {
                     <input type="text" className="form-control" id="txtDescription" onChange={(event) => setTxtDescription(event.target.value)} value={txtDescription} disabled/>
                   </div>
                   <div className="mb-3 col-3 div-edit-article-item">
-                    <label className="form-label">Categoria</label>
+                    <label className="form-label">Categoría</label>
                     <input type="text" className="form-control" id="txtCategory" onChange={(event) => setTxtCategory(event.target.value)} value={txtCategory} disabled/>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between div-view-article">
                   <div className="mb-3 col-8 div-view-article-item">
-                    <label className="form-label">Cuerpo</label>
+                    <label className="form-label">Cuerpo de la noticia</label>
                     <textarea type="textarea" className="form-control txtArticle" id="txtArticle" onChange={(event) => setTxtArticle(event.target.value)} value={txtArticle} disabled/>
                   </div>
                 </div>  
@@ -305,7 +304,7 @@ function NewsAdminPage() {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Eliminar usuario</h5>
+              <h5 class="modal-title">Eliminar Artículo</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -328,9 +327,6 @@ function NewsAdminPage() {
               <th scope="col">Autor</th>
               <th scope="col">Fecha</th>
               <th scope="col">Categoría</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>

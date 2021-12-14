@@ -1,7 +1,6 @@
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import './card.css'
 
-
 export default function Card1( {category} ) {   
 
   return (

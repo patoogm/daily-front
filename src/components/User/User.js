@@ -183,9 +183,9 @@ function User() {
                     <label className="form-label">Tipo de usuario</label>
                     <select value={txtRole} className="form-control" id="txtSelect" onChange={(event) => 
                       setTxtRole(event.target.value)}>
-                      <option value="reader">Lector</option>
-                      <option value="writer">Escritor</option>
-                      <option value="admin">Administrador</option>
+                      <option value="reader">reader</option>
+                      <option value="writer">writer</option>
+                      <option value="admin">admin</option>
                     </select>
                   </div>
                   <div className="mb-3 col-5 div-new-user-item">
@@ -241,13 +241,13 @@ function User() {
                     <label className="form-label">Tipo de usuario</label>
                     <select className="form-control" id="txtSelect2" onChange={(event) => setTxtRole(event.target.value)} defaultValue={txtRole}>
                       <option value={txtRole}>{txtRole}</option>
-                      { txtRole === "reader" ? null : <option value="reader">Lector</option> }
-                      { txtRole === "writer" ? null : <option value="writer">Escritor</option> }
-                      { txtRole === "admin" ? null : <option value="admin">Administrador</option> }
+                      { txtRole === "reader" ? null : <option value="reader">reader</option> }
+                      { txtRole === "writer" ? null : <option value="writer">writer</option> }
+                      { txtRole === "admin" ? null : <option value="admin">admin</option> }
                     </select>
                   </div>
                   <div className="mb-3 col-5 div-edit-user-item">
-                    <label className="form-label">Correo electronico</label>
+                    <label className="form-label">Correo electrónico</label>
                     <input type="email" className="form-control" id="txtEmail2" aria-describedby="emailHelp" onChange={(event) => 
                       setTxtEmail(event.target.value)} value={txtEmail}  maxLength="20" required/>
                   </div> 
@@ -299,7 +299,7 @@ function User() {
                     </select>
                   </div>
                   <div className="mb-3 col-5 div-view-user-item">
-                    <label className="form-label">Correo electronico</label>
+                    <label className="form-label">Correo electrónico</label>
                     <input type="email" className="form-control" id="txtEmail3" aria-describedby="emailHelp" onChange={(event) => setTxtEmail(event.target.value)} value={txtEmail} disabled/>
                   </div>
                   <div className="mb-3 div-view-user-item">

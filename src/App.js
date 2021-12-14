@@ -13,16 +13,12 @@ function App() {
   const [content, setContent] = useState([])
   const baseURL = process.env.REACT_APP_DB_CONNECTION
   
-  
   const handleClick = async () => {
     const response = await fetch(`${baseURL}/get-news`)
     const json = await response.json()
     return setContent(json);
   }
 
-  console.log(content)
-
-  
   useEffect(() => {
     handleClick()   
   }, [])

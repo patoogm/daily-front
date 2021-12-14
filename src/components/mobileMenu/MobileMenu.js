@@ -26,9 +26,7 @@ const MobileMenu = () => {
     const twelve = document.querySelector('.twelve')
     const nine = !isToken ? 1+1 : document.querySelector('.nine');
     const ten = !isToken ? 1+1 : document.querySelector('.ten');
-
     
-
     let toggleMobileMenu = (event) => {
         if(!menuRef.current.contains(event.target)){
           menu.classList.remove('active')
