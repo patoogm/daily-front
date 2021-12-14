@@ -13,15 +13,11 @@ function App() {
   const [content, setContent] = useState([])
   const baseURL = process.env.REACT_APP_DB_CONNECTION
   
-  const handleClick = async () => {
-    const response = await fetch(`${baseURL}/get-news`)
-    const json = await response.json()
-    return setContent(json);
-  }
-
   useEffect(() => {
-    handleClick()   
-  })
+    fetch(`${baseURL}/get-news`)
+      .then((response) => response.json())
+      .then((json) => setContent(json));
+  }, [baseURL, content])
   
   const sports = content.filter(noticia => noticia.article.category === 'sports')
   const politics = content.filter(noticia => noticia.article.category === 'politics')
