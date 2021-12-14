@@ -29,7 +29,7 @@ const MobileMenu = () => {
     
     let toggleMobileMenu = (event) => {
         if(!menuRef.current.contains(event.target)){
-          menu.classList.remove('active')
+          menu.classList.remove('mobile-menu-active')
           setTimeout(()=>{
             one.classList.remove('itemActive')
             if (isToken && (userRole === 'writer' || userRole === 'admin')) {
