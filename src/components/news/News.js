@@ -13,7 +13,7 @@ const Noticias = () => {
     fetch(`${baseURL}/get-news`)
       .then(response => response.json())
       .then(json => setContent(json))
-  }, [])
+  }, [baseURL])
 
   
 

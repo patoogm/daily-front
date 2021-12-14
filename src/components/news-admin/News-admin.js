@@ -60,9 +60,9 @@ function NewsAdminPage() {
     console.log(err.message)
   })}
   
-  useEffect(() => {
+  useEffect( () => {
     handleNews()
-  }, [])
+  })
 
   const addArticle = data => {
     const body = {
@@ -94,6 +94,7 @@ function NewsAdminPage() {
   }
 
   const editArticle = (event) => {
+    event.preventDefault()
     const body = {
       title: txtTitle,
       image: imgArticle,
@@ -104,7 +105,7 @@ function NewsAdminPage() {
       category: txtCategory
     }
 
-    fetch(`${baseURL}/news/`+newsById.article._id,{
+    fetch(`${baseURL}/news/${newsById.article._id}`,{
       method: 'PUT',
       body: JSON.stringify(body),
       headers: {
@@ -117,7 +118,7 @@ function NewsAdminPage() {
   } 
 
   const deleteArticle = (newsById) => {
-    fetch(`${baseURL}/news`+ newsById.article._id,{
+    fetch(`${baseURL}/news/${newsById.article._id}`,{
       method: 'DELETE'
     })
       .then((response) => response.json())
@@ -177,7 +178,7 @@ function NewsAdminPage() {
                   </div>
                   <div className="mb-3 col-3 div-new-article-item">
                     <label className="form-label">Categoria</label>
-                    <select value='sports' className="form-control" id="txtCategory" required {...register("txtCategory")}>
+                    <select defaultValue='sports' className="form-control" id="txtCategory" required {...register("txtCategory")}>
                       <option value="sports">Deportes</option>
                       <option value="politics">Política</option>
                       <option value="economy">Economía</option>
@@ -300,7 +301,7 @@ function NewsAdminPage() {
       </div>
       
       {/* ELIMINAR USUARIO */}
-      <div class="modal" id="mdlDeleteArticles" tabindex="-1">
+      <div class="modal" id="mdlDeleteArticles" tabIndex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">

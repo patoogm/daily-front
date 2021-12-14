@@ -57,6 +57,7 @@ function User() {
   }
 
   const addUser = (event) => {
+    event.preventDefault()
     const body = {
       name: txtName,
       lastName: txtLastName,
@@ -79,6 +80,7 @@ function User() {
 
 
   const editUser = (event) => {
+    event.preventDefault()
     const body = {
       name: txtName,
       lastName: txtLastName,
@@ -123,7 +125,7 @@ function User() {
   useEffect(() => {
     handleUsers()
     handleNews()
-  },[])
+  })
 
   return (
     <div className="sectionUsers">
@@ -183,7 +185,7 @@ function User() {
                       setTxtRole(event.target.value)}>
                       <option value="reader">Lector</option>
                       <option value="writer">Escritor</option>
-                      <option value="administrator">Administrador</option>
+                      <option value="admin">Administrador</option>
                     </select>
                   </div>
                   <div className="mb-3 col-5 div-new-user-item">
@@ -311,27 +313,27 @@ function User() {
         </div>
       </div>
       {/* ELIMINAR USUARIO */}
-      <div class="modal" id="mdlDeleteUser" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Eliminar usuario</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div className="modal" id="mdlDeleteUser" tabIndex="-1">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Eliminar usuario</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               {newsByAutor.length === 0?
                 <p>¿Está seguro/a que desea eliminar el registro?</p>
               :
                 <p>No es posible eliminar este usuario, asegurese que no tenga noticias de su autoría antes de realizar esta acción</p>}
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               {newsByAutor.length === 0?
                  (
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>,
-                  <button type="button" class="btn btn-primary" onClick={(event) => deleteUser(userSelected)} >Confirmar</button>
+                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>,
+                  <button type="button" className="btn btn-primary" onClick={(event) => deleteUser(userSelected)} >Confirmar</button>
                 )
               :
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
               }
             </div>
           </div>
@@ -355,8 +357,8 @@ function User() {
           <tbody>
             
             {txtSearch !== "" && btnSearch === true?
-              searchList.length>0?searchList.map((user) =>(
-              <tr>
+              searchList.length>0?searchList.map((user, key) =>(
+              <tr key={key}>
                 <th scope="row">{`${user.name} ${user.lastName}`}</th>
                 <td>{user.dni}</td>
                 <td>{user.email}</td>
@@ -367,8 +369,8 @@ function User() {
                   openDeleteModal(user)} ><i className="bi bi-x-lg"></i></button>}</td>
               </tr>
               )): <tr><td><h3 className="loading-content">No se encontraron registros relacionados a la búsqueda </h3></td></tr>
-            : users.length>0?users.map((user) =>(
-              <tr>
+            : users.length>0?users.map((user, key) =>(
+              <tr key={key}>
                 <th scope="row">{`${user.name} ${user.lastName}`}</th>
                 <td>{user.dni}</td>
                 <td>{user.email}</td>
