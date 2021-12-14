@@ -15,7 +15,7 @@ export default function Card1( {category} ) {
           <MDBCard className='h-100'>
             <MDBCardImage className='img-size' src={noticia.article.image} alt='...' position='top'/>
             <MDBCardBody className="tarjeta-body">
-              <MDBCardTitle>{noticia.article.title}</MDBCardTitle>
+              <MDBCardTitle className="tarjeta-title">{noticia.article.title}</MDBCardTitle>
               <MDBCardText className="tarjeta-contenido">{noticia.article.description}</MDBCardText>
             </MDBCardBody>
           </MDBCard>
