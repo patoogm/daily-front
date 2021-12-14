@@ -68,4 +68,11 @@ td, th{
   .div-new-article-item, .div-edit-article-item, .div-view-article-item{
     width: 100%;
   }
+  .search-container{
+    flex-direction: column;
+  }
+  .input-search-container{
+    width: 95%;
+    height: 30px;
+  }
 }

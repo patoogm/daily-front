@@ -36,3 +36,10 @@
 .car-item.active{
   border: none;
 }
+
+/* MEDIA QUERY CELULARES */
+@media(min-width:320px) and (max-width: 415px){
+  .d-none{
+    display: block !important;
+  }
+}

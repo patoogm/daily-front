@@ -18,6 +18,7 @@ function User() {
   const [btnSearch, setBtnSearch] = useState(false)
   const [userSelected,setUserSelected] = useState([])
   const [newsByAutor,setNewsByAutor] = useState([])
+  const baseURL = process.env.REACT_APP_DB_CONNECTION
 
   const cleanForm = (user) => {
     setTxtName("")
@@ -34,18 +35,17 @@ function User() {
     setTxtEmail(user.email)
     setTxtPassword(user.password)
     setTxtRole(user.role)
-    console.log(userById)
   } 
 
   const handleSearch = () => {
-    fetch('http://localhost:8000/users/'+txtSearch)
+    fetch(`${baseURL}/users/`+txtSearch)
     .then(response => response.json())
     .then(response => setSearchList(response))
     setBtnSearch(true)
   }
 
   const handleUsers = () => {
-    fetch('http://localhost:8000/get-users')
+    fetch(`${baseURL}/get-users`)
     .then(response => response.json())
     .then(response => setUsers(response))
   }
@@ -65,8 +65,7 @@ function User() {
       password: txtPassword,
       role: txtRole
     }
-    console.log(body)
-    fetch('http://localhost:8000/create-users',{
+    fetch(`${baseURL}/create-users`,{
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
@@ -88,8 +87,7 @@ function User() {
       password: txtPassword,
       role: txtRole
     }
-    console.log(body)
-    fetch('http://localhost:8000/'+ userById._id,{
+    fetch(`${baseURL}/`+ userById._id,{
       method: 'PUT',
       body: JSON.stringify(body),
       headers: {
@@ -101,7 +99,7 @@ function User() {
     reload()
   }
 
-  const handleNews = () => {fetch('http://localhost:8000/get-news')
+  const handleNews = () => {fetch(`${baseURL}/get-news`)
     .then(response => response.json())
     .then(response => setNews(response))
   .catch(err => {
@@ -111,11 +109,10 @@ function User() {
   const openDeleteModal = (user) => {
     setNewsByAutor(news.filter(noticia => noticia.article.autor_id === user._id))
     setUserSelected(user)
-    console.log(newsByAutor)
   }
 
   const deleteUser = (user) => {
-    fetch('http://localhost:8000/'+ user._id,{
+    fetch(`${baseURL}/`+ user._id,{
       method: 'DELETE'
     })
       .then((response) => response.json())
