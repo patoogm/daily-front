@@ -133,7 +133,7 @@ function User() {
         <label className="lblUsers">Usuarios</label>
       </div>
       {/* BUSCAR USUARIO */}
-      <div className="d-flex align-items-center justify-content-between">
+      <div className="d-flex align-items-center justify-content-between search-user-container">
         <div>
          </div>
         <div className="d-flex col-4 input-search-container">
