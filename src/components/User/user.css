@@ -51,7 +51,7 @@
 .loading-content{
   margin-top: 15px;
 }
-@media(min-width:380px) and (max-width: 415px){
+@media(min-width:310px) and (max-width: 415px){
   .div-new-user, .div-view-user, .div-edit-user{
     display: flex;
     flex-direction: column;
@@ -62,7 +62,10 @@
   .div-new-user-item, .div-view-user-item, .div-edit-user-item{
     width: 100%;
   }
-}
-.txtDNI{
-  width: 210px;
+  .txtDNI{
+    width: 210px;
+  }
+  .search-user-container{
+    flex-direction: column;
+  }
 }
