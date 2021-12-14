@@ -31,7 +31,7 @@ function Header() {
 
     const toggleMobileMenu = (event) => {
       if(mobileButton?.current?.contains(event.target)){
-        menu.classList.add('active')
+        menu.classList.add('mobile-menu-active')
         setTimeout(()=>{
           one.classList.add('itemActive')
           if (isToken && (userRole === 'writer' || userRole === 'admin')) {

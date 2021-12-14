@@ -78,7 +78,7 @@ body{
 }
 
 /* CLASES PARA ACCIONAR MENU Y BOTONES */
-.active{
+.mobile-menu-active{
   width: 70%;
   transition-duration: .5s;
   border-left: 5px solid white;
